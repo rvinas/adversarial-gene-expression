@@ -1,0 +1,4506 @@
+#
+#	Person: RegulonDB Team
+#	Email:  regulondb@ccg.unam.mx
+#	Contact Web Page: http://regulondb.ccg.unam.mx/menu/about_regulondb/contact_us
+#
+#
+# Release: 9.4 Date: 05-08-2017
+# ___________________________________________________________________________
+#
+# Columns:
+#  (1) Transcription Factor (TF) name
+#  (2) Gene regulated by the TF (regulated gene)
+#  (3) Regulatory effect of the TF on the regulated gene (+ activator, - repressor, +- dual, ? unknown)
+#  (4) Evidence that supports the existence of the regulatory interaction
+#  (5) Evidence Type [Weak, Strong, Confirmed] For details see: http://regulondb.ccg.unam.mx/evidenceclassification
+#
+AccB	accB	-	[]	null
+AccB	accC	-	[]	null
+AcrR	acrA	-	[BCE, BPP, GEA, HIBSCS]	Strong
+AcrR	acrB	-	[BCE, BPP, GEA, HIBSCS]	Strong
+AcrR	acrR	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+AcrR	flhC	-	[GEA, HIBSCS]	Weak
+AcrR	flhD	-	[GEA, HIBSCS]	Weak
+AcrR	marA	-	[BPP, GEA, HIBSCS]	Strong
+AcrR	marB	-	[BPP, GEA, HIBSCS]	Strong
+AcrR	marR	-	[BPP, GEA, HIBSCS]	Strong
+AcrR	micF	-	[AIBSCS]	Weak
+AcrR	soxR	-	[BPP, GEA, HIBSCS]	Strong
+AcrR	soxS	-	[BPP, GEA, HIBSCS]	Strong
+Ada	ada	+	[BPP, GEA, HIBSCS, SM]	Strong
+Ada	ada	-	[BPP, GEA, HIBSCS, SM]	Strong
+Ada	aidB	+	[BPP, GEA, HIBSCS]	Strong
+Ada	alkA	+	[BPP, GEA, HIBSCS, SM]	Strong
+Ada	alkB	+	[BPP, GEA, HIBSCS, SM]	Strong
+Ada	alkB	-	[BPP, GEA, HIBSCS, SM]	Strong
+AdiY	adiA	+	[BPP, GEA]	Strong
+AdiY	gadA	+	[BPP]	Strong
+AdiY	gadB	+	[BPP]	Strong
+AdiY	gadC	+	[BPP]	Strong
+AdiY	gadX	+	[BPP]	Strong
+AdiY	gltB	+	[BPP]	Strong
+AdiY	gltD	+	[BPP]	Strong
+AdiY	gltF	+	[BPP]	Strong
+AgaR	agaA	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaB	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaC	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaD	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaI	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaR	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaS	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaV	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	agaW	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	kbaY	-	[BPP, GEA, HIBSCS]	Strong
+AgaR	kbaZ	-	[BPP, GEA, HIBSCS]	Strong
+AidB	aidB	-	[BPP, GEA]	Strong
+AlaS	alaS	-	[BPP, GEA]	Strong
+AllR	allA	-	[BCE, BPP, GEA, SM]	Strong
+AllR	allB	-	[BCE, BPP, GEA, SM]	Strong
+AllR	allS	-	[BCE, BPP, GEA, SM]	Strong
+AllR	gcl	-	[BCE, BPP, GEA, SM]	Strong
+AllR	glxK	-	[BCE, BPP, GEA, SM]	Strong
+AllR	glxR	-	[BCE, BPP, GEA, SM]	Strong
+AllR	hyi	-	[BCE, BPP, GEA, SM]	Strong
+AllR	ybbW	-	[BCE, BPP, GEA, SM]	Strong
+AllR	ybbY	-	[BCE, BPP, GEA, SM]	Strong
+AllS	allC	+	[BCE, HIBSCS]	Weak
+AllS	allD	+	[BCE, HIBSCS]	Weak
+AllS	allE	+	[BCE, HIBSCS]	Weak
+AlsR	alsA	-	[GEA]	Weak
+AlsR	alsB	-	[GEA]	Weak
+AlsR	alsC	-	[GEA]	Weak
+AlsR	alsE	-	[GEA]	Weak
+AlsR	rpiB	-	[GEA]	Weak
+AlsR	rpiR	-	[GEA]	Weak
+AppY	appA	+	[GEA]	Weak
+AppY	appB	+	[GEA]	Weak
+AppY	appC	+	[GEA]	Weak
+AppY	appX	+	[GEA]	Weak
+AppY	hyaA	+	[GEA]	Weak
+AppY	hyaB	+	[GEA]	Weak
+AppY	hyaC	+	[GEA]	Weak
+AppY	hyaD	+	[GEA]	Weak
+AppY	hyaE	+	[GEA]	Weak
+AppY	hyaF	+	[GEA]	Weak
+AraC	araA	+	[BPP, GEA, HIBSCS, SM]	Strong
+AraC	araA	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+AraC	araB	+	[BPP, GEA, HIBSCS, SM]	Strong
+AraC	araB	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+AraC	araC	+	[BPP, GEA, HIBSCS, SM]	Strong
+AraC	araC	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+AraC	araD	+	[BPP, GEA, HIBSCS, SM]	Strong
+AraC	araD	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+AraC	araE	+	[BPP, HIBSCS]	Strong
+AraC	araF	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+AraC	araG	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+AraC	araH	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+AraC	araJ	+	[AIBSCS, BPP, HIBSCS]	Strong
+AraC	xylA	-	[BCE, GEA, HIBSCS]	Weak
+AraC	xylB	-	[BCE, GEA, HIBSCS]	Weak
+AraC	ydeM	-	[GEA]	Weak
+AraC	ydeN	-	[GEA]	Weak
+AraC	ygeA	+	[BPP, HIBSCS]	Strong
+ArcA	aceA	-	[RBM]	Weak
+ArcA	aceB	-	[RBM]	Weak
+ArcA	aceE	-	[GEA]	Weak
+ArcA	aceF	-	[GEA]	Weak
+ArcA	aceK	-	[RBM]	Weak
+ArcA	ackA	+	[GEA]	Weak
+ArcA	acnA	-	[GEA, HIBSCS]	Weak
+ArcA	acnB	-	[GEA, HIBSCS]	Weak
+ArcA	aldA	-	[AIBSCS, BPP, HIBSCS, SM]	Strong
+ArcA	appA	+	[GEA]	Weak
+ArcA	appB	+	[GEA]	Weak
+ArcA	appC	+	[GEA]	Weak
+ArcA	appX	+	[GEA]	Weak
+ArcA	arcZ	-	[GEA, HIBSCS]	Weak
+ArcA	betA	-	[BCE, GEA]	Weak
+ArcA	betB	-	[BCE, GEA]	Weak
+ArcA	betI	-	[BCE, GEA]	Weak
+ArcA	betT	-	[BCE, GEA]	Weak
+ArcA	cadA	-	[AIBSCS, GEA]	Weak
+ArcA	cadB	-	[AIBSCS, GEA]	Weak
+ArcA	caiA	+	[AIBSCS, GEA]	Weak
+ArcA	caiB	+	[AIBSCS, GEA]	Weak
+ArcA	caiC	+	[AIBSCS, GEA]	Weak
+ArcA	caiD	+	[AIBSCS, GEA]	Weak
+ArcA	caiE	+	[AIBSCS, GEA]	Weak
+ArcA	caiT	+	[AIBSCS, GEA]	Weak
+ArcA	citC	-	[AIBSCS]	Weak
+ArcA	citD	-	[AIBSCS]	Weak
+ArcA	citE	-	[AIBSCS]	Weak
+ArcA	citF	-	[AIBSCS]	Weak
+ArcA	citG	-	[AIBSCS]	Weak
+ArcA	citX	-	[AIBSCS]	Weak
+ArcA	cydA	+	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+ArcA	cydB	+	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+ArcA	cydC	+	[GEA]	Weak
+ArcA	cydD	+	[GEA]	Weak
+ArcA	cyoA	-	[BCE, GEA]	Weak
+ArcA	cyoB	-	[BCE, GEA]	Weak
+ArcA	cyoC	-	[BCE, GEA]	Weak
+ArcA	cyoD	-	[BCE, GEA]	Weak
+ArcA	cyoE	-	[BCE, GEA]	Weak
+ArcA	dctA	-	[GEA]	Weak
+ArcA	dcuC	+	[GEA, HIBSCS]	Weak
+ArcA	dpiA	+	[AIBSCS]	Weak
+ArcA	dpiB	+	[AIBSCS]	Weak
+ArcA	fadA	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	fadB	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	fadD	-	[AIBSCS, BPP]	Strong
+ArcA	fadE	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	fadH	-	[GEA, HIBSCS]	Weak
+ArcA	fadI	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	fadJ	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	fadL	-	[AIBSCS, BPP]	Strong
+ArcA	fnr	-	[GEA]	Weak
+ArcA	focA	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	fumA	-	[GEA]	Weak
+ArcA	fumB	+	[GEA]	Weak
+ArcA	fumC	-	[GEA]	Weak
+ArcA	gadA	+	[AIBSCS, GEA]	Weak
+ArcA	gadE	+	[BPP, GEA]	Strong
+ArcA	gadF	+	[BPP, GEA]	Strong
+ArcA	gadX	+	[AIBSCS, GEA]	Weak
+ArcA	gatA	-	[AIBSCS, GEA]	Weak
+ArcA	gatB	-	[AIBSCS, GEA]	Weak
+ArcA	gatC	-	[AIBSCS, GEA]	Weak
+ArcA	gatD	-	[AIBSCS, GEA]	Weak
+ArcA	gatY	-	[AIBSCS, GEA]	Weak
+ArcA	gatZ	-	[AIBSCS, GEA]	Weak
+ArcA	glcA	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	glcB	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	glcD	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	glcE	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	glcF	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	glcG	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	glpA	-	[GEA]	Weak
+ArcA	glpB	-	[GEA]	Weak
+ArcA	glpC	-	[GEA]	Weak
+ArcA	glpD	-	[GEA]	Weak
+ArcA	gltA	-	[BCE, GEA, HIBSCS]	Weak
+ArcA	grcA	+	[GEA, HIBSCS]	Weak
+ArcA	hemA	+	[GEA]	Weak
+ArcA	hyaA	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	hyaB	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	hyaC	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	hyaD	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	hyaE	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	hyaF	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	hybA	-	[GEA, HIBSCS]	Weak
+ArcA	hybB	-	[GEA, HIBSCS]	Weak
+ArcA	hybC	-	[GEA, HIBSCS]	Weak
+ArcA	hybD	-	[GEA, HIBSCS]	Weak
+ArcA	hybE	-	[GEA, HIBSCS]	Weak
+ArcA	hybF	-	[GEA, HIBSCS]	Weak
+ArcA	hybG	-	[GEA, HIBSCS]	Weak
+ArcA	hybO	-	[GEA, HIBSCS]	Weak
+ArcA	icd	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	iraM	+	[AIBSCS]	Weak
+ArcA	lldD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArcA	lldP	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArcA	lldR	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArcA	lpd	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	mdh	-	[BCE, GEA]	Weak
+ArcA	moeA	+	[BPP, GEA]	Strong
+ArcA	moeB	+	[BPP, GEA]	Strong
+ArcA	ndh	-	[AIBSCS, GEA]	Weak
+ArcA	nuoA	-	[BCE, GEA, SM]	Strong
+ArcA	nuoB	-	[BCE, GEA, SM]	Strong
+ArcA	nuoC	-	[BCE, GEA, SM]	Strong
+ArcA	nuoE	-	[BCE, GEA, SM]	Strong
+ArcA	nuoF	-	[BCE, GEA, SM]	Strong
+ArcA	nuoG	-	[BCE, GEA, SM]	Strong
+ArcA	nuoH	-	[BCE, GEA, SM]	Strong
+ArcA	nuoI	-	[BCE, GEA, SM]	Strong
+ArcA	nuoJ	-	[BCE, GEA, SM]	Strong
+ArcA	nuoK	-	[BCE, GEA, SM]	Strong
+ArcA	nuoL	-	[BCE, GEA, SM]	Strong
+ArcA	nuoM	-	[BCE, GEA, SM]	Strong
+ArcA	nuoN	-	[BCE, GEA, SM]	Strong
+ArcA	ompW	-	[AIBSCS, BPP, GEA]	Strong
+ArcA	oppA	-	[AIBSCS, GEA]	Weak
+ArcA	oppB	-	[AIBSCS, GEA]	Weak
+ArcA	oppC	-	[AIBSCS, GEA]	Weak
+ArcA	oppD	-	[AIBSCS, GEA]	Weak
+ArcA	oppF	-	[AIBSCS, GEA]	Weak
+ArcA	pflB	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	prfA	+	[GEA]	Weak
+ArcA	prmC	+	[GEA]	Weak
+ArcA	ptsG	-	[BPP, GEA]	Strong
+ArcA	puuA	-	[AIBSCS, GEA]	Weak
+ArcA	puuB	-	[AIBSCS, GEA]	Weak
+ArcA	puuC	-	[AIBSCS, GEA]	Weak
+ArcA	puuD	-	[AIBSCS, GEA]	Weak
+ArcA	puuE	-	[AIBSCS, GEA]	Weak
+ArcA	puuP	-	[AIBSCS, GEA]	Weak
+ArcA	puuR	-	[AIBSCS, GEA]	Weak
+ArcA	rhaT	-	[AIBSCS, GEA]	Weak
+ArcA	rplB	-	[AIBSCS, GEA]	Weak
+ArcA	rplC	-	[AIBSCS, GEA]	Weak
+ArcA	rplD	-	[AIBSCS, GEA]	Weak
+ArcA	rplP	-	[AIBSCS, GEA]	Weak
+ArcA	rplV	-	[AIBSCS, GEA]	Weak
+ArcA	rplW	-	[AIBSCS, GEA]	Weak
+ArcA	rpmC	-	[AIBSCS, GEA]	Weak
+ArcA	rpoS	-	[BPP, GEA]	Strong
+ArcA	rpsC	-	[AIBSCS, GEA]	Weak
+ArcA	rpsJ	-	[AIBSCS, GEA]	Weak
+ArcA	rpsQ	-	[AIBSCS, GEA]	Weak
+ArcA	rpsS	-	[AIBSCS, GEA]	Weak
+ArcA	rutA	+	[AIBSCS, GEA]	Weak
+ArcA	rutB	+	[AIBSCS, GEA]	Weak
+ArcA	rutC	+	[AIBSCS, GEA]	Weak
+ArcA	rutD	+	[AIBSCS, GEA]	Weak
+ArcA	rutE	+	[AIBSCS, GEA]	Weak
+ArcA	rutF	+	[AIBSCS, GEA]	Weak
+ArcA	rutG	+	[AIBSCS, GEA]	Weak
+ArcA	sdhA	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhA	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhB	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhB	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhC	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhC	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhD	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sdhD	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sodA	-	[AIBSCS, BCE, HIBSCS]	Weak
+ArcA	sroD	-	[AIBSCS, BPP]	Strong
+ArcA	ssb	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucA	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucA	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucB	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucB	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucC	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucC	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucD	+	[BPP, GEA, HIBSCS]	Strong
+ArcA	sucD	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	tpx	-	[GEA, HIBSCS]	Weak
+ArcA	treB	+	[AIBSCS, GEA]	Weak
+ArcA	treC	+	[AIBSCS, GEA]	Weak
+ArcA	ubiA	-	[GEA]	Weak
+ArcA	ubiC	-	[GEA]	Weak
+ArcA	uvrA	-	[BPP, GEA, HIBSCS]	Strong
+ArcA	xylR	+	[AIBSCS, GEA]	Weak
+ArcA	ybdN	+	[AIBSCS]	Weak
+ArcA	ydeA	-	[AIBSCS, GEA]	Weak
+ArgP	argO	+	[BCE, BPP, GEA, HIBSCS, IC]	Strong
+ArgP	argP	-	[GEA, HIBSCS, IC]	Weak
+ArgP	dapB	+	[BCE, BPP, GEA, HIBSCS, IC]	Strong
+ArgP	dapD	+	[BPP, GEA]	Strong
+ArgP	dnaA	+	[BPP, GEA, IC]	Strong
+ArgP	dnaN	+	[BPP, GEA, IC]	Strong
+ArgP	gdhA	+	[BPP, GEA]	Strong
+ArgP	lysA	+	[BPP, GEA]	Strong
+ArgP	lysC	+	[BPP, GEA]	Strong
+ArgP	lysP	+	[BPP, GEA, HIBSCS, IC, SM]	Strong
+ArgP	nrdA	+	[BPP, GEA, IC]	Strong
+ArgP	nrdB	+	[BPP, GEA, IC]	Strong
+ArgP	recF	+	[BPP, GEA, IC]	Strong
+ArgP	yfaE	+	[BPP, GEA, IC]	Strong
+ArgR	argA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	argB	-	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+ArgR	argC	-	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+ArgR	argD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	argE	-	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+ArgR	argF	-	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+ArgR	argG	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	argH	-	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+ArgR	argI	-	[AIBSCS, BCE, BPP, GEA]	Strong
+ArgR	argR	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	artI	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	artJ	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	artM	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	artP	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	artQ	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	astA	+	[AIBSCS, BPP, GEA]	Strong
+ArgR	astB	+	[AIBSCS, BPP, GEA]	Strong
+ArgR	astC	+	[AIBSCS, BPP, GEA]	Strong
+ArgR	astD	+	[AIBSCS, BPP, GEA]	Strong
+ArgR	astE	+	[AIBSCS, BPP, GEA]	Strong
+ArgR	carA	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+ArgR	carB	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+ArgR	gltB	-	[BPP, GEA, HIBSCS]	Strong
+ArgR	gltD	-	[BPP, GEA, HIBSCS]	Strong
+ArgR	gltF	-	[BPP, GEA, HIBSCS]	Strong
+ArgR	hisJ	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	hisM	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	hisP	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	hisQ	-	[AIBSCS, BPP, GEA, SM]	Strong
+ArgR	infB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	lysO	-	[BPP, GEA, SM]	Strong
+ArgR	metY	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	nusA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	pnp	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	rbfA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	rimP	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	rpsO	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArgR	truB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+ArsR	arsB	-	[AIBSCS, BPP, GEA]	Strong
+ArsR	arsC	-	[AIBSCS, BPP, GEA]	Strong
+ArsR	arsR	-	[AIBSCS, BPP, GEA]	Strong
+AscG	ascB	-	[AIBSCS, BPP, GEA]	Strong
+AscG	ascF	-	[AIBSCS, BPP, GEA]	Strong
+AscG	htpG	-	[AIBSCS, BPP]	Strong
+AscG	prpR	-	[AIBSCS, BPP, GEA]	Strong
+AscG	ybiT	-	[AIBSCS, BPP]	Strong
+AsnC	asnA	+	[GEA]	Weak
+AsnC	asnC	-	[GEA]	Weak
+AsnC	mioC	-	[GEA]	Weak
+AsnC	mnmG	-	[GEA]	Weak
+AtoC	atoA	+	[BPP, GEA, HIBSCS, SM]	Strong
+AtoC	atoB	+	[BPP, GEA, HIBSCS, SM]	Strong
+AtoC	atoD	+	[BPP, GEA, HIBSCS, SM]	Strong
+AtoC	atoE	+	[BPP, GEA, HIBSCS, SM]	Strong
+BaeR	acrD	+	[BPP, GEA, IC]	Strong
+BaeR	baeR	+	[AIBSCS, BPP, GEA]	Strong
+BaeR	baeS	+	[AIBSCS, BPP, GEA]	Strong
+BaeR	mdtA	+	[AIBSCS, BPP, GEA]	Strong
+BaeR	mdtB	+	[AIBSCS, BPP, GEA]	Strong
+BaeR	mdtC	+	[AIBSCS, BPP, GEA]	Strong
+BaeR	mdtD	+	[AIBSCS, BPP, GEA]	Strong
+BaeR	spy	+	[AIBSCS, BPP, GEA, HIBSCS, IC]	Strong
+BasR	csgD	+	[BPP, GEA, HIBSCS]	Strong
+BasR	csgE	+	[BPP, GEA, HIBSCS]	Strong
+BasR	csgF	+	[BPP, GEA, HIBSCS]	Strong
+BasR	csgG	+	[BPP, GEA, HIBSCS]	Strong
+BasR	cspI	+	[BPP, HIBSCS]	Strong
+BasR	dgkA	+	[BPP, GEA, HIBSCS, SM]	Strong
+BasR	fimB	+	[BPP, HIBSCS]	Strong
+BasR	hha	+	[BPP, HIBSCS]	Strong
+BasR	putA	-	[BPP, HIBSCS]	Strong
+BasR	qseB	+	[BPP, GEA]	Strong
+BasR	qseC	+	[BPP, GEA]	Strong
+BasR	tomB	+	[BPP, HIBSCS]	Strong
+BasR	yrbL	-	[BPP, GEA, HIBSCS]	Strong
+BetI	betA	-	[GEA, HIBSCS]	Weak
+BetI	betB	-	[GEA, HIBSCS]	Weak
+BetI	betI	-	[GEA, HIBSCS]	Weak
+BetI	betT	-	[GEA, HIBSCS]	Weak
+BirA	bioA	-	[SM]	Strong
+BirA	bioB	-	[SM]	Strong
+BirA	bioC	-	[SM]	Strong
+BirA	bioD	-	[SM]	Strong
+BirA	bioF	-	[SM]	Strong
+BluR	ariR	-	[BPP, GEA]	Strong
+BluR	ycgZ	-	[BPP, GEA]	Strong
+BluR	ymgA	-	[BPP, GEA]	Strong
+BluR	ymgC	-	[BPP, GEA]	Strong
+BolA	ampC	+-	[GEA, IMP]	Weak
+BolA	dacC	+-	[GEA, IMP]	Weak
+CRP	aaeA	+	[GEA, HIBSCS]	Weak
+CRP	aaeB	+	[GEA, HIBSCS]	Weak
+CRP	aaeR	-	[GEA, HIBSCS]	Weak
+CRP	aaeX	+	[GEA, HIBSCS]	Weak
+CRP	aceA	-	[AIBSCS, GEA]	Weak
+CRP	aceB	-	[AIBSCS, GEA]	Weak
+CRP	aceE	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	aceF	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	aceK	-	[AIBSCS, GEA]	Weak
+CRP	acnA	+	[GEA, HIBSCS]	Weak
+CRP	acnB	+	[GEA, HIBSCS]	Weak
+CRP	acs	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	actP	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	aer	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	agaA	+	[BPP, GEA, HIBSCS]	Strong
+CRP	agaV	+	[BPP, GEA, HIBSCS]	Strong
+CRP	agaW	+	[BPP, GEA, HIBSCS]	Strong
+CRP	agp	+	[AIBSCS, GEA]	Weak
+CRP	aldA	+	[BCE, GEA]	Weak
+CRP	aldB	+	[AIBSCS, BPP]	Strong
+CRP	ampD	-	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	ampE	-	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	ansB	+	[BCE, SM]	Strong
+CRP	araA	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araB	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araC	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araD	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araE	+	[AIBSCS, BPP]	Strong
+CRP	araF	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araG	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araH	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	araJ	+	[BPP, HIBSCS]	Strong
+CRP	araJ	-	[BPP, HIBSCS]	Strong
+CRP	arfB	-	[GEA, HIBSCS]	Weak
+CRP	argG	+	[BPP, GEA, SM]	Strong
+CRP	aroA	-	[GEA, HIBSCS, SM]	Strong
+CRP	ascB	+	[BPP, ICWHO]	Strong
+CRP	ascF	+	[BPP, ICWHO]	Strong
+CRP	aspA	+	[GEA, HIBSCS]	Weak
+CRP	azuC	-	[GEA, HIBSCS]	Weak
+CRP	bglB	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	bglF	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	bglG	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	bhsA	-	[BPP, GEA, HIBSCS]	Strong
+CRP	caiA	+	[BCE, GEA, HIBSCS]	Weak
+CRP	caiB	+	[BCE, GEA, HIBSCS]	Weak
+CRP	caiC	+	[BCE, GEA, HIBSCS]	Weak
+CRP	caiD	+	[BCE, GEA, HIBSCS]	Weak
+CRP	caiE	+	[BCE, GEA, HIBSCS]	Weak
+CRP	caiF	+	[BCE, GEA]	Weak
+CRP	caiT	+	[BCE, GEA, HIBSCS]	Weak
+CRP	cas1	-	[BPP, GEA, HIBSCS]	Strong
+CRP	cas2	-	[BPP, GEA, HIBSCS]	Strong
+CRP	casA	-	[BPP, GEA, HIBSCS]	Strong
+CRP	casB	-	[BPP, GEA, HIBSCS]	Strong
+CRP	casC	-	[BPP, GEA, HIBSCS]	Strong
+CRP	casD	-	[BPP, GEA, HIBSCS]	Strong
+CRP	casE	-	[BPP, GEA, HIBSCS]	Strong
+CRP	cdd	+	[BPP, GEA, SM]	Strong
+CRP	cdd	+-	[BPP, GEA, SM]	Strong
+CRP	cdd	-	[BPP, GEA, SM]	Strong
+CRP	chbA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	chbB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	chbC	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	chbF	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	chbG	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	chbR	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	chiP	+	[HIBSCS]	Weak
+CRP	cirA	+	[GEA, HIBSCS]	Weak
+CRP	citC	-	[AIBSCS]	Weak
+CRP	citD	-	[AIBSCS]	Weak
+CRP	citE	-	[AIBSCS]	Weak
+CRP	citF	-	[AIBSCS]	Weak
+CRP	citG	-	[AIBSCS]	Weak
+CRP	citX	-	[AIBSCS]	Weak
+CRP	comR	-	[BPP, GEA, HIBSCS]	Strong
+CRP	cpdB	+	[BCE, SM]	Strong
+CRP	crp	+	[BPP, HIBSCS, SM]	Strong
+CRP	crp	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	crr	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	crr	-	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	csgD	+	[AIBSCS, GEA]	Weak
+CRP	csgE	+	[AIBSCS, GEA]	Weak
+CRP	csgF	+	[AIBSCS, GEA]	Weak
+CRP	csgG	+	[AIBSCS, GEA]	Weak
+CRP	csiD	+	[AIBSCS, BPP, GEA]	Strong
+CRP	csiE	+	[GEA]	Weak
+CRP	cspD	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	cspE	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	csrC	-	[BPP, GEA, HIBSCS]	Strong
+CRP	cstA	+	[GEA, SM]	Strong
+CRP	cyaA	-	[BPP, GEA, HIBSCS]	Strong
+CRP	cyaR	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	cyoA	+	[AIBSCS, GEA]	Weak
+CRP	cyoB	+	[AIBSCS, GEA]	Weak
+CRP	cyoC	+	[AIBSCS, GEA]	Weak
+CRP	cyoD	+	[AIBSCS, GEA]	Weak
+CRP	cyoE	+	[AIBSCS, GEA]	Weak
+CRP	cysG	-	[AIBSCS, GEA]	Weak
+CRP	cytR	+-	[BPP, GEA, HIBSCS]	Strong
+CRP	dadA	+	[BPP, GEA, HIBSCS]	Strong
+CRP	dadA	+-	[BPP, GEA, HIBSCS]	Strong
+CRP	dadX	+	[BPP, GEA, HIBSCS]	Strong
+CRP	dadX	+-	[BPP, GEA, HIBSCS]	Strong
+CRP	dctA	+	[BPP, GEA, HIBSCS]	Strong
+CRP	dcuA	+	[GEA, HIBSCS]	Weak
+CRP	dcuB	+	[GEA, HIBSCS]	Weak
+CRP	dcuR	+	[BPP, HIBSCS]	Strong
+CRP	deoA	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoA	+-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoB	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoB	+-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoC	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoC	+-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoD	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	deoD	+-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	dksA	+	[HIBSCS]	Weak
+CRP	dpiA	-	[AIBSCS]	Weak
+CRP	dpiB	-	[AIBSCS]	Weak
+CRP	dsdA	+	[BCE, HIBSCS]	Weak
+CRP	dsdX	+	[BCE]	Weak
+CRP	dusB	+	[AIBSCS, GEA]	Weak
+CRP	dusB	+-	[BPP, GEA]	Strong
+CRP	ebgA	+	[HIBSCS]	Weak
+CRP	ebgC	+	[HIBSCS]	Weak
+CRP	entA	+	[AIBSCS, GEA]	Weak
+CRP	entB	+	[AIBSCS, GEA]	Weak
+CRP	entC	+	[AIBSCS, GEA]	Weak
+CRP	entD	+	[AIBSCS, GEA]	Weak
+CRP	entE	+	[AIBSCS, GEA]	Weak
+CRP	entH	+	[AIBSCS, GEA]	Weak
+CRP	envZ	+	[BPP, HIBSCS, SM]	Strong
+CRP	envZ	-	[BPP, HIBSCS, SM]	Strong
+CRP	epd	+	[BCE, GEA, HIBSCS, SM]	Strong
+CRP	exuT	+	[AIBSCS, HIBSCS]	Weak
+CRP	fadD	+	[AIBSCS, BPP, GEA]	Strong
+CRP	fadH	+	[GEA, HIBSCS]	Weak
+CRP	fadL	+	[BPP, GEA]	Strong
+CRP	fbaA	+	[BCE, GEA, HIBSCS, SM]	Strong
+CRP	feaB	+	[GEA, HIBSCS]	Weak
+CRP	feaR	+	[HIBSCS]	Weak
+CRP	fecA	+	[GEA]	Weak
+CRP	fecB	+	[GEA]	Weak
+CRP	fecC	+	[GEA]	Weak
+CRP	fecD	+	[GEA]	Weak
+CRP	fecE	+	[GEA]	Weak
+CRP	fepA	+	[AIBSCS, GEA]	Weak
+CRP	fis	+	[AIBSCS, GEA]	Weak
+CRP	fis	+-	[BPP, GEA]	Strong
+CRP	fiu	+	[AIBSCS, GEA]	Weak
+CRP	fixA	+	[GEA, HIBSCS]	Weak
+CRP	fixB	+	[GEA, HIBSCS]	Weak
+CRP	fixC	+	[GEA, HIBSCS]	Weak
+CRP	fixX	+	[GEA, HIBSCS]	Weak
+CRP	flhC	+	[BPP, GEA, HIBSCS]	Strong
+CRP	flhD	+	[BPP, GEA, HIBSCS]	Strong
+CRP	focA	+	[AIBSCS, BCE, GEA, HIBSCS, SM]	Strong
+CRP	focB	+	[GEA, HIBSCS]	Weak
+CRP	fucA	+	[AIBSCS, GEA, IMP]	Weak
+CRP	fucI	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	fucK	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	fucO	+	[AIBSCS, GEA, IMP]	Weak
+CRP	fucP	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	fucR	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	fucU	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	fumA	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	fumB	+	[GEA, HIBSCS]	Weak
+CRP	fumC	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	fumC	?	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	fur	+	[HIBSCS, SM]	Strong
+CRP	gabD	+	[AIBSCS, BPP, GEA]	Strong
+CRP	gabP	+	[AIBSCS, BPP, GEA]	Strong
+CRP	gabT	+	[AIBSCS, BPP, GEA]	Strong
+CRP	gadA	-	[GEA, HIBSCS]	Weak
+CRP	gadB	-	[GEA, HIBSCS]	Weak
+CRP	gadC	-	[GEA, HIBSCS]	Weak
+CRP	gadE	-	[BPP, HIBSCS]	Strong
+CRP	gadF	-	[BPP, HIBSCS]	Strong
+CRP	gadX	-	[GEA, HIBSCS]	Weak
+CRP	galE	+	[GEA, HIBSCS, SM]	Strong
+CRP	galE	-	[GEA, HIBSCS, SM]	Strong
+CRP	galK	+	[GEA, HIBSCS, SM]	Strong
+CRP	galK	-	[GEA, HIBSCS, SM]	Strong
+CRP	galM	+	[GEA, HIBSCS, SM]	Strong
+CRP	galM	-	[GEA, HIBSCS, SM]	Strong
+CRP	galP	+	[GEA, HIBSCS]	Weak
+CRP	galS	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	galT	+	[GEA, HIBSCS, SM]	Strong
+CRP	galT	-	[GEA, HIBSCS, SM]	Strong
+CRP	gapA	+	[GEA, HIBSCS]	Weak
+CRP	gatA	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	gatB	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	gatC	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	gatD	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	gatY	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	gatZ	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	gcd	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gcvH	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gcvP	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gcvT	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gdhA	-	[HIBSCS]	Weak
+CRP	glcC	+	[AIBSCS, GEA]	Weak
+CRP	glgA	+	[BPP, GEA]	Strong
+CRP	glgC	+	[BPP, GEA]	Strong
+CRP	glgP	+	[BPP, GEA]	Strong
+CRP	glgS	+	[GEA, HIBSCS]	Weak
+CRP	glnA	+	[HIBSCS]	Weak
+CRP	glnA	-	[AIBSCS, BPP, GEA]	Strong
+CRP	glnG	+	[HIBSCS]	Weak
+CRP	glnG	-	[AIBSCS, BPP, GEA]	Strong
+CRP	glnL	+	[HIBSCS]	Weak
+CRP	glnL	-	[AIBSCS, BPP, GEA]	Strong
+CRP	glpA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	glpB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	glpC	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	glpD	+	[BPP, GEA, HIBSCS]	Strong
+CRP	glpE	+	[BPP, GEA, HIBSCS]	Strong
+CRP	glpF	+	[GEA, HIBSCS]	Weak
+CRP	glpG	+	[BPP, GEA, HIBSCS]	Strong
+CRP	glpK	+	[GEA, HIBSCS]	Weak
+CRP	glpQ	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	glpR	+	[BPP, GEA, HIBSCS]	Strong
+CRP	glpT	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	glpX	+	[GEA, HIBSCS]	Weak
+CRP	gltA	+	[AIBSCS, BCE, GEA]	Weak
+CRP	gltB	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gltD	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gltF	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	gntK	+	[BCE, GEA, HIBSCS]	Weak
+CRP	gntP	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	gntT	+	[BPP, GEA, HIBSCS, SM, TASES]	Strong
+CRP	gntU	+	[BCE, GEA, HIBSCS]	Weak
+CRP	gntX	+	[AIBSCS]	Weak
+CRP	gpsA	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	grcA	+	[AIBSCS, GEA]	Weak
+CRP	grpE	+	[AIBSCS, GEA]	Weak
+CRP	guaA	+	[BPP, GEA, SM]	Strong
+CRP	guaB	+	[BPP, GEA, SM]	Strong
+CRP	gutM	+	[AIBSCS, GEA]	Weak
+CRP	gutQ	+	[AIBSCS, GEA]	Weak
+CRP	gyrA	+	[GEA]	Weak
+CRP	hflC	-	[BPP, GEA, HIBSCS]	Strong
+CRP	hflK	-	[BPP, GEA, HIBSCS]	Strong
+CRP	hflX	-	[BPP, GEA, HIBSCS]	Strong
+CRP	hfq	-	[BPP, GEA, HIBSCS]	Strong
+CRP	hlyE	+	[BPP, GEA, SM]	Strong
+CRP	hofB	+	[AIBSCS, BPP]	Strong
+CRP	hofC	+	[AIBSCS, BPP]	Strong
+CRP	hofM	+	[AIBSCS, BPP]	Strong
+CRP	hofN	+	[AIBSCS, BPP]	Strong
+CRP	hofO	+	[AIBSCS, BPP]	Strong
+CRP	hofP	+	[AIBSCS, BPP]	Strong
+CRP	hpt	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	hupA	+	[BPP, GEA]	Strong
+CRP	hupB	+	[BPP, GEA]	Strong
+CRP	hyfA	+	[GEA, HIBSCS]	Weak
+CRP	hyfB	+	[GEA, HIBSCS]	Weak
+CRP	hyfC	+	[GEA, HIBSCS]	Weak
+CRP	hyfD	+	[GEA, HIBSCS]	Weak
+CRP	hyfE	+	[GEA, HIBSCS]	Weak
+CRP	hyfF	+	[GEA, HIBSCS]	Weak
+CRP	hyfG	+	[GEA, HIBSCS]	Weak
+CRP	hyfH	+	[GEA, HIBSCS]	Weak
+CRP	hyfI	+	[GEA, HIBSCS]	Weak
+CRP	hyfJ	+	[GEA, HIBSCS]	Weak
+CRP	hyfR	+	[GEA, HIBSCS]	Weak
+CRP	idnD	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	idnK	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	idnO	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	idnR	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	idnT	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	ilvB	+	[BPP, HIBSCS]	Strong
+CRP	ilvN	+	[BPP, HIBSCS]	Strong
+CRP	infB	-	[BPP, GEA, SM]	Strong
+CRP	ivbL	+	[BPP, HIBSCS]	Strong
+CRP	kbaZ	+	[BPP, GEA, HIBSCS]	Strong
+CRP	lacA	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lacA	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lacI	+	[BPP, GEA, HIBSCS]	Strong
+CRP	lacY	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lacY	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lacZ	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lacZ	-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lamB	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+CRP	ldtB	-	[AIBSCS, GEA]	Weak
+CRP	lhgO	+	[AIBSCS, BPP, GEA]	Strong
+CRP	lpd	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	lpd	-	[AIBSCS, GEA]	Weak
+CRP	lsrA	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrB	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrC	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrD	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrF	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrG	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrK	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lsrR	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	lyxK	+	[BPP, GEA, HIBSCS]	Strong
+CRP	lyxK	?	[BPP, GEA, HIBSCS]	Strong
+CRP	malE	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+CRP	malF	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+CRP	malG	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+CRP	malI	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	malI	-	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	malK	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+CRP	malM	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+CRP	malS	+	[AIBSCS]	Weak
+CRP	malT	+	[BPP, GEA, HIBSCS]	Strong
+CRP	malX	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	malY	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	manA	+	[HIBSCS]	Weak
+CRP	manA	-	[HIBSCS]	Weak
+CRP	manX	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	manY	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	manZ	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	marA	+	[AIBSCS, GEA, IMP]	Weak
+CRP	marB	+	[AIBSCS, GEA, IMP]	Weak
+CRP	marR	+	[AIBSCS, GEA, IMP]	Weak
+CRP	mazE	+	[BPP, HIBSCS, SM]	Strong
+CRP	mazF	+	[BPP, HIBSCS, SM]	Strong
+CRP	mcaS	+	[BPP, GEA, HIBSCS]	Strong
+CRP	mdh	+	[BCE, GEA]	Weak
+CRP	mdtE	-	[BPP, HIBSCS]	Strong
+CRP	mdtF	-	[BPP, HIBSCS]	Strong
+CRP	melA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	melB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	melR	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	metK	-	[AIBSCS, GEA]	Weak
+CRP	metY	-	[BPP, GEA, SM]	Strong
+CRP	mglA	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	mglB	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	mglC	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+CRP	mhpA	+	[BCE, GEA, HIBSCS]	Weak
+CRP	mhpB	+	[BCE, GEA, HIBSCS]	Weak
+CRP	mhpC	+	[BCE, GEA, HIBSCS]	Weak
+CRP	mhpD	+	[BCE, GEA, HIBSCS]	Weak
+CRP	mhpE	+	[BCE, GEA, HIBSCS]	Weak
+CRP	mhpF	+	[BCE, GEA, HIBSCS]	Weak
+CRP	mhpR	+	[BPP, GEA, HIBSCS]	Strong
+CRP	mlc	+	[GEA, HIBSCS]	Weak
+CRP	mlc	-	[GEA, HIBSCS]	Weak
+CRP	modA	+	[AIBSCS, GEA]	Weak
+CRP	modB	+	[AIBSCS, GEA]	Weak
+CRP	modC	+	[AIBSCS, GEA]	Weak
+CRP	mpl	+	[AIBSCS]	Weak
+CRP	mtlA	+	[BPP, HIBSCS]	Strong
+CRP	mtlD	+	[BPP, HIBSCS]	Strong
+CRP	mtlR	+	[BPP, HIBSCS]	Strong
+CRP	murP	+	[AIBSCS, BPP, GEA]	Strong
+CRP	murQ	+	[AIBSCS, BPP, GEA]	Strong
+CRP	nadC	+	[AIBSCS, GEA]	Weak
+CRP	nagA	+-	[BCE, BPP, GEA, HIBSCS]	Strong
+CRP	nagB	+-	[BCE, BPP, GEA, HIBSCS]	Strong
+CRP	nagC	+-	[BCE, BPP, GEA, HIBSCS]	Strong
+CRP	nagE	+-	[BCE, BPP, GEA, HIBSCS]	Strong
+CRP	nanA	+	[BPP]	Strong
+CRP	nanC	+	[AIBSCS, BPP, GEA]	Strong
+CRP	nanE	+	[BPP]	Strong
+CRP	nanK	+	[BPP]	Strong
+CRP	nanM	+	[AIBSCS, BPP, GEA]	Strong
+CRP	nanS	+	[AIBSCS, BPP, GEA]	Strong
+CRP	nanT	+	[BPP]	Strong
+CRP	narQ	-	[GEA, HIBSCS]	Weak
+CRP	nfuA	+	[AIBSCS]	Weak
+CRP	nirB	-	[AIBSCS, GEA]	Weak
+CRP	nirC	-	[AIBSCS, GEA]	Weak
+CRP	nirD	-	[AIBSCS, GEA]	Weak
+CRP	nlpE	-	[GEA, HIBSCS]	Weak
+CRP	nmpC	+	[HIBSCS, SM]	Strong
+CRP	nrdA	+	[AIBSCS, GEA]	Weak
+CRP	nrdB	+	[AIBSCS, GEA]	Weak
+CRP	nupC	+	[GEA, HIBSCS]	Weak
+CRP	nupG	+	[BPP, HIBSCS, SM]	Strong
+CRP	nupG	+-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	nupG	-	[BCE, BPP, HIBSCS, SM]	Strong
+CRP	nusA	-	[BPP, GEA, SM]	Strong
+CRP	ompA	+	[GEA, HIBSCS]	Weak
+CRP	ompF	+	[AIBSCS, GEA]	Weak
+CRP	ompR	+	[BPP, HIBSCS, SM]	Strong
+CRP	ompR	-	[BPP, HIBSCS, SM]	Strong
+CRP	ompW	-	[AIBSCS, BPP, GEA]	Strong
+CRP	osmY	-	[GEA, HIBSCS, IHBCE]	Weak
+CRP	oxyR	+	[GEA, HIBSCS]	Weak
+CRP	paaA	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaB	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaC	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaD	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaE	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaF	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaG	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaH	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaI	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaJ	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaK	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	paaZ	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	patZ	+	[AIBSCS, GEA]	Weak
+CRP	pck	+	[BPP, GEA, HIBSCS]	Strong
+CRP	pck	-	[BPP, GEA, HIBSCS]	Strong
+CRP	pdhR	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	pflB	+	[AIBSCS, BCE, GEA, HIBSCS, SM]	Strong
+CRP	pgk	+	[BCE, GEA, HIBSCS, SM]	Strong
+CRP	pncB	-	[AIBSCS, GEA]	Weak
+CRP	pnp	-	[BPP, GEA, SM]	Strong
+CRP	ppdD	+	[AIBSCS, BPP]	Strong
+CRP	ppiA	+-	[BPP, GEA, HIBSCS]	Strong
+CRP	ppiA	-	[BPP, GEA, HIBSCS]	Strong
+CRP	preA	+	[AIBSCS]	Weak
+CRP	preT	+	[AIBSCS]	Weak
+CRP	priB	+	[AIBSCS, BPP, GEA]	Strong
+CRP	proP	+	[BPP, GEA, HIBSCS]	Strong
+CRP	proP	-	[BCE, GEA, SM]	Strong
+CRP	prpB	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	prpC	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	prpD	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	prpE	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	prpR	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	psiE	-	[BPP, GEA, HIBSCS]	Strong
+CRP	ptsG	+	[AIBSCS, BPP, GEA]	Strong
+CRP	ptsH	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	ptsH	-	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	ptsI	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	ptsI	-	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	putP	-	[GEA, HIBSCS]	Weak
+CRP	puuB	-	[HIBSCS, IEP]	Weak
+CRP	puuC	-	[HIBSCS, IEP]	Weak
+CRP	puuD	-	[HIBSCS, IEP]	Weak
+CRP	puuE	-	[HIBSCS, IEP]	Weak
+CRP	puuR	-	[HIBSCS, IEP]	Weak
+CRP	raiA	+	[AIBSCS, BPP, GEA]	Strong
+CRP	rbfA	-	[BPP, GEA, SM]	Strong
+CRP	rbsA	+	[AIBSCS, GEA]	Weak
+CRP	rbsB	+	[AIBSCS, GEA]	Weak
+CRP	rbsC	+	[AIBSCS, GEA]	Weak
+CRP	rbsD	+	[AIBSCS, GEA]	Weak
+CRP	rbsK	+	[AIBSCS, GEA]	Weak
+CRP	rbsR	+	[AIBSCS, GEA]	Weak
+CRP	relA	+	[BPP, HIBSCS, SM]	Strong
+CRP	rhaA	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	rhaB	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	rhaD	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	rhaR	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	rhaS	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	rhaT	+	[AIBSCS, GEA]	Weak
+CRP	rimP	-	[BPP, GEA, SM]	Strong
+CRP	rmf	+	[AIBSCS, BPP, GEA]	Strong
+CRP	rof	-	[GEA, HIBSCS]	Weak
+CRP	rplI	+	[AIBSCS, BPP, GEA]	Strong
+CRP	rplM	-	[AIBSCS, BPP, GEA]	Strong
+CRP	rpoE	+	[BPP, GEA, HIBSCS]	Strong
+CRP	rpoH	+	[BCE]	Weak
+CRP	rpoH	+-	[AIBSCS, BPP, GEA]	Strong
+CRP	rpoH	-	[AIBSCS, BPP, GEA]	Strong
+CRP	rpoS	+	[BCE, SM]	Strong
+CRP	rpsF	+	[AIBSCS, BPP, GEA]	Strong
+CRP	rpsI	-	[AIBSCS, BPP, GEA]	Strong
+CRP	rpsO	-	[BPP, GEA, SM]	Strong
+CRP	rpsR	+	[AIBSCS, BPP, GEA]	Strong
+CRP	rseA	+	[BPP, GEA, HIBSCS]	Strong
+CRP	rseB	+	[BPP, GEA, HIBSCS]	Strong
+CRP	rseC	+	[BPP, GEA, HIBSCS]	Strong
+CRP	sbmC	+	[AIBSCS, BPP, IHBCE]	Strong
+CRP	sdhA	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sdhB	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sdhC	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sdhD	+	[AIBSCS, BCE, GEA]	Weak
+CRP	secB	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	serA	+	[GEA, HIBSCS]	Weak
+CRP	serC	-	[GEA, HIBSCS, SM]	Strong
+CRP	sfsA	+	[HIBSCS]	Weak
+CRP	sgbE	+	[BPP, GEA, HIBSCS]	Strong
+CRP	sgbE	?	[BPP, GEA, HIBSCS]	Strong
+CRP	sgbH	+	[BPP, GEA, HIBSCS]	Strong
+CRP	sgbH	?	[BPP, GEA, HIBSCS]	Strong
+CRP	sgbU	+	[BPP, GEA, HIBSCS]	Strong
+CRP	sgbU	?	[BPP, GEA, HIBSCS]	Strong
+CRP	sodA	+	[AIBSCS, GEA]	Weak
+CRP	sodB	-	[AIBSCS, GEA]	Weak
+CRP	sohB	-	[AIBSCS]	Weak
+CRP	speC	-	[GEA, IMP]	Weak
+CRP	spf	-	[HIBSCS]	Weak
+CRP	srlA	+	[AIBSCS, GEA]	Weak
+CRP	srlB	+	[AIBSCS, GEA]	Weak
+CRP	srlD	+	[AIBSCS, GEA]	Weak
+CRP	srlE	+	[AIBSCS, GEA]	Weak
+CRP	srlR	+	[AIBSCS, GEA]	Weak
+CRP	sroD	+	[AIBSCS, BPP, GEA]	Strong
+CRP	sucA	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sucB	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sucC	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sucD	+	[AIBSCS, BCE, GEA]	Weak
+CRP	sxy	+	[GEA, HIBSCS]	Weak
+CRP	tam	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcA	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcB	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcC	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcD	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcE	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcF	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tdcG	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	tnaA	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	tnaB	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	tnaC	+	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+CRP	treB	-	[HIBSCS]	Weak
+CRP	treB	?	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	treC	-	[HIBSCS]	Weak
+CRP	treC	?	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	trg	+	[AIBSCS, BPP]	Strong
+CRP	truB	-	[BPP, GEA, SM]	Strong
+CRP	trxA	-	[BPP, GEA]	Strong
+CRP	tsx	+-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	ubiG	+	[GEA]	Weak
+CRP	udp	+	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	udp	+-	[BPP, GEA, HIBSCS, SM]	Strong
+CRP	ugpA	+	[BPP, HIBSCS]	Strong
+CRP	ugpB	+	[BPP, HIBSCS]	Strong
+CRP	ugpC	+	[BPP, HIBSCS]	Strong
+CRP	ugpE	+	[BPP, HIBSCS]	Strong
+CRP	ugpQ	+	[BPP, HIBSCS]	Strong
+CRP	uhpT	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+CRP	uidA	+	[GEA, HIBSCS]	Weak
+CRP	uidB	+	[GEA, HIBSCS]	Weak
+CRP	uidC	+	[GEA, HIBSCS]	Weak
+CRP	ulaA	+	[BCE, GEA, SM]	Strong
+CRP	ulaB	+	[BCE, GEA, SM]	Strong
+CRP	ulaC	+	[BCE, GEA, SM]	Strong
+CRP	ulaD	+	[BCE, GEA, SM]	Strong
+CRP	ulaE	+	[BCE, GEA, SM]	Strong
+CRP	ulaF	+	[BCE, GEA, SM]	Strong
+CRP	umpH	+-	[BCE, BPP, GEA, HIBSCS]	Strong
+CRP	uxaA	+	[HIBSCS]	Weak
+CRP	uxaB	+	[HIBSCS]	Weak
+CRP	uxaC	+	[HIBSCS]	Weak
+CRP	uxuA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	uxuB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CRP	uxuR	+	[GEA, HIBSCS]	Weak
+CRP	xseA	-	[BPP, GEA, SM]	Strong
+CRP	xylA	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	xylB	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	xylF	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	xylG	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	xylH	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	xylR	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	yaeP	-	[GEA, HIBSCS]	Weak
+CRP	yaeQ	-	[GEA, HIBSCS]	Weak
+CRP	ybfN	+	[HIBSCS]	Weak
+CRP	ybiT	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	ycdZ	+	[AIBSCS]	Weak
+CRP	ycdZ	+-	[AIBSCS]	Weak
+CRP	ychH	+	[AIBSCS, BCE, GEA, SM]	Strong
+CRP	yeiP	+	[AIBSCS, GEA]	Weak
+CRP	yeiW	+	[AIBSCS, GEA, HIBSCS]	Weak
+CRP	yfaE	+	[AIBSCS, GEA]	Weak
+CRP	ygeA	+	[AIBSCS, BPP]	Strong
+CRP	yhcH	+	[BPP]	Strong
+CRP	yhfA	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CRP	yhfA	-	[BPP, HIBSCS, SM]	Strong
+CRP	yiaJ	-	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaK	+	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaK	?	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaL	+	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaL	?	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaM	+	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaM	?	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaN	+	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaN	?	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaO	+	[BPP, GEA, HIBSCS]	Strong
+CRP	yiaO	?	[BPP, GEA, HIBSCS]	Strong
+CRP	yjcH	+	[AIBSCS, BPP, GEA, SM]	Strong
+CRP	yjiY	+	[AIBSCS, GEA, SM]	Strong
+CRP	ykgR	+	[GEA, HIBSCS]	Weak
+CRP	ynfK	+	[GEA, HIBSCS]	Weak
+CRP	zraR	+	[AIBSCS, GEA]	Weak
+CRP	zraS	+	[AIBSCS, GEA]	Weak
+CadC	cadA	+	[BPP, GEA]	Strong
+CadC	cadB	+	[BPP, GEA]	Strong
+CadC	cadC	+	[GEA]	Weak
+CaiF	caiA	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	caiB	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	caiC	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	caiD	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	caiE	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	caiT	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	fixA	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	fixB	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	fixC	+	[BPP, GEA, HIBSCS]	Strong
+CaiF	fixX	+	[BPP, GEA, HIBSCS]	Strong
+Cbl	ssuA	+	[BPP, GEA]	Strong
+Cbl	ssuB	+	[BPP, GEA]	Strong
+Cbl	ssuC	+	[BPP, GEA]	Strong
+Cbl	ssuD	+	[BPP, GEA]	Strong
+Cbl	ssuE	+	[BPP, GEA]	Strong
+Cbl	tauA	+	[BPP, GEA]	Strong
+Cbl	tauB	+	[BPP, GEA]	Strong
+Cbl	tauC	+	[BPP, GEA]	Strong
+Cbl	tauD	+	[BPP, GEA]	Strong
+CdaR	cdaR	+	[GEA]	Weak
+CdaR	garD	+	[GEA]	Weak
+CdaR	garK	+	[GEA]	Weak
+CdaR	garL	+	[GEA]	Weak
+CdaR	garP	+	[GEA]	Weak
+CdaR	garR	+	[GEA]	Weak
+CdaR	gudD	+	[GEA]	Weak
+CdaR	gudP	+	[GEA]	Weak
+CdaR	gudX	+	[GEA]	Weak
+CdaR	rnpB	+	[GEA]	Weak
+CecR	cecR	-	[BPP, GEA, HIBSCS]	Strong
+CecR	ybhF	-	[BPP, GEA, HIBSCS]	Strong
+CecR	ybhG	-	[BPP, GEA, HIBSCS]	Strong
+CecR	ybhR	-	[BPP, GEA, HIBSCS]	Strong
+CecR	ybhS	-	[BPP, GEA, HIBSCS]	Strong
+ChbR	chbA	+	[BPP, GEA]	Strong
+ChbR	chbA	-	[BPP, GEA]	Strong
+ChbR	chbB	+	[BPP, GEA]	Strong
+ChbR	chbB	-	[BPP, GEA]	Strong
+ChbR	chbC	+	[BPP, GEA]	Strong
+ChbR	chbC	-	[BPP, GEA]	Strong
+ChbR	chbF	+	[BPP, GEA]	Strong
+ChbR	chbF	-	[BPP, GEA]	Strong
+ChbR	chbG	+	[BPP, GEA]	Strong
+ChbR	chbG	-	[BPP, GEA]	Strong
+ChbR	chbR	+	[BPP, GEA]	Strong
+ChbR	chbR	-	[BPP, GEA]	Strong
+ComR	bhsA	-	[BPP, GEA]	Strong
+CpxR	acrD	+	[BPP, GEA, IC]	Strong
+CpxR	aroG	+	[BPP, HIBSCS]	Strong
+CpxR	bacA	+	[ICA]	Weak
+CpxR	baeR	+	[BPP, GEA, IC]	Strong
+CpxR	baeS	+	[BPP, GEA, IC]	Strong
+CpxR	bamE	-	[ICA]	Weak
+CpxR	cheA	-	[BPP, GEA]	Strong
+CpxR	cheW	-	[BPP, GEA]	Strong
+CpxR	cpxA	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	cpxP	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	cpxQ	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	cpxR	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	csgA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CpxR	csgB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CpxR	csgC	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CpxR	csgD	-	[BPP, GEA, HIBSCS]	Strong
+CpxR	csgE	-	[BPP, GEA, HIBSCS]	Strong
+CpxR	csgF	-	[BPP, GEA, HIBSCS]	Strong
+CpxR	csgG	-	[BPP, GEA, HIBSCS]	Strong
+CpxR	cyaR	-	[BPP, GEA]	Strong
+CpxR	degP	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CpxR	dgcZ	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	dsbA	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	dsbC	+	[GEA, HIBSCS]	Weak
+CpxR	efeU_1	-	[BPP, GEA, HIBSCS]	Strong
+CpxR	efeU_2	-	[BPP, GEA, HIBSCS]	Strong
+CpxR	fabZ	+	[GEA, HIBSCS]	Weak
+CpxR	ftnB	+	[BPP, HIBSCS]	Strong
+CpxR	hha	+	[BPP, HIBSCS]	Strong
+CpxR	kbp	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CpxR	ldtC	+	[BPP, HIBSCS]	Strong
+CpxR	ldtD	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	lpxA	+	[GEA, HIBSCS]	Weak
+CpxR	lpxD	+	[GEA, HIBSCS]	Weak
+CpxR	marA	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	marB	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	marR	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	mdtA	+	[BPP, GEA, IC]	Strong
+CpxR	mdtB	+	[BPP, GEA, IC]	Strong
+CpxR	mdtC	+	[BPP, GEA, IC]	Strong
+CpxR	mdtD	+	[BPP, GEA, IC]	Strong
+CpxR	motA	-	[BPP, GEA]	Strong
+CpxR	motB	-	[BPP, GEA]	Strong
+CpxR	mscM	-	[ICA]	Weak
+CpxR	mzrA	+	[BPP, HIBSCS]	Strong
+CpxR	ompC	+	[AIBSCS, BPP, GEA]	Strong
+CpxR	ompF	-	[AIBSCS, BPP, GEA]	Strong
+CpxR	ppiA	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	ppiD	+	[HIBSCS, SM]	Strong
+CpxR	psd	-	[ICA]	Weak
+CpxR	rdoA	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	rpoE	-	[AIBSCS, GEA]	Weak
+CpxR	rpoH	+	[GEA]	Weak
+CpxR	rprA	+	[BPP, GEA]	Strong
+CpxR	rseA	-	[AIBSCS, GEA]	Weak
+CpxR	rseB	-	[AIBSCS, GEA]	Weak
+CpxR	rseC	-	[AIBSCS, GEA]	Weak
+CpxR	sbmA	+	[AIBSCS, GEA]	Weak
+CpxR	skp	+	[GEA, HIBSCS]	Weak
+CpxR	slt	+	[AIBSCS, BPP, GEA, HIBSCS, IGI]	Strong
+CpxR	spy	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	tomB	+	[BPP, HIBSCS]	Strong
+CpxR	tsr	-	[BPP]	Strong
+CpxR	ung	-	[BCE, BPP]	Strong
+CpxR	yaiW	+	[AIBSCS, GEA]	Weak
+CpxR	yccA	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	yebE	+	[BPP, GEA, HIBSCS]	Strong
+CpxR	yidQ	+	[GEA, HIBSCS]	Weak
+CpxR	yqaE	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+CpxR	yqjA	+	[BPP, HIBSCS]	Strong
+Cra	aceA	+	[BPP, GEA, SM]	Strong
+Cra	aceB	+	[BPP, GEA, SM]	Strong
+Cra	aceE	-	[AIBSCS, GEA]	Weak
+Cra	aceF	-	[AIBSCS, GEA]	Weak
+Cra	aceK	+	[BPP, GEA, SM]	Strong
+Cra	acnA	+	[GEA]	Weak
+Cra	acnB	-	[GEA]	Weak
+Cra	adhE	-	[BCE, GEA, ICWHO, SM]	Strong
+Cra	aroP	+	[AIBSCS, GEA, ICWHO]	Weak
+Cra	betA	+	[GEA]	Weak
+Cra	betB	+	[GEA]	Weak
+Cra	betI	+	[GEA]	Weak
+Cra	betT	+	[GEA]	Weak
+Cra	crp	+	[BPP, GEA, SM]	Strong
+Cra	crr	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	crr	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	csgD	+	[AIBSCS, BPP, GEA, SM]	Strong
+Cra	csgE	+	[AIBSCS, BPP, GEA, SM]	Strong
+Cra	csgF	+	[AIBSCS, BPP, GEA, SM]	Strong
+Cra	csgG	+	[AIBSCS, BPP, GEA, SM]	Strong
+Cra	cydA	+	[AIBSCS, BPP, GEA]	Strong
+Cra	cydB	+	[AIBSCS, BPP, GEA]	Strong
+Cra	cyoA	-	[AIBSCS, GEA]	Weak
+Cra	cyoB	-	[AIBSCS, GEA]	Weak
+Cra	cyoC	-	[AIBSCS, GEA]	Weak
+Cra	cyoD	-	[AIBSCS, GEA]	Weak
+Cra	cyoE	-	[AIBSCS, GEA]	Weak
+Cra	cysG	-	[BCE, GEA, HIBSCS]	Weak
+Cra	eda	-	[BPP, GEA, HIBSCS, SM]	Strong
+Cra	edd	-	[BPP, GEA, HIBSCS, SM]	Strong
+Cra	eno	-	[BPP, GEA, HIBSCS]	Strong
+Cra	envC	-	[AIBSCS, GEA]	Weak
+Cra	epd	-	[BPP, GEA, HIBSCS, SM]	Strong
+Cra	fbaA	-	[BPP, GEA, HIBSCS, SM]	Strong
+Cra	fbaB	-	[AIBSCS, GEA]	Weak
+Cra	fruA	-	[AIBSCS, GEA, NTAS]	Weak
+Cra	fruB	-	[AIBSCS, GEA, NTAS]	Weak
+Cra	fruK	-	[AIBSCS, GEA, NTAS]	Weak
+Cra	gapA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	glcC	-	[AIBSCS, GEA]	Weak
+Cra	glk	-	[AIBSCS, GEA, HIBSCS]	Weak
+Cra	gpmM	-	[AIBSCS, GEA]	Weak
+Cra	hypF	-	[BPP, GEA, HIBSCS]	Strong
+Cra	icd	+	[BPP]	Strong
+Cra	lpd	-	[AIBSCS, GEA]	Weak
+Cra	manX	-	[AIBSCS, GEA]	Weak
+Cra	manY	-	[AIBSCS, GEA]	Weak
+Cra	manZ	-	[AIBSCS, GEA]	Weak
+Cra	marA	-	[AIBSCS, GEA]	Weak
+Cra	marB	-	[AIBSCS, GEA]	Weak
+Cra	marR	-	[AIBSCS, GEA]	Weak
+Cra	mpl	-	[AIBSCS, GEA]	Weak
+Cra	mtlA	-	[BPP, GEA]	Strong
+Cra	mtlD	-	[BPP, GEA]	Strong
+Cra	mtlR	-	[BPP, GEA]	Strong
+Cra	nirB	-	[BCE, GEA, HIBSCS]	Weak
+Cra	nirC	-	[BCE, GEA, HIBSCS]	Weak
+Cra	nirD	-	[BCE, GEA, HIBSCS]	Weak
+Cra	pck	+	[BPP, GEA, HIBSCS, SM]	Strong
+Cra	pdeL	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	pdhR	-	[AIBSCS, GEA]	Weak
+Cra	pfkA	-	[BPP]	Strong
+Cra	pgk	-	[BPP, GEA, HIBSCS, SM]	Strong
+Cra	poxB	+	[GEA]	Weak
+Cra	ppc	-	[AIBSCS, GEA]	Weak
+Cra	ppsA	+	[AIBSCS, BPP, GEA, ICWHO]	Strong
+Cra	prpB	-	[AIBSCS, GEA]	Weak
+Cra	prpC	-	[AIBSCS, GEA]	Weak
+Cra	prpD	-	[AIBSCS, GEA]	Weak
+Cra	prpE	-	[AIBSCS, GEA]	Weak
+Cra	ptsH	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	ptsH	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	ptsI	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	ptsI	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	pykF	-	[BCE, SM]	Strong
+Cra	setA	-	[AIBSCS, GEA]	Weak
+Cra	sgrS	-	[AIBSCS, GEA]	Weak
+Cra	sgrT	-	[AIBSCS, GEA]	Weak
+Cra	tpiA	-	[AIBSCS, GEA]	Weak
+Cra	yeaD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Cra	yibQ	-	[AIBSCS, GEA]	Weak
+Cra	zwf	-	[AIBSCS, GEA]	Weak
+CreB	creD	+	[AIBSCS, BPP, GEA]	Strong
+CreB	malE	-	[AIBSCS, GEA]	Weak
+CreB	malF	-	[AIBSCS, GEA]	Weak
+CreB	malG	-	[AIBSCS, GEA]	Weak
+CreB	talA	+	[AIBSCS, GEA]	Weak
+CsgD	csgA	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CsgD	csgB	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CsgD	csgC	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CsgD	csgD	+	[BPP, GEA, HIBSCS]	Strong
+CsgD	csgE	+	[BPP, GEA, HIBSCS]	Strong
+CsgD	csgF	+	[BPP, GEA, HIBSCS]	Strong
+CsgD	csgG	+	[BPP, GEA, HIBSCS]	Strong
+CsgD	dgcC	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+CsgD	flgM	-	[BPP, HIBSCS]	Strong
+CsgD	flgN	-	[BPP, HIBSCS]	Strong
+CsgD	fliA	-	[AIBSCS, BPP]	Strong
+CsgD	fliE	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliF	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliG	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliH	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliI	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliJ	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliK	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	fliZ	-	[AIBSCS, BPP]	Strong
+CsgD	iraP	+	[GEA]	Weak
+CsgD	nlpA	+	[BPP, GEA, HIBSCS]	Strong
+CsgD	pepD	-	[AIBSCS, GEA]	Weak
+CsgD	tcyJ	-	[AIBSCS, BPP]	Strong
+CsgD	wrbA	+	[BPP, HIBSCS]	Strong
+CsgD	yccJ	+	[BPP, HIBSCS]	Strong
+CsgD	yccT	+	[BPP, GEA, HIBSCS]	Strong
+CsgD	yhbS	-	[BPP, GEA, HIBSCS]	Strong
+CsgD	yhbT	-	[BPP, GEA, HIBSCS]	Strong
+CsiR	csiD	-	[GEA]	Weak
+CsiR	gabD	-	[GEA]	Weak
+CsiR	gabP	-	[GEA]	Weak
+CsiR	gabT	-	[GEA]	Weak
+CsiR	lhgO	-	[GEA]	Weak
+CspA	gyrA	+	[HIBSCS]	Weak
+CspA	hns	+	[BPP]	Strong
+CueR	copA	+	[BPP, HIBSCS, SM]	Strong
+CueR	cueO	+	[BPP, GEA, HIBSCS]	Strong
+CueR	moaA	-	[GEA, HIBSCS]	Weak
+CueR	moaB	-	[GEA, HIBSCS]	Weak
+CueR	moaC	-	[GEA, HIBSCS]	Weak
+CueR	moaD	-	[GEA, HIBSCS]	Weak
+CueR	moaE	-	[GEA, HIBSCS]	Weak
+CusR	cusA	+	[BPP, GEA, HIBSCS]	Strong
+CusR	cusB	+	[BPP, GEA, HIBSCS]	Strong
+CusR	cusC	+	[BPP, GEA, HIBSCS]	Strong
+CusR	cusF	+	[BPP, GEA, HIBSCS]	Strong
+CusR	cusR	+	[BPP, GEA, HIBSCS]	Strong
+CusR	cusS	+	[BPP, GEA, HIBSCS]	Strong
+CusR	cyoA	+	[HIBSCS]	Weak
+CusR	cyoB	+	[HIBSCS]	Weak
+CusR	cyoC	+	[HIBSCS]	Weak
+CusR	cyoD	+	[HIBSCS]	Weak
+CusR	cyoE	+	[HIBSCS]	Weak
+CusR	yedX	+	[AIBSCS, BPP, GEA]	Strong
+CynR	cynR	-	[BPP, HIBSCS]	Strong
+CynR	cynS	+	[BPP, GEA, HIBSCS]	Strong
+CynR	cynT	+	[BPP, GEA, HIBSCS]	Strong
+CynR	cynX	+	[BPP, GEA, HIBSCS]	Strong
+CysB	cbl	+	[BPP, GEA]	Strong
+CysB	cysA	+	[BPP, GEA]	Strong
+CysB	cysB	-	[HIBSCS]	Weak
+CysB	cysC	+	[BCE]	Weak
+CysB	cysD	+	[BCE]	Weak
+CysB	cysH	+	[HIBSCS]	Weak
+CysB	cysI	+	[HIBSCS]	Weak
+CysB	cysJ	+	[HIBSCS]	Weak
+CysB	cysK	+	[HIBSCS, SM]	Strong
+CysB	cysM	+	[BPP, GEA]	Strong
+CysB	cysN	+	[BCE]	Weak
+CysB	cysP	+	[BPP, GEA]	Strong
+CysB	cysU	+	[BPP, GEA]	Strong
+CysB	cysW	+	[BPP, GEA]	Strong
+CysB	dgcZ	+	[AIBSCS]	Weak
+CysB	hslJ	-	[AIBSCS, BPP, GEA]	Strong
+CysB	ssuA	-	[BPP, GEA]	Strong
+CysB	ssuB	-	[BPP, GEA]	Strong
+CysB	ssuC	-	[BPP, GEA]	Strong
+CysB	ssuD	-	[BPP, GEA]	Strong
+CysB	ssuE	-	[BPP, GEA]	Strong
+CysB	tauA	+	[BPP, GEA]	Strong
+CysB	tauB	+	[BPP, GEA]	Strong
+CysB	tauC	+	[BPP, GEA]	Strong
+CysB	tauD	+	[BPP, GEA]	Strong
+CysB	tcyJ	+	[GEA]	Weak
+CysB	tcyP	+	[GEA]	Weak
+CysB	ybdN	+	[AIBSCS]	Weak
+CysB	yciW	+	[AIBSCS, GEA]	Weak
+CysB	yfbR	+	[AIBSCS]	Weak
+CysB	ygeH	+	[AIBSCS]	Weak
+CysB	yoaC	+	[AIBSCS]	Weak
+CytR	cdd	-	[BPP, GEA, HIBSCS, SM]	Strong
+CytR	cytR	-	[BPP, GEA, HIBSCS, IC]	Strong
+CytR	deoA	-	[BPP, GEA, HIBSCS, SM]	Strong
+CytR	deoB	-	[BPP, GEA, HIBSCS, SM]	Strong
+CytR	deoC	-	[BPP, GEA, HIBSCS, SM]	Strong
+CytR	deoD	-	[BPP, GEA, HIBSCS, SM]	Strong
+CytR	nupC	-	[TAS]	Weak
+CytR	nupG	-	[BPP, HIBSCS]	Strong
+CytR	ppiA	-	[BPP, GEA, HIBSCS, IC]	Strong
+CytR	rpoH	-	[BPP, GEA, HIBSCS]	Strong
+CytR	tsx	-	[BPP, GEA, HIBSCS, IC, IHBCE, SM]	Strong
+CytR	udp	-	[BPP, GEA, HIBSCS, SM]	Strong
+CytR	ycdZ	-	[AIBSCS]	Weak
+Dan	ttdA	+	[BPP, GEA, HIBSCS]	Strong
+Dan	ttdB	+	[BPP, GEA, HIBSCS]	Strong
+Dan	ttdR	+	[BPP]	Strong
+Dan	ttdT	+	[BPP, GEA, HIBSCS]	Strong
+DcuR	dctA	+	[BPP, GEA]	Strong
+DcuR	dcuB	+	[BPP, GEA]	Strong
+DcuR	dpiA	+	[BPP, HIBSCS]	Strong
+DcuR	dpiB	+	[BPP, HIBSCS]	Strong
+DcuR	frdA	+	[BPP, GEA]	Strong
+DcuR	frdB	+	[BPP, GEA]	Strong
+DcuR	frdC	+	[BPP, GEA]	Strong
+DcuR	frdD	+	[BPP, GEA]	Strong
+DcuR	fumB	+	[BPP, GEA]	Strong
+DeoR	deoA	-	[HIBSCS, SM]	Strong
+DeoR	deoB	-	[HIBSCS, SM]	Strong
+DeoR	deoC	-	[HIBSCS, SM]	Strong
+DeoR	deoD	-	[HIBSCS, SM]	Strong
+DeoR	nupG	-	[GEA, HIBSCS]	Weak
+DeoR	tsx	-	[BCE, GEA]	Weak
+DhaR	dhaK	+	[GEA]	Weak
+DhaR	dhaL	+	[GEA]	Weak
+DhaR	dhaM	+	[GEA]	Weak
+DhaR	dhaR	-	[GEA]	Weak
+DicA	dicB	-	[GEA]	Weak
+DicA	dicC	-	[BPP, GEA, IHBCE]	Strong
+DicA	insD	-	[GEA]	Weak
+DicA	intQ	-	[GEA]	Weak
+DicA	ydfD	-	[GEA]	Weak
+DicA	ydfE	-	[GEA]	Weak
+DicA	ydfW	-	[BPP, GEA, IHBCE]	Strong
+DicA	ydfX	-	[BPP, GEA, IHBCE]	Strong
+DinJ-YafQ	cspE	-	[BPP, GEA, SM]	Strong
+DinJ-YafQ	dinJ	-	[BPP, HIBSCS, SM]	Strong
+DinJ-YafQ	yafQ	-	[BPP, HIBSCS, SM]	Strong
+DnaA	aldA	-	[BPP, GEA]	Strong
+DnaA	dnaA	+-	[BPP, SM]	Strong
+DnaA	dnaA	-	[BPP, GEA]	Strong
+DnaA	dnaN	+-	[BPP, SM]	Strong
+DnaA	dnaN	-	[BPP, GEA]	Strong
+DnaA	guaA	-	[BPP, GEA, HIBSCS]	Strong
+DnaA	guaB	-	[BPP, GEA, HIBSCS]	Strong
+DnaA	nrdA	+	[BPP, HIBSCS, SM]	Strong
+DnaA	nrdA	-	[HIBSCS]	Weak
+DnaA	nrdB	+	[BPP, HIBSCS, SM]	Strong
+DnaA	nrdB	-	[HIBSCS]	Weak
+DnaA	polA	+	[BPP, GEA]	Strong
+DnaA	recF	+-	[BPP, SM]	Strong
+DnaA	recF	-	[BPP, GEA]	Strong
+DnaA	rpoH	-	[BCE, HIBSCS]	Weak
+DnaA	yfaE	+	[BPP, HIBSCS, SM]	Strong
+DnaA	yfaE	-	[HIBSCS]	Weak
+DnaA	yjeV	-	[BPP, GEA]	Strong
+DpiA	appY	-	[GEA, HIBSCS]	Weak
+DpiA	citC	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	citD	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	citE	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	citF	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	citG	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	citX	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	dpiA	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	dpiB	+	[BPP, GEA, HIBSCS]	Strong
+DpiA	exuT	+	[BPP, GEA]	Strong
+DpiA	mdh	+	[BPP, GEA]	Strong
+DsdC	dsdA	+	[GEA]	Weak
+DsdC	dsdC	-	[GEA]	Weak
+DsdC	dsdX	+	[GEA]	Weak
+EbgR	ebgA	-	[GEA]	Weak
+EbgR	ebgC	-	[GEA]	Weak
+EnvR	acrA	-	[AIBSCS, BPP, GEA]	Strong
+EnvR	acrB	-	[AIBSCS, BPP, GEA]	Strong
+EnvY	ompC	+	[IMP]	Weak
+EnvY	ompF	+	[IMP]	Weak
+EvgA	acrD	+	[AIBSCS, GEA]	Weak
+EvgA	emrK	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+EvgA	emrY	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+EvgA	evgA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+EvgA	evgS	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+EvgA	frc	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	gadE	+	[BPP, GEA]	Strong
+EvgA	gadF	+	[BPP, GEA]	Strong
+EvgA	mdtE	+	[BPP, GEA]	Strong
+EvgA	mdtF	+	[BPP, GEA]	Strong
+EvgA	oxc	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	safA	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	ydeO	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	ydeP	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	yegR	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	yegZ	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	yfdE	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	yfdV	+	[AIBSCS, BPP, GEA]	Strong
+EvgA	yfdX	+	[AIBSCS, BPP, GEA]	Strong
+ExuR	exuR	-	[BPP, GEA, HIBSCS]	Strong
+ExuR	exuT	-	[AIBSCS, GEA]	Weak
+ExuR	lgoR	-	[BPP]	Strong
+ExuR	uxaA	-	[AIBSCS, GEA]	Weak
+ExuR	uxaB	-	[GEA, HIBSCS]	Weak
+ExuR	uxaC	-	[AIBSCS, GEA]	Weak
+ExuR	uxuA	-	[GEA, HIBSCS]	Weak
+ExuR	uxuB	-	[GEA, HIBSCS]	Weak
+ExuR	uxuR	-	[AIBSCS, GEA]	Weak
+FNR	aceE	+-	[AIBSCS, BCE, GEA]	Weak
+FNR	aceE	-	[GEA]	Weak
+FNR	aceF	+-	[AIBSCS, BCE, GEA]	Weak
+FNR	aceF	-	[GEA]	Weak
+FNR	ackA	+	[GEA]	Weak
+FNR	acnA	-	[GEA, HIBSCS]	Weak
+FNR	acrE	+	[AIBSCS, GEA]	Weak
+FNR	acrF	+	[AIBSCS, GEA]	Weak
+FNR	adhE	+	[GEA, HIBSCS]	Weak
+FNR	aer	+	[AIBSCS, GEA]	Weak
+FNR	aldA	-	[AIBSCS, GEA]	Weak
+FNR	amtB	+-	[GEA]	Weak
+FNR	ansB	+	[BCE, SM]	Strong
+FNR	arcA	+	[GEA, HIBSCS]	Weak
+FNR	arcA	-	[GEA, HIBSCS]	Weak
+FNR	aspA	+	[GEA, HIBSCS]	Weak
+FNR	aspC	+-	[GEA]	Weak
+FNR	bcsB	+	[AIBSCS, GEA]	Weak
+FNR	bcsZ	+	[AIBSCS, GEA]	Weak
+FNR	cadC	+	[AIBSCS, GEA]	Weak
+FNR	caiA	+	[AIBSCS, GEA]	Weak
+FNR	caiB	+	[AIBSCS, GEA]	Weak
+FNR	caiC	+	[AIBSCS, GEA]	Weak
+FNR	caiD	+	[AIBSCS, GEA]	Weak
+FNR	caiE	+	[AIBSCS, GEA]	Weak
+FNR	caiF	+	[BCE, GEA]	Weak
+FNR	caiT	+	[AIBSCS, GEA]	Weak
+FNR	ccmA	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmB	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmC	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmD	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmE	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmF	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmG	+	[GEA, HIBSCS, SM]	Strong
+FNR	ccmH	+	[GEA, HIBSCS, SM]	Strong
+FNR	cheB	+	[AIBSCS, GEA]	Weak
+FNR	cheR	+	[AIBSCS, GEA]	Weak
+FNR	cheY	+	[AIBSCS, GEA]	Weak
+FNR	cheZ	+	[AIBSCS, GEA]	Weak
+FNR	citC	-	[AIBSCS]	Weak
+FNR	citD	-	[AIBSCS]	Weak
+FNR	citE	-	[AIBSCS]	Weak
+FNR	citF	-	[AIBSCS]	Weak
+FNR	citG	-	[AIBSCS]	Weak
+FNR	citX	-	[AIBSCS]	Weak
+FNR	cydA	+	[AIBSCS, BPP, GEA]	Strong
+FNR	cydA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+FNR	cydB	+	[AIBSCS, BPP, GEA]	Strong
+FNR	cydB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+FNR	cydC	+	[GEA, HIBSCS]	Weak
+FNR	cydD	+	[GEA, HIBSCS]	Weak
+FNR	cyoA	-	[AIBSCS, GEA]	Weak
+FNR	cyoB	-	[AIBSCS, GEA]	Weak
+FNR	cyoC	-	[AIBSCS, GEA]	Weak
+FNR	cyoD	-	[AIBSCS, GEA]	Weak
+FNR	cyoE	-	[AIBSCS, GEA]	Weak
+FNR	cysG	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	dcuA	+	[GEA, HIBSCS]	Weak
+FNR	dcuB	+	[GEA, HIBSCS]	Weak
+FNR	dcuC	+	[GEA, HIBSCS]	Weak
+FNR	dcuR	+	[AIBSCS, GEA]	Weak
+FNR	dcuS	+	[AIBSCS, GEA]	Weak
+FNR	dmsA	+	[BCE, BPP, GEA, SM]	Strong
+FNR	dmsB	+	[BCE, BPP, GEA, SM]	Strong
+FNR	dmsC	+	[BCE, BPP, GEA, SM]	Strong
+FNR	dmsD	+	[AIBSCS, BPP, GEA, SM]	Strong
+FNR	dpiA	-	[AIBSCS]	Weak
+FNR	dpiB	-	[AIBSCS]	Weak
+FNR	dppA	-	[AIBSCS, GEA]	Weak
+FNR	dppB	-	[AIBSCS, GEA]	Weak
+FNR	dppC	-	[AIBSCS, GEA]	Weak
+FNR	dppD	-	[AIBSCS, GEA]	Weak
+FNR	dppF	-	[AIBSCS, GEA]	Weak
+FNR	emrK	+	[AIBSCS, GEA]	Weak
+FNR	emrY	+	[AIBSCS, GEA]	Weak
+FNR	entF	+	[AIBSCS, GEA]	Weak
+FNR	fdhF	+	[GEA]	Weak
+FNR	fdnG	+	[GEA, HIBSCS, SM]	Strong
+FNR	fdnG	+-	[GEA, HIBSCS, SM]	Strong
+FNR	fdnH	+	[GEA, HIBSCS, SM]	Strong
+FNR	fdnH	+-	[GEA, HIBSCS, SM]	Strong
+FNR	fdnI	+	[GEA, HIBSCS, SM]	Strong
+FNR	fdnI	+-	[GEA, HIBSCS, SM]	Strong
+FNR	feoA	+	[GEA, HIBSCS]	Weak
+FNR	feoB	+	[GEA, HIBSCS]	Weak
+FNR	feoC	+	[GEA, HIBSCS]	Weak
+FNR	fepE	+	[AIBSCS, GEA]	Weak
+FNR	fes	+	[AIBSCS, GEA]	Weak
+FNR	fhlA	+	[BCE, BPP, GEA]	Strong
+FNR	fixA	+	[AIBSCS, GEA]	Weak
+FNR	fixB	+	[AIBSCS, GEA]	Weak
+FNR	fixC	+	[AIBSCS, GEA]	Weak
+FNR	fixX	+	[AIBSCS, GEA]	Weak
+FNR	fnr	-	[BCE, BPP, GEA, HIBSCS]	Strong
+FNR	fnrS	+	[BPP, GEA, HIBSCS]	Strong
+FNR	focA	+	[BCE, GEA, HIBSCS, SM]	Strong
+FNR	focB	-	[GEA, HIBSCS]	Weak
+FNR	frdA	+	[BCE, GEA]	Weak
+FNR	frdB	+	[BCE, GEA]	Weak
+FNR	frdC	+	[BCE, GEA]	Weak
+FNR	frdD	+	[BCE, GEA]	Weak
+FNR	fumA	-	[GEA]	Weak
+FNR	fumB	+	[BCE, GEA, HIBSCS]	Weak
+FNR	fumC	-	[GEA]	Weak
+FNR	gadA	-	[AIBSCS, GEA]	Weak
+FNR	gadW	-	[AIBSCS, GEA]	Weak
+FNR	gadX	-	[AIBSCS, GEA]	Weak
+FNR	garK	+	[AIBSCS, GEA]	Weak
+FNR	garL	+	[AIBSCS, GEA]	Weak
+FNR	garP	+	[AIBSCS, GEA]	Weak
+FNR	garR	+	[AIBSCS, GEA]	Weak
+FNR	gcvH	+	[AIBSCS, GEA]	Weak
+FNR	gcvP	+	[AIBSCS, GEA]	Weak
+FNR	gcvT	+	[AIBSCS, GEA]	Weak
+FNR	gdhA	+	[GEA]	Weak
+FNR	glnD	+-	[GEA]	Weak
+FNR	glnK	+-	[GEA]	Weak
+FNR	glpA	+	[AIBSCS, GEA, HIBSCS]	Weak
+FNR	glpB	+	[AIBSCS, GEA, HIBSCS]	Weak
+FNR	glpC	+	[AIBSCS, GEA, HIBSCS]	Weak
+FNR	glpQ	+	[AIBSCS, GEA, HIBSCS]	Weak
+FNR	glpT	+	[AIBSCS, GEA, HIBSCS]	Weak
+FNR	gltB	-	[AIBSCS, GEA]	Weak
+FNR	gltD	-	[AIBSCS, GEA]	Weak
+FNR	gltF	-	[AIBSCS, GEA]	Weak
+FNR	gnd	-	[GEA]	Weak
+FNR	grcA	+-	[BPP, GEA, SM]	Strong
+FNR	grcA	-	[BPP, GEA, SM]	Strong
+FNR	hcp	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	hcr	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	hemA	-	[BPP, GEA]	Strong
+FNR	hlyE	+	[BPP, GEA]	Strong
+FNR	hmp	-	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	hyfA	-	[GEA, HIBSCS]	Weak
+FNR	hyfB	-	[GEA, HIBSCS]	Weak
+FNR	hyfC	-	[GEA, HIBSCS]	Weak
+FNR	hyfD	-	[GEA, HIBSCS]	Weak
+FNR	hyfE	-	[GEA, HIBSCS]	Weak
+FNR	hyfF	-	[GEA, HIBSCS]	Weak
+FNR	hyfG	-	[GEA, HIBSCS]	Weak
+FNR	hyfH	-	[GEA, HIBSCS]	Weak
+FNR	hyfI	-	[GEA, HIBSCS]	Weak
+FNR	hyfJ	-	[GEA, HIBSCS]	Weak
+FNR	hyfR	-	[GEA, HIBSCS]	Weak
+FNR	hypB	+	[BCE, BPP, GEA]	Strong
+FNR	hypC	+	[BCE, BPP, GEA]	Strong
+FNR	hypD	+	[BCE, BPP, GEA]	Strong
+FNR	hypE	+	[BCE, BPP, GEA]	Strong
+FNR	iraD	+	[AIBSCS, GEA]	Weak
+FNR	iraM	+	[AIBSCS]	Weak
+FNR	katG	+	[AIBSCS, GEA]	Weak
+FNR	lpd	+-	[AIBSCS, BCE, GEA]	Weak
+FNR	malP	+	[AIBSCS, GEA]	Weak
+FNR	malQ	+	[AIBSCS, GEA]	Weak
+FNR	moaA	+	[GEA, HIBSCS]	Weak
+FNR	moaB	+	[GEA, HIBSCS]	Weak
+FNR	moaC	+	[GEA, HIBSCS]	Weak
+FNR	moaD	+	[GEA, HIBSCS]	Weak
+FNR	moaE	+	[GEA, HIBSCS]	Weak
+FNR	moeA	-	[BPP, GEA]	Strong
+FNR	moeB	-	[BPP, GEA]	Strong
+FNR	nac	-	[GEA]	Weak
+FNR	napA	+	[GEA, HIBSCS, SM]	Strong
+FNR	napB	+	[GEA, HIBSCS, SM]	Strong
+FNR	napC	+	[GEA, HIBSCS, SM]	Strong
+FNR	napD	+	[GEA, HIBSCS, SM]	Strong
+FNR	napF	+	[GEA, HIBSCS, SM]	Strong
+FNR	napG	+	[GEA, HIBSCS, SM]	Strong
+FNR	napH	+	[GEA, HIBSCS, SM]	Strong
+FNR	narG	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	narH	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	narI	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	narJ	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	narK	+	[BCE, BPP, GEA, SM]	Strong
+FNR	narL	-	[BCE, BPP, HIBSCS]	Strong
+FNR	narX	-	[BCE, BPP, HIBSCS]	Strong
+FNR	ndh	-	[BCE, GEA, SM]	Strong
+FNR	nikA	+	[GEA, HIBSCS, SM]	Strong
+FNR	nikB	+	[GEA, HIBSCS, SM]	Strong
+FNR	nikC	+	[GEA, HIBSCS, SM]	Strong
+FNR	nikD	+	[GEA, HIBSCS, SM]	Strong
+FNR	nikE	+	[GEA, HIBSCS, SM]	Strong
+FNR	nikR	+	[GEA, HIBSCS, SM]	Strong
+FNR	nirB	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	nirC	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	nirD	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	norV	-	[GEA, HIBSCS]	Weak
+FNR	norW	-	[GEA, HIBSCS]	Weak
+FNR	nrdD	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	nrdG	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	nrfA	+	[BCE, BPP, GEA]	Strong
+FNR	nrfB	+	[BCE, BPP, GEA]	Strong
+FNR	nrfC	+	[BCE, BPP, GEA]	Strong
+FNR	nrfD	+	[BCE, BPP, GEA]	Strong
+FNR	nrfE	+	[BCE, BPP, GEA]	Strong
+FNR	nrfF	+	[BCE, BPP, GEA]	Strong
+FNR	nrfG	+	[BCE, BPP, GEA]	Strong
+FNR	nuoA	-	[BCE, GEA, SM]	Strong
+FNR	nuoB	-	[BCE, GEA, SM]	Strong
+FNR	nuoC	-	[BCE, GEA, SM]	Strong
+FNR	nuoE	-	[BCE, GEA, SM]	Strong
+FNR	nuoF	-	[BCE, GEA, SM]	Strong
+FNR	nuoG	-	[BCE, GEA, SM]	Strong
+FNR	nuoH	-	[BCE, GEA, SM]	Strong
+FNR	nuoI	-	[BCE, GEA, SM]	Strong
+FNR	nuoJ	-	[BCE, GEA, SM]	Strong
+FNR	nuoK	-	[BCE, GEA, SM]	Strong
+FNR	nuoL	-	[BCE, GEA, SM]	Strong
+FNR	nuoM	-	[BCE, GEA, SM]	Strong
+FNR	nuoN	-	[BCE, GEA, SM]	Strong
+FNR	ompW	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+FNR	ompW	-	[AIBSCS, BPP, GEA]	Strong
+FNR	ompX	-	[AIBSCS, GEA]	Weak
+FNR	pdeF	+	[BPP, GEA, HIBSCS]	Strong
+FNR	pdhR	+-	[AIBSCS, BCE, GEA]	Weak
+FNR	pepT	+	[AIBSCS, GEA]	Weak
+FNR	pflB	+	[BCE, GEA, HIBSCS, SM]	Strong
+FNR	pheM	-	[GEA]	Weak
+FNR	phoU	+	[AIBSCS, GEA]	Weak
+FNR	pitA	+	[AIBSCS, GEA]	Weak
+FNR	prfA	-	[BPP, GEA]	Strong
+FNR	prmC	-	[BPP, GEA]	Strong
+FNR	pstA	+	[AIBSCS, GEA]	Weak
+FNR	pstB	+	[AIBSCS, GEA]	Weak
+FNR	pstC	+	[AIBSCS, GEA]	Weak
+FNR	pstS	+	[AIBSCS, GEA]	Weak
+FNR	purM	-	[AIBSCS, GEA, HIBSCS, SM]	Strong
+FNR	purN	-	[AIBSCS, GEA, HIBSCS, SM]	Strong
+FNR	puuA	-	[AIBSCS, GEA]	Weak
+FNR	puuP	-	[AIBSCS, GEA]	Weak
+FNR	rimM	-	[GEA]	Weak
+FNR	rnpB	+	[AIBSCS, GEA]	Weak
+FNR	rplB	+	[GEA]	Weak
+FNR	rplC	+	[GEA]	Weak
+FNR	rplD	+	[GEA]	Weak
+FNR	rplM	-	[AIBSCS, GEA]	Weak
+FNR	rplP	+	[GEA]	Weak
+FNR	rplS	-	[GEA]	Weak
+FNR	rplT	-	[GEA]	Weak
+FNR	rplV	+	[GEA]	Weak
+FNR	rplW	+	[GEA]	Weak
+FNR	rpmC	+	[GEA]	Weak
+FNR	rpsC	+	[GEA]	Weak
+FNR	rpsI	-	[AIBSCS, GEA]	Weak
+FNR	rpsJ	+	[GEA]	Weak
+FNR	rpsP	-	[GEA]	Weak
+FNR	rpsQ	+	[GEA]	Weak
+FNR	rpsS	+	[GEA]	Weak
+FNR	sdhA	-	[GEA]	Weak
+FNR	sdhB	-	[GEA]	Weak
+FNR	sdhC	-	[GEA]	Weak
+FNR	sdhD	-	[GEA]	Weak
+FNR	sodA	-	[BCE, GEA]	Weak
+FNR	soxR	-	[GEA]	Weak
+FNR	soxS	-	[GEA]	Weak
+FNR	ssuA	+	[AIBSCS, GEA]	Weak
+FNR	ssuB	+	[AIBSCS, GEA]	Weak
+FNR	ssuC	+	[AIBSCS, GEA]	Weak
+FNR	ssuD	+	[AIBSCS, GEA]	Weak
+FNR	ssuE	+	[AIBSCS, GEA]	Weak
+FNR	sucA	-	[AIBSCS, GEA]	Weak
+FNR	sucB	-	[AIBSCS, GEA]	Weak
+FNR	sucC	-	[AIBSCS, GEA]	Weak
+FNR	sucD	-	[AIBSCS, GEA]	Weak
+FNR	tap	+	[AIBSCS, GEA]	Weak
+FNR	tar	+	[AIBSCS, GEA]	Weak
+FNR	tdcA	+	[AIBSCS, GEA]	Weak
+FNR	tdcB	+	[AIBSCS, GEA]	Weak
+FNR	tdcC	+	[AIBSCS, GEA]	Weak
+FNR	tdcD	+	[AIBSCS, GEA]	Weak
+FNR	tdcE	+	[AIBSCS, GEA]	Weak
+FNR	tdcF	+	[AIBSCS, GEA]	Weak
+FNR	tdcG	+	[AIBSCS, GEA]	Weak
+FNR	tpx	-	[GEA, HIBSCS]	Weak
+FNR	trmD	-	[GEA]	Weak
+FNR	ubiA	-	[GEA, HIBSCS]	Weak
+FNR	ubiC	-	[GEA, HIBSCS]	Weak
+FNR	upp	+	[AIBSCS, GEA]	Weak
+FNR	uraA	+	[AIBSCS, GEA]	Weak
+FNR	uxaA	+	[AIBSCS, GEA]	Weak
+FNR	uxaC	+	[AIBSCS, GEA]	Weak
+FNR	xdhA	+	[GEA, HIBSCS]	Weak
+FNR	xdhB	+	[GEA, HIBSCS]	Weak
+FNR	xdhC	+	[GEA, HIBSCS]	Weak
+FNR	ybdN	+	[AIBSCS]	Weak
+FNR	ybdZ	+	[AIBSCS, GEA]	Weak
+FNR	ychO	-	[AIBSCS, GEA]	Weak
+FNR	ydeJ	+	[AIBSCS]	Weak
+FNR	ydhT	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	ydhU	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	ydhV	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	ydhW	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	ydhX	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	ydhY	+	[BPP, GEA, HIBSCS, SM]	Strong
+FNR	yecR	+	[AIBSCS, GEA]	Weak
+FNR	yeiL	-	[GEA, HIBSCS]	Weak
+FNR	ygbA	-	[AIBSCS, GEA]	Weak
+FNR	yhjA	+	[AIBSCS, BPP]	Strong
+FNR	ynfE	+	[AIBSCS, BPP, GEA, SM]	Strong
+FNR	ynfF	+	[AIBSCS, BPP, GEA, SM]	Strong
+FNR	ynfG	+	[AIBSCS, BPP, GEA, SM]	Strong
+FNR	ynfH	+	[AIBSCS, BPP, GEA, SM]	Strong
+FNR	yqjI	+	[AIBSCS, GEA]	Weak
+FNR	ysgA	-	[AIBSCS, GEA]	Weak
+FNR	ytfE	-	[GEA]	Weak
+FNR	zwf	-	[GEA]	Weak
+FabR	fabA	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+FabR	fabB	-	[BCE, BPP, GEA, HIBSCS]	Strong
+FadR	accA	+	[AIBSCS, BPP, GEA]	Strong
+FadR	accB	+	[AIBSCS, BPP, GEA]	Strong
+FadR	accC	+	[AIBSCS, BPP, GEA]	Strong
+FadR	accD	+	[AIBSCS, BPP, GEA]	Strong
+FadR	fabA	+	[BCE, GEA, HIBSCS]	Weak
+FadR	fabB	+	[BPP, GEA, HIBSCS]	Strong
+FadR	fabD	+	[BPP, GEA, HIBSCS, SM]	Strong
+FadR	fabG	+	[BPP, GEA, HIBSCS, SM]	Strong
+FadR	fabH	+	[BPP, GEA, HIBSCS, SM]	Strong
+FadR	fabI	+	[AIBSCS, BPP, GEA]	Strong
+FadR	fadA	-	[BCE, HIBSCS]	Weak
+FadR	fadB	-	[BCE, HIBSCS]	Weak
+FadR	fadD	-	[BPP]	Strong
+FadR	fadE	-	[BPP, GEA, HIBSCS]	Strong
+FadR	fadH	-	[BPP, GEA, HIBSCS]	Strong
+FadR	fadI	-	[BPP, GEA, HIBSCS]	Strong
+FadR	fadJ	-	[BPP, GEA, HIBSCS]	Strong
+FadR	fadL	-	[BCE, BPP, GEA, HIBSCS]	Strong
+FadR	fadM	-	[HIBSCS]	Weak
+FadR	fadR	+	[AIBSCS]	Weak
+FadR	iclR	+	[BPP, GEA, SM]	Strong
+FadR	sroD	-	[BPP]	Strong
+FadR	uspA	-	[BCE, BPP, GEA, HIBSCS]	Strong
+FeaR	feaB	+	[BPP, GEA, HIBSCS, SM]	Strong
+FeaR	tynA	+	[BPP, GEA, HIBSCS, SM]	Strong
+FhlA	fdhF	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	fhlA	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	focB	+	[GEA]	Weak
+FhlA	hycA	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycB	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycC	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycD	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycE	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycF	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycG	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycH	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hycI	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hydN	+	[BPP, GEA]	Strong
+FhlA	hyfA	+	[GEA]	Weak
+FhlA	hyfB	+	[GEA]	Weak
+FhlA	hyfC	+	[GEA]	Weak
+FhlA	hyfD	+	[GEA]	Weak
+FhlA	hyfE	+	[GEA]	Weak
+FhlA	hyfF	+	[GEA]	Weak
+FhlA	hyfG	+	[GEA]	Weak
+FhlA	hyfH	+	[GEA]	Weak
+FhlA	hyfI	+	[GEA]	Weak
+FhlA	hyfJ	+	[GEA]	Weak
+FhlA	hyfR	+	[GEA]	Weak
+FhlA	hypA	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hypB	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hypC	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hypD	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hypE	+	[BPP, GEA, HIBSCS]	Strong
+FhlA	hypF	+	[BPP, GEA]	Strong
+Fis	acnB	-	[GEA, HIBSCS]	Weak
+Fis	acs	-	[AIBSCS, BPP, GEA, SM]	Strong
+Fis	actP	-	[AIBSCS, BPP, GEA, SM]	Strong
+Fis	adhE	+	[BPP, GEA, HIBSCS]	Strong
+Fis	alaT	+	[BPP, GEA]	Strong
+Fis	alaU	+	[BPP, GEA]	Strong
+Fis	alaV	+	[BPP, GEA]	Strong
+Fis	alaW	+	[BCE]	Weak
+Fis	alaX	+	[BCE]	Weak
+Fis	aldB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fis	ansB	-	[AIBSCS, GEA]	Weak
+Fis	apaG	+	[GEA]	Weak
+Fis	apaH	+	[GEA]	Weak
+Fis	argU	+	[]	null
+Fis	argW	+	[BCE]	Weak
+Fis	argX	+	[BCE]	Weak
+Fis	aspV	+	[BCE]	Weak
+Fis	bglB	-	[BPP]	Strong
+Fis	bglF	-	[BPP]	Strong
+Fis	bglG	-	[BPP]	Strong
+Fis	carA	+	[AIBSCS, GEA]	Weak
+Fis	carB	+	[AIBSCS, GEA]	Weak
+Fis	cbpA	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	cbpM	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	crp	-	[BPP, GEA, HIBSCS]	Strong
+Fis	cspA	+	[AIBSCS, BPP, GEA]	Strong
+Fis	cspI	-	[AIBSCS, GEA]	Weak
+Fis	cyoA	+	[GEA]	Weak
+Fis	cyoB	+	[GEA]	Weak
+Fis	cyoC	+	[GEA]	Weak
+Fis	cyoD	+	[GEA]	Weak
+Fis	cyoE	+	[GEA]	Weak
+Fis	cysG	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fis	deoA	+	[AIBSCS, GEA]	Weak
+Fis	deoB	+	[AIBSCS, GEA]	Weak
+Fis	deoC	+	[AIBSCS, GEA]	Weak
+Fis	deoD	+	[AIBSCS, GEA]	Weak
+Fis	dmsA	-	[AIBSCS, GEA]	Weak
+Fis	dmsB	-	[AIBSCS, GEA]	Weak
+Fis	dmsC	-	[AIBSCS, GEA]	Weak
+Fis	dps	-	[BPP, GEA, HIBSCS]	Strong
+Fis	dusB	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	fadA	+	[AIBSCS, GEA]	Weak
+Fis	fadB	+	[AIBSCS, GEA]	Weak
+Fis	fau	+	[BPP, GEA]	Strong
+Fis	fau	-	[BPP, GEA]	Strong
+Fis	fis	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	flxA	+	[AIBSCS, GEA]	Weak
+Fis	fumB	-	[GEA]	Weak
+Fis	gadA	-	[AIBSCS, GEA]	Weak
+Fis	gadB	-	[AIBSCS, GEA]	Weak
+Fis	gadC	-	[AIBSCS, GEA]	Weak
+Fis	gadX	-	[AIBSCS, GEA]	Weak
+Fis	glcC	-	[AIBSCS, GEA]	Weak
+Fis	glnA	+	[AIBSCS, BPP, GEA]	Strong
+Fis	glnG	+	[AIBSCS, BPP, GEA]	Strong
+Fis	glnL	+	[AIBSCS, BPP, GEA]	Strong
+Fis	glnQ	-	[GEA]	Weak
+Fis	glnU	+	[]	null
+Fis	glnV	+	[]	null
+Fis	glnW	+	[]	null
+Fis	glnX	+	[]	null
+Fis	glpA	+	[AIBSCS, GEA]	Weak
+Fis	glpB	+	[AIBSCS, GEA]	Weak
+Fis	glpC	+	[AIBSCS, GEA]	Weak
+Fis	glpQ	+	[AIBSCS, GEA]	Weak
+Fis	glpT	+	[AIBSCS, GEA]	Weak
+Fis	gltT	+	[BPP, GEA]	Strong
+Fis	gltU	+	[BPP, GEA]	Strong
+Fis	gltV	+	[BPP, GEA]	Strong
+Fis	gltW	+	[BPP, GEA]	Strong
+Fis	gltX	-	[AIBSCS, BCE, BPP, HIBSCS, SM]	Strong
+Fis	glyT	+	[BPP, GEA, HIBSCS, IHBCE]	Strong
+Fis	glyU	+	[BCE]	Weak
+Fis	grcA	+	[AIBSCS, GEA]	Weak
+Fis	guaA	-	[AIBSCS, BPP, SM]	Strong
+Fis	guaB	-	[AIBSCS, BPP, SM]	Strong
+Fis	gyrA	-	[BPP, GEA, HIBSCS]	Strong
+Fis	gyrB	-	[BPP, GEA, HIBSCS]	Strong
+Fis	hisR	+	[BCE]	Weak
+Fis	hlyE	-	[AIBSCS, GEA]	Weak
+Fis	hns	+	[BPP]	Strong
+Fis	hupA	+	[BPP, GEA]	Strong
+Fis	hupB	-	[BPP, GEA]	Strong
+Fis	hyaA	-	[AIBSCS, GEA]	Weak
+Fis	hyaB	-	[AIBSCS, GEA]	Weak
+Fis	hyaC	-	[AIBSCS, GEA]	Weak
+Fis	hyaD	-	[AIBSCS, GEA]	Weak
+Fis	hyaE	-	[AIBSCS, GEA]	Weak
+Fis	hyaF	-	[AIBSCS, GEA]	Weak
+Fis	ileT	+	[BPP, GEA]	Strong
+Fis	ileU	+	[BPP, GEA]	Strong
+Fis	ileV	+	[BPP, GEA]	Strong
+Fis	infB	+	[BCE, IHBCE]	Weak
+Fis	katE	-	[AIBSCS, GEA]	Weak
+Fis	leuP	+	[BCE, GEA, HIBSCS, IHBCE]	Weak
+Fis	leuQ	+	[BCE, GEA, HIBSCS, IHBCE]	Weak
+Fis	leuT	+	[BCE]	Weak
+Fis	leuV	+	[BCE, GEA, HIBSCS, IHBCE]	Weak
+Fis	leuW	+	[]	null
+Fis	leuX	+	[BCE]	Weak
+Fis	lpd	+	[BCE, BPP]	Strong
+Fis	lysT	+	[IHBCE]	Weak
+Fis	lysV	+	[AIBSCS, BCE, BPP, HIBSCS, SM]	Strong
+Fis	lysW	+	[IHBCE]	Weak
+Fis	malE	+	[AIBSCS, GEA]	Weak
+Fis	malF	+	[AIBSCS, GEA]	Weak
+Fis	malG	+	[AIBSCS, GEA]	Weak
+Fis	marA	+	[BPP, GEA, SM]	Strong
+Fis	marB	+	[BPP, GEA, SM]	Strong
+Fis	marR	+	[BPP, GEA, SM]	Strong
+Fis	mazE	+	[BPP, GEA, SM]	Strong
+Fis	mazF	+	[BPP, GEA, SM]	Strong
+Fis	mazG	+	[BPP, GEA, SM]	Strong
+Fis	metT	+	[]	null
+Fis	metU	+	[]	null
+Fis	metY	+	[BCE, IHBCE]	Weak
+Fis	mglA	-	[GEA]	Weak
+Fis	mglC	-	[GEA]	Weak
+Fis	msrA	-	[AIBSCS, GEA]	Weak
+Fis	mtlA	-	[AIBSCS, GEA]	Weak
+Fis	mtlD	-	[AIBSCS, GEA]	Weak
+Fis	mtlR	-	[AIBSCS, GEA]	Weak
+Fis	nanA	-	[AIBSCS, GEA]	Weak
+Fis	nanE	-	[AIBSCS, GEA]	Weak
+Fis	nanK	-	[AIBSCS, GEA]	Weak
+Fis	nanT	-	[AIBSCS, GEA]	Weak
+Fis	narG	-	[AIBSCS, GEA]	Weak
+Fis	narH	-	[AIBSCS, GEA]	Weak
+Fis	narI	-	[AIBSCS, GEA]	Weak
+Fis	narJ	-	[AIBSCS, GEA]	Weak
+Fis	narK	-	[AIBSCS, GEA]	Weak
+Fis	ndh	+	[BPP, HIBSCS, SM]	Strong
+Fis	ndh	-	[BPP, HIBSCS, SM]	Strong
+Fis	nirB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fis	nirC	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fis	nirD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fis	nrdA	+	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	nrdB	+	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	nrfA	-	[BPP, GEA]	Strong
+Fis	nrfB	-	[BPP, GEA]	Strong
+Fis	nrfC	-	[BPP, GEA]	Strong
+Fis	nrfD	-	[BPP, GEA]	Strong
+Fis	nrfE	-	[BPP, GEA]	Strong
+Fis	nrfF	-	[BPP, GEA]	Strong
+Fis	nrfG	-	[BPP, GEA]	Strong
+Fis	nuoA	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoB	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoC	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoE	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoF	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoG	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoH	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoI	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoJ	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoK	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoL	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoM	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nuoN	+	[BPP, GEA, HIBSCS]	Strong
+Fis	nusA	+	[BCE, IHBCE]	Weak
+Fis	ogt	-	[BPP]	Strong
+Fis	osmE	-	[BPP]	Strong
+Fis	osmY	-	[AIBSCS, GEA]	Weak
+Fis	patA	?	[AIBSCS]	Weak
+Fis	pdxA	+	[GEA]	Weak
+Fis	pflB	-	[AIBSCS, GEA]	Weak
+Fis	pheU	+	[IHBCE]	Weak
+Fis	pheV	+	[BCE]	Weak
+Fis	pnp	+	[BCE, IHBCE]	Weak
+Fis	proK	+	[BCE]	Weak
+Fis	proL	+	[BCE]	Weak
+Fis	proM	+	[BCE]	Weak
+Fis	proP	+	[BPP, HIBSCS, SM]	Strong
+Fis	ptsG	+-	[BPP, GEA]	Strong
+Fis	ptsG	-	[BPP, GEA]	Strong
+Fis	pyrD	-	[AIBSCS, GEA]	Weak
+Fis	queA	+	[BPP, GEA]	Strong
+Fis	rbfA	+	[BCE, IHBCE]	Weak
+Fis	rimP	+	[BCE, IHBCE]	Weak
+Fis	rnpB	+	[BPP, GEA, HIBSCS]	Strong
+Fis	rnpB	-	[BPP, GEA, HIBSCS]	Strong
+Fis	rplM	-	[AIBSCS, HIBSCS]	Weak
+Fis	rpsI	-	[AIBSCS, HIBSCS]	Weak
+Fis	rpsO	+	[BCE, IHBCE]	Weak
+Fis	rrfA	+	[BPP, GEA]	Strong
+Fis	rrfB	+	[BPP, GEA]	Strong
+Fis	rrfC	+	[BPP, GEA]	Strong
+Fis	rrfD	+	[BPP, GEA]	Strong
+Fis	rrfE	+	[BPP, GEA]	Strong
+Fis	rrfF	+	[BPP, GEA]	Strong
+Fis	rrfG	+	[BPP, GEA]	Strong
+Fis	rrfH	+	[BPP, GEA]	Strong
+Fis	rrlA	+	[BPP, GEA]	Strong
+Fis	rrlB	+	[BPP, GEA]	Strong
+Fis	rrlC	+	[BPP, GEA]	Strong
+Fis	rrlD	+	[BPP, GEA]	Strong
+Fis	rrlE	+	[BPP, GEA]	Strong
+Fis	rrlG	+	[BPP, GEA]	Strong
+Fis	rrlH	+	[BPP, GEA]	Strong
+Fis	rrsA	+	[BPP, GEA]	Strong
+Fis	rrsB	+	[BPP, GEA]	Strong
+Fis	rrsC	+	[BPP, GEA]	Strong
+Fis	rrsD	+	[BPP, GEA]	Strong
+Fis	rrsE	+	[BPP, GEA]	Strong
+Fis	rrsG	+	[BPP, GEA]	Strong
+Fis	rrsH	+	[BPP, GEA]	Strong
+Fis	rsmA	+	[GEA]	Weak
+Fis	serT	+	[]	null
+Fis	serX	+	[BCE]	Weak
+Fis	sra	+	[GEA]	Weak
+Fis	ssrS	+	[BPP, GEA]	Strong
+Fis	ssrS	-	[BPP, GEA]	Strong
+Fis	thrT	+	[BPP, GEA, HIBSCS, IHBCE]	Strong
+Fis	thrU	+	[BPP, GEA, HIBSCS, IHBCE]	Strong
+Fis	thrV	+	[BPP, GEA]	Strong
+Fis	thrW	+	[BCE]	Weak
+Fis	topA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fis	topA	-	[BPP, GEA, HIBSCS]	Strong
+Fis	tpr	+	[AIBSCS, BCE, BPP, GEA]	Strong
+Fis	trg	+	[AIBSCS, GEA]	Weak
+Fis	trmA	+	[HIBSCS]	Weak
+Fis	truB	+	[BCE, IHBCE]	Weak
+Fis	tufB	+	[BPP, GEA, HIBSCS, IHBCE]	Strong
+Fis	tyrT	+	[AIBSCS, BCE, BPP, GEA]	Strong
+Fis	tyrU	+	[BPP, GEA, HIBSCS, IHBCE]	Strong
+Fis	tyrV	+	[AIBSCS, BCE, BPP, GEA]	Strong
+Fis	valT	+	[IHBCE]	Weak
+Fis	valU	+	[AIBSCS, BCE, BPP, HIBSCS, SM]	Strong
+Fis	valX	+	[AIBSCS, BCE, BPP, HIBSCS, SM]	Strong
+Fis	valY	+	[AIBSCS, BCE, BPP, HIBSCS, SM]	Strong
+Fis	xylF	-	[AIBSCS, GEA]	Weak
+Fis	xylG	-	[AIBSCS, GEA]	Weak
+Fis	xylH	-	[AIBSCS, GEA]	Weak
+Fis	xylR	-	[AIBSCS, GEA]	Weak
+Fis	yeaR	-	[BPP]	Strong
+Fis	yfaE	+	[BPP, GEA, HIBSCS, SM]	Strong
+Fis	yhcH	-	[AIBSCS, GEA]	Weak
+Fis	yjcH	-	[AIBSCS, BPP, GEA, SM]	Strong
+Fis	yoaG	-	[BPP]	Strong
+FlhDC	ccmA	+	[GEA]	Weak
+FlhDC	ccmB	+	[GEA]	Weak
+FlhDC	ccmC	+	[GEA]	Weak
+FlhDC	ccmD	+	[GEA]	Weak
+FlhDC	ccmE	+	[GEA]	Weak
+FlhDC	ccmF	+	[GEA]	Weak
+FlhDC	ccmG	+	[GEA]	Weak
+FlhDC	ccmH	+	[GEA]	Weak
+FlhDC	flgA	+	[GEA, HIBSCS]	Weak
+FlhDC	flgB	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgC	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgD	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgE	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgF	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgG	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgH	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgI	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgJ	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flgK	+	[BPP, GEA]	Strong
+FlhDC	flgL	+	[BPP, GEA]	Strong
+FlhDC	flgM	+	[GEA, HIBSCS]	Weak
+FlhDC	flgN	+	[GEA, HIBSCS]	Weak
+FlhDC	flhA	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flhB	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	flhE	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliA	+	[BPP, GEA, HIBSCS, SM]	Strong
+FlhDC	fliD	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliE	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliF	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliG	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliH	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliI	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliJ	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliK	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliL	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliM	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliN	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliO	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliP	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliQ	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliR	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliS	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliT	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	fliZ	+	[BPP, GEA, HIBSCS, SM]	Strong
+FlhDC	glpA	+	[GEA]	Weak
+FlhDC	glpB	+	[GEA]	Weak
+FlhDC	glpC	+	[GEA]	Weak
+FlhDC	gltI	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	gltJ	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	gltK	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	gltL	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	hydN	+	[GEA]	Weak
+FlhDC	hypF	+	[GEA]	Weak
+FlhDC	mdh	-	[GEA]	Weak
+FlhDC	mglA	-	[GEA]	Weak
+FlhDC	mglB	-	[GEA]	Weak
+FlhDC	mglC	-	[GEA]	Weak
+FlhDC	napA	+	[GEA]	Weak
+FlhDC	napB	+	[GEA]	Weak
+FlhDC	napC	+	[GEA]	Weak
+FlhDC	napD	+	[GEA]	Weak
+FlhDC	napF	+	[GEA]	Weak
+FlhDC	napG	+	[GEA]	Weak
+FlhDC	napH	+	[GEA]	Weak
+FlhDC	nrfA	+	[GEA]	Weak
+FlhDC	nrfB	+	[GEA]	Weak
+FlhDC	nrfC	+	[GEA]	Weak
+FlhDC	nrfD	+	[GEA]	Weak
+FlhDC	nrfE	+	[GEA]	Weak
+FlhDC	nrfF	+	[GEA]	Weak
+FlhDC	nrfG	+	[GEA]	Weak
+FlhDC	pdeH	+	[GEA]	Weak
+FlhDC	ppdA	+	[GEA]	Weak
+FlhDC	ppdB	+	[GEA]	Weak
+FlhDC	ppdC	+	[GEA]	Weak
+FlhDC	recC	+	[GEA]	Weak
+FlhDC	sroC	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	tcyJ	+	[BPP, GEA, HIBSCS, SM]	Strong
+FlhDC	ycgR	+	[GEA]	Weak
+FlhDC	yecR	+	[BPP, GEA, HIBSCS]	Strong
+FlhDC	ygbK	+	[GEA]	Weak
+FlhDC	ygdB	+	[GEA]	Weak
+FliZ	csgA	-	[GEA]	Weak
+FliZ	csgB	-	[GEA]	Weak
+FliZ	csgC	-	[GEA]	Weak
+FliZ	csgD	-	[BPP, GEA]	Strong
+FliZ	csgE	-	[BPP, GEA]	Strong
+FliZ	csgF	-	[BPP, GEA]	Strong
+FliZ	csgG	-	[BPP, GEA]	Strong
+FliZ	flhC	-	[BPP, GEA]	Strong
+FliZ	flhD	-	[BPP, GEA]	Strong
+FliZ	gadB	-	[BPP, GEA]	Strong
+FliZ	gadC	-	[BPP, GEA]	Strong
+FliZ	gadE	-	[BPP, GEA, SM]	Strong
+FliZ	gadF	-	[BPP, GEA, SM]	Strong
+FliZ	hdeA	-	[BPP, GEA]	Strong
+FliZ	hdeB	-	[BPP, GEA]	Strong
+FliZ	mdtE	-	[BPP, GEA, SM]	Strong
+FliZ	mdtF	-	[BPP, GEA, SM]	Strong
+FliZ	mlrA	-	[BPP, GEA, SM]	Strong
+FliZ	osmY	-	[BPP, GEA]	Strong
+FliZ	pdeR	-	[BPP, GEA, SM]	Strong
+FliZ	yhiD	-	[BPP, GEA]	Strong
+FucR	fucA	+	[GEA, IMP]	Weak
+FucR	fucI	+	[GEA]	Weak
+FucR	fucK	+	[GEA]	Weak
+FucR	fucO	+	[GEA, IMP]	Weak
+FucR	fucP	+	[GEA]	Weak
+FucR	fucR	+	[GEA]	Weak
+FucR	fucU	+	[GEA]	Weak
+Fur	amtB	+-	[GEA]	Weak
+Fur	aspC	-	[GEA]	Weak
+Fur	cirA	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+Fur	crl	-	[BPP, GEA]	Strong
+Fur	cyoA	-	[AIBSCS, GEA]	Weak
+Fur	cyoB	-	[AIBSCS, GEA]	Weak
+Fur	cyoC	-	[AIBSCS, GEA]	Weak
+Fur	cyoD	-	[AIBSCS, GEA]	Weak
+Fur	cyoE	-	[AIBSCS, GEA]	Weak
+Fur	entA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entC	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entE	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entF	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entH	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	entS	+-	[BPP, GEA, HIBSCS]	Strong
+Fur	exbB	-	[AIBSCS, BPP, HIBSCS]	Strong
+Fur	exbD	-	[AIBSCS, BPP, HIBSCS]	Strong
+Fur	fecA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fecB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fecC	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fecD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fecE	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fecI	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+Fur	fecR	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+Fur	feoA	-	[GEA, HIBSCS]	Weak
+Fur	feoB	-	[GEA, HIBSCS]	Weak
+Fur	feoC	-	[GEA, HIBSCS]	Weak
+Fur	fepA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fepB	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+Fur	fepC	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fepD	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fepE	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fepG	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fes	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fhuA	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fhuB	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fhuC	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fhuD	-	[BPP, GEA, HIBSCS]	Strong
+Fur	fhuE	-	[AIBSCS, HIBSCS]	Weak
+Fur	fhuF	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	fiu	-	[HIBSCS]	Weak
+Fur	flhC	-	[AIBSCS]	Weak
+Fur	flhD	-	[AIBSCS]	Weak
+Fur	fnr	-	[GEA]	Weak
+Fur	ftnA	+	[BPP, GEA, HIBSCS]	Strong
+Fur	fumB	+	[GEA]	Weak
+Fur	fumC	-	[GEA]	Weak
+Fur	fur	-	[BPP, HIBSCS]	Strong
+Fur	garK	-	[BPP, HIBSCS]	Strong
+Fur	garL	-	[BPP, HIBSCS]	Strong
+Fur	garP	-	[BPP, HIBSCS]	Strong
+Fur	garR	-	[BPP, HIBSCS]	Strong
+Fur	gdhA	+-	[GEA]	Weak
+Fur	glnD	-	[GEA]	Weak
+Fur	glnK	+-	[GEA]	Weak
+Fur	gltB	-	[GEA]	Weak
+Fur	gltD	-	[GEA]	Weak
+Fur	gltF	-	[GEA]	Weak
+Fur	gnd	-	[GEA]	Weak
+Fur	gpmA	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	grcA	-	[GEA]	Weak
+Fur	gspC	-	[BPP, HIBSCS]	Strong
+Fur	gspD	-	[BPP, HIBSCS]	Strong
+Fur	gspE	-	[BPP, HIBSCS]	Strong
+Fur	gspF	-	[BPP, HIBSCS]	Strong
+Fur	gspG	-	[BPP, HIBSCS]	Strong
+Fur	gspH	-	[BPP, HIBSCS]	Strong
+Fur	gspI	-	[BPP, HIBSCS]	Strong
+Fur	gspJ	-	[BPP, HIBSCS]	Strong
+Fur	gspK	-	[BPP, HIBSCS]	Strong
+Fur	gspL	-	[BPP, HIBSCS]	Strong
+Fur	gspM	-	[BPP, HIBSCS]	Strong
+Fur	gspO	-	[BPP, HIBSCS]	Strong
+Fur	hmp	-	[AS, GEA, HIBSCS, IMP]	Weak
+Fur	katE	+	[IEP]	Weak
+Fur	katG	+	[IEP]	Weak
+Fur	lpd	+-	[GEA]	Weak
+Fur	metH	-	[AIBSCS]	Weak
+Fur	metJ	-	[AIBSCS]	Weak
+Fur	mntH	-	[AIBSCS, HIBSCS, IGI]	Weak
+Fur	mntP	+	[AIBSCS]	Weak
+Fur	nac	-	[GEA]	Weak
+Fur	ndh	-	[GEA]	Weak
+Fur	nohA	-	[BPP, GEA, HIBSCS]	Strong
+Fur	nrdE	-	[AIBSCS, GEA]	Weak
+Fur	nrdF	-	[AIBSCS, GEA]	Weak
+Fur	nrdH	-	[AIBSCS, GEA]	Weak
+Fur	nrdI	-	[AIBSCS, GEA]	Weak
+Fur	ompF	+	[GEA]	Weak
+Fur	oppA	-	[BPP, HIBSCS]	Strong
+Fur	oppB	-	[BPP, HIBSCS]	Strong
+Fur	oppC	-	[BPP, HIBSCS]	Strong
+Fur	oppD	-	[BPP, HIBSCS]	Strong
+Fur	oppF	-	[BPP, HIBSCS]	Strong
+Fur	purR	-	[AIBSCS]	Weak
+Fur	pyrC	-	[BPP, GEA, HIBSCS]	Strong
+Fur	rcnA	-	[AIBSCS, GEA, HIBSCS]	Weak
+Fur	rcnB	-	[AIBSCS, GEA, HIBSCS]	Weak
+Fur	rnpB	-	[BPP, HIBSCS]	Strong
+Fur	rpoS	-	[GEA, IEP]	Weak
+Fur	ryhB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	sdhA	+	[AIBSCS, GEA]	Weak
+Fur	sdhB	+	[AIBSCS, GEA]	Weak
+Fur	sdhC	+	[AIBSCS, GEA]	Weak
+Fur	sdhD	+	[AIBSCS, GEA]	Weak
+Fur	sodA	-	[BCE, BPP, GEA, HIBSCS]	Strong
+Fur	soxR	-	[GEA]	Weak
+Fur	soxS	-	[GEA]	Weak
+Fur	sucA	+	[AIBSCS, GEA]	Weak
+Fur	sucB	+	[AIBSCS, GEA]	Weak
+Fur	sucC	+	[AIBSCS, GEA]	Weak
+Fur	sucD	+	[AIBSCS, GEA]	Weak
+Fur	sufA	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fur	sufB	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fur	sufC	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fur	sufD	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fur	sufE	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fur	sufS	-	[BPP, GEA, HIBSCS, SM]	Strong
+Fur	tfaQ	-	[BPP, GEA, HIBSCS]	Strong
+Fur	tonB	+	[AIBSCS, BPP, HIBSCS]	Strong
+Fur	tonB	-	[BCE, BPP, HIBSCS]	Strong
+Fur	ybdZ	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	ydfN	-	[BPP, GEA, HIBSCS]	Strong
+Fur	ygaC	-	[AIBSCS, GEA]	Weak
+Fur	yhhY	-	[AIBSCS, GEA, HIBSCS]	Weak
+Fur	yjjZ	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Fur	yqjH	-	[AIBSCS, GEA, HIBSCS]	Weak
+Fur	zinT	+	[GEA]	Weak
+Fur	zwf	-	[GEA]	Weak
+GadE	cyoA	+	[GEA]	Weak
+GadE	cyoB	+	[GEA]	Weak
+GadE	cyoC	+	[GEA]	Weak
+GadE	cyoD	+	[GEA]	Weak
+GadE	cyoE	+	[GEA]	Weak
+GadE	fabZ	+	[GEA]	Weak
+GadE	fliC	+	[GEA]	Weak
+GadE	gadB	+	[BPP, GEA, HIBSCS]	Strong
+GadE	gadC	+	[BPP, GEA, HIBSCS]	Strong
+GadE	gadE	+	[BPP, GEA, HIBSCS]	Strong
+GadE	gadF	+	[BPP, GEA, HIBSCS]	Strong
+GadE	gadW	+	[BPP, GEA]	Strong
+GadE	gadX	+	[BPP, GEA]	Strong
+GadE	gltB	+	[BPP, GEA]	Strong
+GadE	gltD	+	[BPP, GEA]	Strong
+GadE	gltF	+	[BPP, GEA]	Strong
+GadE	gnd	+	[GEA]	Weak
+GadE	hdeA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadE	hdeB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadE	hdeD	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadE	lpxA	+	[GEA]	Weak
+GadE	lpxD	+	[GEA]	Weak
+GadE	lrp	+	[GEA]	Weak
+GadE	mdtE	+	[BPP, GEA, HIBSCS]	Strong
+GadE	mdtF	+	[BPP, GEA, HIBSCS]	Strong
+GadE	purA	+	[GEA]	Weak
+GadE	rcsA	+	[BPP, GEA]	Strong
+GadE	skp	+	[GEA]	Weak
+GadE	yhiD	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadE-RcsB	adiC	+	[BPP]	Strong
+GadE-RcsB	aslB	+	[BPP]	Strong
+GadE-RcsB	cadA	+	[BPP, GEA]	Strong
+GadE-RcsB	cadB	+	[BPP, GEA]	Strong
+GadE-RcsB	dctR	+	[BPP, GEA]	Strong
+GadE-RcsB	gadA	+	[BPP, GEA, HIBSCS, SM]	Strong
+GadE-RcsB	gadX	+	[BPP, GEA, HIBSCS, SM]	Strong
+GadE-RcsB	slp	+	[BPP, GEA]	Strong
+GadE-RcsB	yhiM	+	[BPP]	Strong
+GadW	dctR	-	[AIBSCS, GEA, HIBSCS]	Weak
+GadW	gadA	+-	[BPP, GEA, HIBSCS]	Strong
+GadW	gadB	+-	[BPP, GEA, HIBSCS]	Strong
+GadW	gadC	+-	[BPP, GEA, HIBSCS]	Strong
+GadW	gadE	+	[AIBSCS, GEA, HIBSCS]	Weak
+GadW	gadF	+	[AIBSCS, GEA, HIBSCS]	Weak
+GadW	gadW	-	[GEA]	Weak
+GadW	gadX	+-	[BPP, GEA, HIBSCS]	Strong
+GadW	gadX	-	[GEA]	Weak
+GadW	gadY	-	[GEA]	Weak
+GadW	hdeA	+-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadW	hdeB	+-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadW	mdtE	+	[AIBSCS, GEA, HIBSCS]	Weak
+GadW	mdtF	+	[AIBSCS, GEA, HIBSCS]	Weak
+GadW	slp	-	[AIBSCS, GEA, HIBSCS]	Weak
+GadW	yhiD	+-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	amtB	+	[GEA]	Weak
+GadX	asnB	+	[GEA]	Weak
+GadX	btuB	-	[BPP, GEA, HIBSCS]	Strong
+GadX	cadA	+	[GEA]	Weak
+GadX	cadB	+	[GEA]	Weak
+GadX	dctR	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	gadA	+	[BPP, GEA, HIBSCS]	Strong
+GadX	gadB	+	[BPP, GEA, HIBSCS]	Strong
+GadX	gadC	+	[BPP, GEA, HIBSCS]	Strong
+GadX	gadE	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	gadF	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	gadW	+	[GEA]	Weak
+GadX	gadW	-	[GEA]	Weak
+GadX	gadX	+	[BPP, GEA, HIBSCS]	Strong
+GadX	gadY	+	[GEA]	Weak
+GadX	glnK	+	[GEA]	Weak
+GadX	hdeA	+-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	hdeB	+-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	hdeD	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	hns	+	[GEA]	Weak
+GadX	lon	+	[GEA]	Weak
+GadX	mdtE	+	[GEA, HIBSCS]	Weak
+GadX	mdtF	+	[GEA, HIBSCS]	Weak
+GadX	murI	-	[BPP, GEA, HIBSCS]	Strong
+GadX	rpoS	+	[GEA]	Weak
+GadX	slp	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GadX	uspE	+	[GEA]	Weak
+GadX	ybaS	+	[GEA]	Weak
+GadX	ybaT	+	[GEA]	Weak
+GadX	yhiD	+-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+GalR	galE	+	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galE	-	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galK	+	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galK	-	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galM	+	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galM	-	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galP	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+GalR	galR	-	[BPP, GEA, HIBSCS]	Strong
+GalR	galS	-	[GEA, HIBSCS]	Weak
+GalR	galT	+	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	galT	-	[BPP, GEA, HIBSCS, SM]	Strong
+GalR	mglA	-	[GEA, HIBSCS]	Weak
+GalR	mglB	-	[GEA, HIBSCS]	Weak
+GalR	mglC	-	[GEA, HIBSCS]	Weak
+GalS	galE	+	[BPP, GEA, HIBSCS]	Strong
+GalS	galE	-	[BPP, GEA, HIBSCS]	Strong
+GalS	galK	+	[BPP, GEA, HIBSCS]	Strong
+GalS	galK	-	[BPP, GEA, HIBSCS]	Strong
+GalS	galM	+	[BPP, GEA, HIBSCS]	Strong
+GalS	galM	-	[BPP, GEA, HIBSCS]	Strong
+GalS	galP	-	[AIBSCS, BPP, GEA, SM]	Strong
+GalS	galR	-	[GEA, HIBSCS]	Weak
+GalS	galS	-	[BCE, GEA]	Weak
+GalS	galT	+	[BPP, GEA, HIBSCS]	Strong
+GalS	galT	-	[BPP, GEA, HIBSCS]	Strong
+GalS	mglA	-	[GEA, HIBSCS]	Weak
+GalS	mglB	-	[GEA, HIBSCS]	Weak
+GalS	mglC	-	[GEA, HIBSCS]	Weak
+GatR	gatA	-	[GEA]	Weak
+GatR	gatB	-	[GEA]	Weak
+GatR	gatC	-	[GEA]	Weak
+GatR	gatD	-	[GEA]	Weak
+GatR	gatY	-	[GEA]	Weak
+GatR	gatZ	-	[GEA]	Weak
+GcvA	gcvA	-	[AIBSCS, BCE, BPP, GEA, HIBSCS, IC, SM]	Strong
+GcvA	gcvB	+	[AIBSCS, BCE, BPP, GEA, HIBSCS, IC, SM]	Strong
+GcvA	gcvH	+-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+GcvA	gcvH	-	[BCE, BPP, GEA, HIBSCS, IC, SM]	Strong
+GcvA	gcvP	+-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+GcvA	gcvP	-	[BCE, BPP, GEA, HIBSCS, IC, SM]	Strong
+GcvA	gcvT	+-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+GcvA	gcvT	-	[BCE, BPP, GEA, HIBSCS, IC, SM]	Strong
+GlcC	glcA	+	[BCE, GEA, SM]	Strong
+GlcC	glcB	+	[BCE, GEA, SM]	Strong
+GlcC	glcC	-	[BCE, GEA, SM]	Strong
+GlcC	glcD	+	[BCE, GEA, SM]	Strong
+GlcC	glcE	+	[BCE, GEA, SM]	Strong
+GlcC	glcF	+	[BCE, GEA, SM]	Strong
+GlcC	glcG	+	[BCE, GEA, SM]	Strong
+GlpR	glpA	-	[BPP, HIBSCS, SM]	Strong
+GlpR	glpB	-	[BPP, HIBSCS, SM]	Strong
+GlpR	glpC	-	[BPP, HIBSCS, SM]	Strong
+GlpR	glpD	-	[BPP, GEA, HIBSCS, SM]	Strong
+GlpR	glpF	-	[BPP, HIBSCS]	Strong
+GlpR	glpK	-	[BPP, HIBSCS]	Strong
+GlpR	glpQ	-	[BPP, GEA, HIBSCS, SM]	Strong
+GlpR	glpT	-	[BPP, GEA, HIBSCS, SM]	Strong
+GlpR	glpX	-	[BPP, HIBSCS]	Strong
+GlrR	glmY	+	[BPP, GEA, HIBSCS, SM]	Strong
+GlrR	rpoE	+	[BPP, GEA, HIBSCS]	Strong
+GlrR	rseA	+	[BPP, GEA, HIBSCS]	Strong
+GlrR	rseB	+	[BPP, GEA, HIBSCS]	Strong
+GlrR	rseC	+	[BPP, GEA, HIBSCS]	Strong
+GntR	eda	-	[AIBSCS, BPP, HIBSCS, SM]	Strong
+GntR	edd	-	[AIBSCS, BPP, HIBSCS, SM]	Strong
+GntR	gntK	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+GntR	gntT	-	[AIBSCS, BPP, GEA, HIBSCS, TASES]	Strong
+GntR	gntU	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+GntR	gntX	-	[AIBSCS]	Weak
+GntR	idnD	-	[AIBSCS, GEA, HIBSCS]	Weak
+GntR	idnK	-	[AIBSCS, GEA, HIBSCS]	Weak
+GntR	idnO	-	[AIBSCS, GEA, HIBSCS]	Weak
+GntR	idnR	-	[AIBSCS, GEA, HIBSCS]	Weak
+GntR	idnT	-	[AIBSCS, GEA, HIBSCS]	Weak
+GntR	nfuA	-	[AIBSCS]	Weak
+GutM	gutM	+	[GEA]	Weak
+GutM	gutQ	+	[GEA]	Weak
+GutM	srlA	+	[GEA]	Weak
+GutM	srlB	+	[GEA]	Weak
+GutM	srlD	+	[GEA]	Weak
+GutM	srlE	+	[GEA]	Weak
+GutM	srlR	+	[GEA]	Weak
+GutR	gutM	-	[GEA]	Weak
+GutR	gutQ	-	[GEA]	Weak
+GutR	srlA	-	[GEA]	Weak
+GutR	srlB	-	[GEA]	Weak
+GutR	srlD	-	[GEA]	Weak
+GutR	srlE	-	[GEA]	Weak
+GutR	srlR	-	[GEA]	Weak
+H-NS	acrE	-	[GEA]	Weak
+H-NS	acrF	-	[GEA]	Weak
+H-NS	adeD	-	[GEA]	Weak
+H-NS	adiA	-	[GEA]	Weak
+H-NS	adiY	-	[BPP]	Strong
+H-NS	alaU	-	[GEA]	Weak
+H-NS	alaV	-	[GEA]	Weak
+H-NS	appY	-	[BPP, GEA]	Strong
+H-NS	asr	-	[GEA, IMP]	Weak
+H-NS	bglB	-	[BPP, GEA]	Strong
+H-NS	bglF	-	[BPP, GEA]	Strong
+H-NS	bglG	-	[BPP, GEA]	Strong
+H-NS	bglJ	-	[BPP]	Strong
+H-NS	bolA	-	[GEA]	Weak
+H-NS	cadA	-	[AIBSCS, BPP, GEA]	Strong
+H-NS	cadB	-	[AIBSCS, BPP, GEA]	Strong
+H-NS	cadC	-	[BPP]	Strong
+H-NS	caiA	-	[IMP]	Weak
+H-NS	caiB	-	[IMP]	Weak
+H-NS	caiC	-	[IMP]	Weak
+H-NS	caiD	-	[IMP]	Weak
+H-NS	caiE	-	[IMP]	Weak
+H-NS	caiF	-	[GEA]	Weak
+H-NS	caiT	-	[IMP]	Weak
+H-NS	cas1	-	[BPP, GEA]	Strong
+H-NS	cas2	-	[BPP, GEA]	Strong
+H-NS	casA	-	[BPP, GEA]	Strong
+H-NS	casB	-	[BPP, GEA]	Strong
+H-NS	casC	-	[BPP, GEA]	Strong
+H-NS	casD	-	[BPP, GEA]	Strong
+H-NS	casE	-	[BPP, GEA]	Strong
+H-NS	chiA	-	[BPP, GEA]	Strong
+H-NS	cmoM	+	[GEA]	Weak
+H-NS	csiD	+	[GEA]	Weak
+H-NS	csiE	+	[GEA]	Weak
+H-NS	cspA	-	[AIBSCS, BPP, GEA]	Strong
+H-NS	cspD	+	[GEA]	Weak
+H-NS	cydA	-	[BPP, GEA]	Strong
+H-NS	cydB	-	[BPP, GEA]	Strong
+H-NS	cysA	-	[GEA]	Weak
+H-NS	cysG	-	[BPP, GEA]	Strong
+H-NS	cysM	-	[GEA]	Weak
+H-NS	cysP	-	[GEA]	Weak
+H-NS	cysU	-	[GEA]	Weak
+H-NS	cysW	-	[GEA]	Weak
+H-NS	dctR	-	[BPP]	Strong
+H-NS	degP	-	[GEA]	Weak
+H-NS	dps	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	entF	+	[GEA]	Weak
+H-NS	evgA	-	[BPP]	Strong
+H-NS	evgS	-	[BPP]	Strong
+H-NS	fau	-	[BPP, GEA]	Strong
+H-NS	fepE	+	[GEA]	Weak
+H-NS	fes	+	[GEA]	Weak
+H-NS	fimA	+	[BPP, GEA]	Strong
+H-NS	fimB	-	[BPP, GEA]	Strong
+H-NS	fimC	+	[BPP, GEA]	Strong
+H-NS	fimD	+	[BPP, GEA]	Strong
+H-NS	fimE	-	[BPP, GEA]	Strong
+H-NS	fimF	+	[BPP, GEA]	Strong
+H-NS	fimG	+	[BPP, GEA]	Strong
+H-NS	fimH	+	[BPP, GEA]	Strong
+H-NS	fimI	+	[BPP, GEA]	Strong
+H-NS	flhC	+	[BPP, GEA]	Strong
+H-NS	flhD	+	[BPP, GEA]	Strong
+H-NS	fliA	+	[GEA, IMP]	Weak
+H-NS	fliC	+	[GEA]	Weak
+H-NS	fliZ	+	[GEA, IMP]	Weak
+H-NS	ftnA	-	[BPP, GEA]	Strong
+H-NS	gabD	+	[GEA]	Weak
+H-NS	gabP	+	[GEA]	Weak
+H-NS	gabT	+	[GEA]	Weak
+H-NS	gadA	-	[BPP, GEA]	Strong
+H-NS	gadE	-	[BPP]	Strong
+H-NS	gadF	-	[BPP]	Strong
+H-NS	gadW	-	[BPP, GEA]	Strong
+H-NS	gadX	-	[BPP, GEA]	Strong
+H-NS	galE	-	[BPP]	Strong
+H-NS	galK	-	[BPP]	Strong
+H-NS	galM	-	[BPP]	Strong
+H-NS	galT	-	[BPP]	Strong
+H-NS	garK	-	[GEA]	Weak
+H-NS	garL	-	[GEA]	Weak
+H-NS	garP	-	[GEA]	Weak
+H-NS	garR	-	[GEA]	Weak
+H-NS	gltT	-	[BPP]	Strong
+H-NS	gltU	-	[GEA]	Weak
+H-NS	gltW	-	[GEA, TAS]	Weak
+H-NS	gspA	-	[BPP, GEA]	Strong
+H-NS	gspB	-	[BPP, GEA]	Strong
+H-NS	gspC	-	[BPP, GEA]	Strong
+H-NS	gspD	-	[BPP, GEA]	Strong
+H-NS	gspE	-	[BPP, GEA]	Strong
+H-NS	gspF	-	[BPP, GEA]	Strong
+H-NS	gspG	-	[BPP, GEA]	Strong
+H-NS	gspH	-	[BPP, GEA]	Strong
+H-NS	gspI	-	[BPP, GEA]	Strong
+H-NS	gspJ	-	[BPP, GEA]	Strong
+H-NS	gspK	-	[BPP, GEA]	Strong
+H-NS	gspL	-	[BPP, GEA]	Strong
+H-NS	gspM	-	[BPP, GEA]	Strong
+H-NS	gspO	-	[BPP, GEA]	Strong
+H-NS	gutM	+	[GEA]	Weak
+H-NS	gutQ	+	[GEA]	Weak
+H-NS	hchA	-	[BPP, GEA]	Strong
+H-NS	hdeA	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	hdeB	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	hdeD	-	[BPP, GEA]	Strong
+H-NS	hdfR	-	[BPP]	Strong
+H-NS	hisJ	+	[GEA]	Weak
+H-NS	hisM	+	[GEA]	Weak
+H-NS	hisP	+	[GEA]	Weak
+H-NS	hisQ	+	[GEA]	Weak
+H-NS	hlyE	+-	[BPP, GEA]	Strong
+H-NS	hns	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	ileU	-	[GEA]	Weak
+H-NS	ileV	-	[GEA]	Weak
+H-NS	ilvH	-	[GEA]	Weak
+H-NS	ilvI	-	[GEA]	Weak
+H-NS	lacA	-	[BPP]	Strong
+H-NS	lacY	-	[BPP]	Strong
+H-NS	lacZ	-	[BPP]	Strong
+H-NS	leuO	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	lhgO	+	[GEA]	Weak
+H-NS	lrp	-	[BPP, GEA]	Strong
+H-NS	mazE	+	[GEA]	Weak
+H-NS	mazF	+	[GEA]	Weak
+H-NS	mdtE	-	[BPP]	Strong
+H-NS	mdtF	-	[BPP]	Strong
+H-NS	micF	-	[GEA]	Weak
+H-NS	mukB	+	[GEA]	Weak
+H-NS	mukE	+	[GEA]	Weak
+H-NS	mukF	+	[GEA]	Weak
+H-NS	nhaA	-	[GEA]	Weak
+H-NS	nhaR	-	[GEA]	Weak
+H-NS	nirB	-	[BPP, GEA]	Strong
+H-NS	nirC	-	[BPP, GEA]	Strong
+H-NS	nirD	-	[BPP, GEA]	Strong
+H-NS	nrdA	-	[BPP, GEA, HIBSCS, SM]	Strong
+H-NS	nrdB	-	[BPP, GEA, HIBSCS, SM]	Strong
+H-NS	nrdD	-	[BPP, GEA]	Strong
+H-NS	nrdG	-	[BPP, GEA]	Strong
+H-NS	osmC	-	[GEA]	Weak
+H-NS	proV	-	[AIBSCS, BPP, GEA]	Strong
+H-NS	proW	-	[AIBSCS, BPP, GEA]	Strong
+H-NS	proX	-	[AIBSCS, BPP, GEA]	Strong
+H-NS	rcsA	-	[GEA]	Weak
+H-NS	rcsB	-	[BPP]	Strong
+H-NS	rcsD	-	[BPP]	Strong
+H-NS	relA	+	[GEA]	Weak
+H-NS	rnpB	-	[GEA]	Weak
+H-NS	rrfB	-	[BPP]	Strong
+H-NS	rrfC	-	[GEA]	Weak
+H-NS	rrfD	-	[GEA]	Weak
+H-NS	rrfF	-	[GEA]	Weak
+H-NS	rrfG	-	[GEA, TAS]	Weak
+H-NS	rrfH	-	[GEA]	Weak
+H-NS	rrlB	-	[BPP]	Strong
+H-NS	rrlC	-	[GEA]	Weak
+H-NS	rrlD	-	[GEA]	Weak
+H-NS	rrlG	-	[GEA, TAS]	Weak
+H-NS	rrlH	-	[GEA]	Weak
+H-NS	rrsB	-	[BPP]	Strong
+H-NS	rrsC	-	[GEA]	Weak
+H-NS	rrsD	-	[GEA]	Weak
+H-NS	rrsG	-	[GEA, TAS]	Weak
+H-NS	rrsH	-	[GEA]	Weak
+H-NS	slp	-	[BPP]	Strong
+H-NS	srlA	+	[GEA]	Weak
+H-NS	srlB	+	[GEA]	Weak
+H-NS	srlD	+	[GEA]	Weak
+H-NS	srlE	+	[GEA]	Weak
+H-NS	srlR	+	[GEA]	Weak
+H-NS	ssrS	-	[BPP, GEA]	Strong
+H-NS	stpA	-	[BCE, BPP, GEA]	Strong
+H-NS	tcyJ	+	[GEA, IMP]	Weak
+H-NS	thrV	-	[GEA]	Weak
+H-NS	ybdZ	+	[GEA]	Weak
+H-NS	yciE	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	yciF	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	yciG	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	ydeO	-	[BPP]	Strong
+H-NS	ydeP	-	[BPP]	Strong
+H-NS	yfaE	-	[BPP, GEA, HIBSCS, SM]	Strong
+H-NS	yhiD	-	[BPP, GEA, HIBSCS]	Strong
+H-NS	yhiM	-	[BPP]	Strong
+H-NS	yjjP	-	[BPP]	Strong
+H-NS	yjjQ	-	[BPP]	Strong
+HU	galE	-	[BPP, GEA]	Strong
+HU	galK	-	[BPP, GEA]	Strong
+HU	galM	-	[BPP, GEA]	Strong
+HU	galT	-	[BPP, GEA]	Strong
+HU	micF	+	[GEA]	Weak
+HU	mtr	-	[GEA]	Weak
+HU	pgm	-	[GEA]	Weak
+HU	seqA	-	[GEA]	Weak
+HU	tyrP	-	[GEA]	Weak
+HcaR	hcaB	+	[AIBSCS, BPP, GEA]	Strong
+HcaR	hcaC	+	[AIBSCS, BPP, GEA]	Strong
+HcaR	hcaD	+	[AIBSCS, BPP, GEA]	Strong
+HcaR	hcaE	+	[AIBSCS, BPP, GEA]	Strong
+HcaR	hcaF	+	[AIBSCS, BPP, GEA]	Strong
+HcaR	hcaR	-	[AIBSCS, BPP, GEA]	Strong
+HdfR	flhC	-	[BPP, GEA]	Strong
+HdfR	flhD	-	[BPP, GEA]	Strong
+HdfR	gltB	+	[BPP]	Strong
+HdfR	gltD	+	[BPP]	Strong
+HdfR	gltF	+	[BPP]	Strong
+HigA	higA	-	[BPP, IHBCE]	Strong
+HigA	higB	-	[BPP, IHBCE]	Strong
+HigB-HigA	higA	-	[BPP, IHBCE]	Strong
+HigB-HigA	higB	-	[BPP, IHBCE]	Strong
+HipAB	hipA	-	[BPP, GEA, HIBSCS]	Strong
+HipAB	hipB	-	[BPP, GEA, HIBSCS]	Strong
+HipAB	mazE	-	[BPP, GEA]	Strong
+HipAB	mazF	-	[BPP, GEA]	Strong
+HipAB	relA	-	[BPP, GEA]	Strong
+HipB	fadH	-	[BPP, GEA, HIBSCS]	Strong
+HipB	hipA	-	[BPP, GEA, HIBSCS]	Strong
+HipB	hipB	-	[BPP, GEA, HIBSCS]	Strong
+HipB	mazE	-	[AIBSCS, BPP, GEA]	Strong
+HipB	mazF	-	[AIBSCS, BPP, GEA]	Strong
+HipB	relA	-	[AIBSCS, BPP, GEA]	Strong
+HyfR	focB	+	[AIBSCS, GEA]	Weak
+HyfR	hyfA	+	[AIBSCS, GEA]	Weak
+HyfR	hyfB	+	[AIBSCS, GEA]	Weak
+HyfR	hyfC	+	[AIBSCS, GEA]	Weak
+HyfR	hyfD	+	[AIBSCS, GEA]	Weak
+HyfR	hyfE	+	[AIBSCS, GEA]	Weak
+HyfR	hyfF	+	[AIBSCS, GEA]	Weak
+HyfR	hyfG	+	[AIBSCS, GEA]	Weak
+HyfR	hyfH	+	[AIBSCS, GEA]	Weak
+HyfR	hyfI	+	[AIBSCS, GEA]	Weak
+HyfR	hyfJ	+	[AIBSCS, GEA]	Weak
+HyfR	hyfR	+	[AIBSCS, GEA]	Weak
+HypT	cydA	+	[BPP, GEA]	Strong
+HypT	cydB	+	[BPP, GEA]	Strong
+HypT	cysH	+	[GEA]	Weak
+HypT	fecA	-	[GEA]	Weak
+HypT	fecB	-	[GEA]	Weak
+HypT	fecC	-	[GEA]	Weak
+HypT	fecD	-	[GEA]	Weak
+HypT	fecE	-	[GEA]	Weak
+HypT	metB	+	[GEA]	Weak
+HypT	metI	+	[BPP, GEA]	Strong
+HypT	metL	+	[GEA]	Weak
+HypT	metN	+	[BPP, GEA]	Strong
+HypT	metQ	+	[BPP, GEA]	Strong
+IHF	aceA	+	[BPP, GEA]	Strong
+IHF	aceB	+	[BPP, GEA]	Strong
+IHF	aceK	+	[BPP, GEA]	Strong
+IHF	acs	-	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	actP	-	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	adiA	+	[GEA, SM]	Strong
+IHF	amiA	-	[HIBSCS]	Weak
+IHF	atoA	+	[GEA, HIBSCS, SM]	Strong
+IHF	atoB	+	[GEA, HIBSCS, SM]	Strong
+IHF	atoD	+	[GEA, HIBSCS, SM]	Strong
+IHF	atoE	+	[GEA, HIBSCS, SM]	Strong
+IHF	carA	+-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+IHF	carB	+-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+IHF	csgD	+	[BPP, GEA]	Strong
+IHF	csgE	+	[BPP, GEA]	Strong
+IHF	csgF	+	[BPP, GEA]	Strong
+IHF	csgG	+	[BPP, GEA]	Strong
+IHF	cysG	+	[BPP, GEA, HIBSCS]	Strong
+IHF	cysG	-	[BCE, BPP, GEA]	Strong
+IHF	cysH	+	[BPP, GEA]	Strong
+IHF	cysI	+	[BPP, GEA]	Strong
+IHF	cysJ	+	[BPP, GEA]	Strong
+IHF	dcuD	+	[HIBSCS]	Weak
+IHF	dmsA	-	[BPP, GEA, HIBSCS]	Strong
+IHF	dmsB	-	[BPP, GEA, HIBSCS]	Strong
+IHF	dmsC	-	[BPP, GEA, HIBSCS]	Strong
+IHF	dppA	+	[BCE]	Weak
+IHF	dppB	+	[BCE]	Weak
+IHF	dppC	+	[BCE]	Weak
+IHF	dppD	+	[BCE]	Weak
+IHF	dppF	+	[BCE]	Weak
+IHF	dps	+	[HIBSCS]	Weak
+IHF	dusB	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	envZ	-	[BPP, SM]	Strong
+IHF	fhlA	+	[BPP, GEA, HIBSCS]	Strong
+IHF	fimA	+	[GEA, HIBSCS]	Weak
+IHF	fimB	+	[BPP, HIBSCS, SM]	Strong
+IHF	fimC	+	[GEA, HIBSCS]	Weak
+IHF	fimD	+	[GEA, HIBSCS]	Weak
+IHF	fimF	+	[GEA, HIBSCS]	Weak
+IHF	fimG	+	[GEA, HIBSCS]	Weak
+IHF	fimH	+	[GEA, HIBSCS]	Weak
+IHF	fimI	+	[GEA, HIBSCS]	Weak
+IHF	fis	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	flhC	-	[HIBSCS]	Weak
+IHF	flhD	-	[HIBSCS]	Weak
+IHF	fnr	+	[BPP, GEA, SM]	Strong
+IHF	focA	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+IHF	folA	+	[GEA, HIBSCS]	Weak
+IHF	gcd	+	[GEA, HIBSCS, SM]	Strong
+IHF	glcA	+	[BCE, GEA]	Weak
+IHF	glcB	+	[BCE, GEA]	Weak
+IHF	glcD	+	[BCE, GEA]	Weak
+IHF	glcE	+	[BCE, GEA]	Weak
+IHF	glcF	+	[BCE, GEA]	Weak
+IHF	glcG	+	[BCE, GEA]	Weak
+IHF	glmY	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	glnH	+	[BPP, HIBSCS, SM]	Strong
+IHF	glnP	+	[BPP, HIBSCS, SM]	Strong
+IHF	glnQ	+	[BPP, HIBSCS, SM]	Strong
+IHF	glpQ	-	[BPP, GEA, HIBSCS]	Strong
+IHF	glpT	-	[BPP, GEA, HIBSCS]	Strong
+IHF	gltA	+	[AIBSCS, BCE, GEA]	Weak
+IHF	gltB	+	[BPP, GEA]	Strong
+IHF	gltD	+	[BPP, GEA]	Strong
+IHF	gltF	+	[BPP, GEA]	Strong
+IHF	hemA	+	[GEA]	Weak
+IHF	hemF	-	[HIBSCS]	Weak
+IHF	hipA	+	[HIBSCS]	Weak
+IHF	hipB	+	[HIBSCS]	Weak
+IHF	hpt	-	[GEA, HIBSCS, SM]	Strong
+IHF	htrE	+	[GEA]	Weak
+IHF	hycA	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycB	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycC	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycD	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycE	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycF	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycG	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycH	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hycI	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hypA	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hypB	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hypC	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hypD	+	[BPP, GEA, HIBSCS]	Strong
+IHF	hypE	+	[BPP, GEA, HIBSCS]	Strong
+IHF	ibpB	+	[AIBSCS]	Weak
+IHF	ihfA	-	[BPP, HIBSCS]	Strong
+IHF	ihfB	-	[BPP, GEA]	Strong
+IHF	ilvA	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvA	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvD	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvD	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvE	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvE	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvG_1	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvG_1	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvG_2	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvG_2	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvL	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvL	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvM	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvM	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvX	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ilvX	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	lyxK	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	micF	-	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	mtr	-	[GEA]	Weak
+IHF	narG	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	narH	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	narI	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	narJ	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	narK	+	[BPP, GEA]	Strong
+IHF	ndh	-	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	nirB	+	[BPP, GEA, HIBSCS]	Strong
+IHF	nirB	-	[BCE, BPP, GEA]	Strong
+IHF	nirC	+	[BPP, GEA, HIBSCS]	Strong
+IHF	nirC	-	[BCE, BPP, GEA]	Strong
+IHF	nirD	+	[BPP, GEA, HIBSCS]	Strong
+IHF	nirD	-	[BCE, BPP, GEA]	Strong
+IHF	nmpC	-	[HIBSCS, SM]	Strong
+IHF	norV	+	[BPP]	Strong
+IHF	norV	-	[BPP]	Strong
+IHF	norW	+	[BPP]	Strong
+IHF	norW	-	[BPP]	Strong
+IHF	nrfA	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfA	-	[BPP, GEA]	Strong
+IHF	nrfB	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfB	-	[BPP, GEA]	Strong
+IHF	nrfC	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfC	-	[BPP, GEA]	Strong
+IHF	nrfD	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfD	-	[BPP, GEA]	Strong
+IHF	nrfE	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfE	-	[BPP, GEA]	Strong
+IHF	nrfF	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfF	-	[BPP, GEA]	Strong
+IHF	nrfG	+	[AIBSCS, BPP, GEA, SM]	Strong
+IHF	nrfG	-	[BPP, GEA]	Strong
+IHF	nuoA	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoB	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoC	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoE	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoF	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoG	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoH	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoI	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoJ	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoK	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoL	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoM	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	nuoN	-	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	ompC	-	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	ompF	+	[BCE, HIBSCS]	Weak
+IHF	ompF	-	[BCE, HIBSCS]	Weak
+IHF	ompR	-	[BPP, SM]	Strong
+IHF	osmE	-	[GEA, HIBSCS]	Weak
+IHF	osmY	-	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	paaA	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaB	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaC	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaD	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaE	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaF	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaG	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaH	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaI	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaJ	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaK	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	paaZ	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	patA	?	[AIBSCS]	Weak
+IHF	pflB	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+IHF	phoU	+	[BPP, GEA]	Strong
+IHF	prfA	+	[GEA]	Weak
+IHF	prmC	+	[GEA]	Weak
+IHF	proV	+	[BPP, GEA]	Strong
+IHF	proW	+	[BPP, GEA]	Strong
+IHF	proX	+	[BPP, GEA]	Strong
+IHF	pspA	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	pspB	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	pspC	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	pspD	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	pspE	+	[BCE, BPP, GEA, HIBSCS]	Strong
+IHF	pspG	+	[ICA]	Weak
+IHF	pstA	+	[BPP, GEA]	Strong
+IHF	pstB	+	[BPP, GEA]	Strong
+IHF	pstC	+	[BPP, GEA]	Strong
+IHF	pstS	+	[BPP, GEA]	Strong
+IHF	rpoE	+	[HIBSCS, IC]	Weak
+IHF	rpoH	+	[BPP, GEA]	Strong
+IHF	rseA	+	[HIBSCS, IC]	Weak
+IHF	rseB	+	[HIBSCS, IC]	Weak
+IHF	rseC	+	[HIBSCS, IC]	Weak
+IHF	rtcA	+	[AIBSCS]	Weak
+IHF	rtcB	+	[AIBSCS]	Weak
+IHF	sgbE	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	sgbH	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	sgbU	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	sodA	-	[BPP, HIBSCS]	Strong
+IHF	sodB	-	[AIBSCS, GEA]	Weak
+IHF	sra	+	[GEA]	Weak
+IHF	ssuA	+	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuA	-	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuB	+	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuB	-	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuC	+	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuC	-	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuD	+	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuD	-	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuE	+	[BPP, GEA, HIBSCS]	Strong
+IHF	ssuE	-	[BPP, GEA, HIBSCS]	Strong
+IHF	sucA	-	[AIBSCS, GEA]	Weak
+IHF	sucB	-	[AIBSCS, GEA]	Weak
+IHF	sucC	-	[AIBSCS, GEA]	Weak
+IHF	sucD	-	[AIBSCS, GEA]	Weak
+IHF	sufA	+	[BPP, SM]	Strong
+IHF	sufB	+	[BPP, SM]	Strong
+IHF	sufC	+	[BPP, SM]	Strong
+IHF	sufD	+	[BPP, SM]	Strong
+IHF	sufE	+	[BPP, SM]	Strong
+IHF	sufS	+	[BPP, SM]	Strong
+IHF	tdcA	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tdcB	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tdcC	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tdcD	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tdcE	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tdcF	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tdcG	+	[BCE, BPP, HIBSCS, SM]	Strong
+IHF	tyrP	-	[GEA]	Weak
+IHF	ubiA	-	[GEA, HIBSCS]	Weak
+IHF	ubiC	-	[GEA, HIBSCS]	Weak
+IHF	ulaA	-	[BCE, NTAS]	Weak
+IHF	ulaB	-	[BCE, NTAS]	Weak
+IHF	ulaC	-	[BCE, NTAS]	Weak
+IHF	ulaD	-	[BCE, NTAS]	Weak
+IHF	ulaE	-	[BCE, NTAS]	Weak
+IHF	ulaF	-	[BCE, NTAS]	Weak
+IHF	ulaG	-	[BCE, GEA]	Weak
+IHF	uspA	+	[GEA, HIBSCS]	Weak
+IHF	uspB	-	[GEA, HIBSCS]	Weak
+IHF	yadV	+	[GEA]	Weak
+IHF	yeiL	+	[GEA, HIBSCS]	Weak
+IHF	yiaJ	-	[BPP, HIBSCS]	Strong
+IHF	yiaK	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	yiaL	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	yiaM	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	yiaN	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	yiaO	+	[BPP, GEA, HIBSCS, SM]	Strong
+IHF	yjbE	+	[BPP, HIBSCS]	Strong
+IHF	yjbF	+	[BPP, HIBSCS]	Strong
+IHF	yjbG	+	[BPP, HIBSCS]	Strong
+IHF	yjbH	+	[BPP, HIBSCS]	Strong
+IHF	yjcH	-	[AIBSCS, BPP, GEA, SM]	Strong
+IclR	aceA	-	[BPP, GEA, HIBSCS]	Strong
+IclR	aceB	-	[BPP, GEA, HIBSCS]	Strong
+IclR	aceK	-	[BPP, GEA, HIBSCS]	Strong
+IclR	iclR	-	[BPP, GEA, HIBSCS]	Strong
+IdnR	gntK	-	[GEA]	Weak
+IdnR	gntU	-	[GEA]	Weak
+IdnR	idnD	+	[AIBSCS, GEA]	Weak
+IdnR	idnK	+	[AIBSCS, GEA]	Weak
+IdnR	idnO	+	[AIBSCS, GEA]	Weak
+IdnR	idnR	+	[AIBSCS, GEA]	Weak
+IdnR	idnT	+	[AIBSCS, GEA]	Weak
+IlvY	ilvC	+	[BCE, BPP, GEA, HIBSCS, IC]	Strong
+IlvY	ilvY	-	[BCE, BPP, GEA, HIBSCS, IC]	Strong
+IscR	erpA	-	[BPP, GEA]	Strong
+IscR	hyaA	-	[BPP, GEA, HIBSCS]	Strong
+IscR	hyaB	-	[BPP, GEA, HIBSCS]	Strong
+IscR	hyaC	-	[BPP, GEA, HIBSCS]	Strong
+IscR	hyaD	-	[BPP, GEA, HIBSCS]	Strong
+IscR	hyaE	-	[BPP, GEA, HIBSCS]	Strong
+IscR	hyaF	-	[BPP, GEA, HIBSCS]	Strong
+IscR	iscA	-	[BPP, GEA, SM]	Strong
+IscR	iscR	-	[BPP, GEA, SM]	Strong
+IscR	iscS	-	[BPP, GEA, SM]	Strong
+IscR	iscU	-	[BPP, GEA, SM]	Strong
+IscR	napA	-	[BPP, GEA]	Strong
+IscR	napB	-	[BPP, GEA]	Strong
+IscR	napC	-	[BPP, GEA]	Strong
+IscR	napD	-	[BPP, GEA]	Strong
+IscR	napF	-	[BPP, GEA]	Strong
+IscR	napG	-	[BPP, GEA]	Strong
+IscR	napH	-	[BPP, GEA]	Strong
+IscR	nfuA	-	[BPP, GEA]	Strong
+IscR	nrdE	+	[GEA]	Weak
+IscR	nrdF	+	[GEA]	Weak
+IscR	nrdH	+	[GEA]	Weak
+IscR	nrdI	+	[GEA]	Weak
+IscR	rnlA	-	[BPP, GEA, HIBSCS]	Strong
+IscR	rnlB	-	[BPP, GEA, HIBSCS]	Strong
+IscR	sufA	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+IscR	sufB	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+IscR	sufC	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+IscR	sufD	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+IscR	sufE	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+IscR	sufS	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+IscR	ydiU	+	[BPP, GEA]	Strong
+KdgR	eda	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+KdgR	edd	-	[AIBSCS, HIBSCS]	Weak
+KdpE	kdpA	+	[BPP, GEA, HIBSCS, SM]	Strong
+KdpE	kdpB	+	[BPP, GEA, HIBSCS, SM]	Strong
+KdpE	kdpC	+	[BPP, GEA, HIBSCS, SM]	Strong
+KdpE	kdpF	+	[BPP, GEA, HIBSCS, SM]	Strong
+LacI	lacA	-	[HIBSCS, SM]	Strong
+LacI	lacY	-	[HIBSCS, SM]	Strong
+LacI	lacZ	-	[HIBSCS, SM]	Strong
+LeuO	bglB	+	[BPP, GEA, IC]	Strong
+LeuO	bglF	+	[BPP, GEA, IC]	Strong
+LeuO	bglG	+	[BPP, GEA, IC]	Strong
+LeuO	bglJ	+	[BPP]	Strong
+LeuO	cadC	-	[GEA]	Weak
+LeuO	cas1	+	[BPP, GEA, IC]	Strong
+LeuO	cas2	+	[BPP, GEA, IC]	Strong
+LeuO	casA	+	[BPP, GEA, IC]	Strong
+LeuO	casB	+	[BPP, GEA, IC]	Strong
+LeuO	casC	+	[BPP, GEA, IC]	Strong
+LeuO	casD	+	[BPP, GEA, IC]	Strong
+LeuO	casE	+	[BPP, GEA, IC]	Strong
+LeuO	dsrA	-	[GEA]	Weak
+LeuO	leuA	+	[GEA]	Weak
+LeuO	leuB	+	[GEA]	Weak
+LeuO	leuC	+	[GEA]	Weak
+LeuO	leuD	+	[GEA]	Weak
+LeuO	leuL	+	[GEA]	Weak
+LeuO	leuO	+	[BPP, GEA, IC]	Strong
+LeuO	leuO	+-	[BPP, GEA, IC]	Strong
+LeuO	yjjQ	+	[BPP]	Strong
+LexA	cho	-	[AIBSCS, HIBSCS]	Weak
+LexA	ddlB	-	[HIBSCS]	Weak
+LexA	dinB	-	[AIBSCS, HIBSCS, ICWHO]	Weak
+LexA	dinD	-	[AIBSCS, GEA, HIBSCS]	Weak
+LexA	dinF	-	[BPP, HIBSCS]	Strong
+LexA	dinG	-	[AIBSCS, BPP, GEA]	Strong
+LexA	dinI	-	[AIBSCS, BPP, GEA, HIBSCS, IHBCE, SM]	Strong
+LexA	dinJ	-	[AIBSCS, GEA]	Weak
+LexA	dinQ	-	[AIBSCS, GEA, HIBSCS]	Weak
+LexA	dnaG	-	[BCE, SM]	Strong
+LexA	ftsA	-	[HIBSCS]	Weak
+LexA	ftsI	-	[HIBSCS]	Weak
+LexA	ftsK	-	[AIBSCS, BPP, GEA]	Strong
+LexA	ftsL	-	[HIBSCS]	Weak
+LexA	ftsQ	-	[HIBSCS]	Weak
+LexA	ftsW	-	[HIBSCS]	Weak
+LexA	ftsZ	-	[HIBSCS]	Weak
+LexA	hokE	-	[AIBSCS]	Weak
+LexA	insK	-	[AIBSCS, GEA]	Weak
+LexA	lexA	-	[BPP, HIBSCS]	Strong
+LexA	lpxC	-	[HIBSCS]	Weak
+LexA	molR_1	-	[AIBSCS]	Weak
+LexA	mraY	-	[HIBSCS]	Weak
+LexA	murC	-	[HIBSCS]	Weak
+LexA	murD	-	[HIBSCS]	Weak
+LexA	murE	-	[HIBSCS]	Weak
+LexA	murF	-	[HIBSCS]	Weak
+LexA	murG	-	[HIBSCS]	Weak
+LexA	phr	-	[GEA, HIBSCS]	Weak
+LexA	polB	-	[AIBSCS, BPP, GEA]	Strong
+LexA	ptrA	-	[BPP, SM]	Strong
+LexA	recA	-	[BPP]	Strong
+LexA	recB	-	[BPP, SM]	Strong
+LexA	recD	-	[BPP, SM]	Strong
+LexA	recN	-	[AIBSCS, BPP]	Strong
+LexA	recX	-	[BPP]	Strong
+LexA	rpoD	-	[BCE, SM]	Strong
+LexA	rpsU	-	[BCE, SM]	Strong
+LexA	ruvA	-	[BPP, HIBSCS]	Strong
+LexA	ruvB	-	[BPP, HIBSCS]	Strong
+LexA	sbmC	-	[GEA, IHBCE]	Weak
+LexA	ssb	-	[BCE, HIBSCS]	Weak
+LexA	sulA	-	[BCE]	Weak
+LexA	symE	-	[AIBSCS, BPP]	Strong
+LexA	tisB	-	[GEA, ICA]	Weak
+LexA	umuC	-	[BPP, HIBSCS]	Strong
+LexA	umuD	-	[BPP, HIBSCS]	Strong
+LexA	uvrA	-	[BCE, HIBSCS]	Weak
+LexA	uvrB	-	[BPP, HIBSCS]	Strong
+LexA	uvrC	-	[AIBSCS, GEA]	Weak
+LexA	uvrD	-	[HIBSCS]	Weak
+LexA	uvrY	-	[AIBSCS, GEA]	Weak
+LexA	yafN	-	[AIBSCS, HIBSCS, ICWHO]	Weak
+LexA	yafO	-	[AIBSCS, HIBSCS, ICWHO]	Weak
+LexA	yafP	-	[AIBSCS, HIBSCS, ICWHO]	Weak
+LexA	yafQ	-	[AIBSCS, GEA]	Weak
+LexA	ybfE	-	[AIBSCS]	Weak
+LexA	ydjM	-	[AIBSCS, BPP, GEA]	Strong
+LexA	yebG	-	[AIBSCS, GEA, HIBSCS, IHBCE]	Weak
+LldR	lldD	+	[AIBSCS, BPP, GEA, SM]	Strong
+LldR	lldD	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+LldR	lldP	+	[AIBSCS, BPP, GEA, SM]	Strong
+LldR	lldP	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+LldR	lldR	+	[AIBSCS, BPP, GEA, SM]	Strong
+LldR	lldR	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+LrhA	fimE	+	[BPP, GEA]	Strong
+LrhA	flhC	-	[BPP, GEA]	Strong
+LrhA	flhD	-	[BPP, GEA]	Strong
+LrhA	lrhA	+	[BPP, GEA]	Strong
+Lrp	adhE	-	[AIBSCS, GEA]	Weak
+Lrp	aidB	-	[BPP, HIBSCS]	Strong
+Lrp	alaA	-	[GEA]	Weak
+Lrp	alaT	-	[BCE, BPP]	Strong
+Lrp	alaU	-	[GEA]	Weak
+Lrp	alaV	-	[GEA]	Weak
+Lrp	argO	+	[BPP, GEA, HIBSCS]	Strong
+Lrp	aroA	+	[GEA, HIBSCS, SM]	Strong
+Lrp	avtA	-	[GEA]	Weak
+Lrp	cadA	+	[BPP, GEA]	Strong
+Lrp	cadB	+	[BPP, GEA]	Strong
+Lrp	csiD	+	[BPP, GEA]	Strong
+Lrp	dadA	-	[BPP, GEA, HIBSCS, SM]	Strong
+Lrp	dadX	-	[BPP, GEA, HIBSCS, SM]	Strong
+Lrp	fau	-	[BPP, GEA]	Strong
+Lrp	fimA	+	[BPP, HIBSCS, SM]	Strong
+Lrp	fimC	+	[BPP, HIBSCS, SM]	Strong
+Lrp	fimD	+	[BPP, HIBSCS, SM]	Strong
+Lrp	fimE	+	[GEA]	Weak
+Lrp	fimF	+	[BPP, HIBSCS, SM]	Strong
+Lrp	fimG	+	[BPP, HIBSCS, SM]	Strong
+Lrp	fimH	+	[BPP, HIBSCS, SM]	Strong
+Lrp	fimI	+	[BPP, HIBSCS, SM]	Strong
+Lrp	gabD	+	[BPP, GEA]	Strong
+Lrp	gabP	+	[BPP, GEA]	Strong
+Lrp	gabT	+	[BPP, GEA]	Strong
+Lrp	gcvH	+	[GEA, SM]	Strong
+Lrp	gcvP	+	[GEA, SM]	Strong
+Lrp	gcvT	+	[GEA, SM]	Strong
+Lrp	gltB	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	gltD	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	gltF	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	gltT	-	[BPP, GEA, IEP]	Strong
+Lrp	gltU	-	[BPP, IDA]	Strong
+Lrp	gltV	-	[GEA]	Weak
+Lrp	gltW	-	[GEA]	Weak
+Lrp	hdeA	-	[AIBSCS, GEA]	Weak
+Lrp	hdeB	-	[AIBSCS, GEA]	Weak
+Lrp	ileT	-	[BCE, BPP]	Strong
+Lrp	ileU	-	[GEA]	Weak
+Lrp	ileV	-	[GEA]	Weak
+Lrp	ilvA	-	[HIBSCS, SM]	Strong
+Lrp	ilvD	-	[HIBSCS, SM]	Strong
+Lrp	ilvE	-	[HIBSCS, SM]	Strong
+Lrp	ilvG_1	-	[HIBSCS, SM]	Strong
+Lrp	ilvG_2	-	[HIBSCS, SM]	Strong
+Lrp	ilvH	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	ilvH	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	ilvI	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	ilvI	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+Lrp	ilvL	-	[HIBSCS, SM]	Strong
+Lrp	ilvM	-	[HIBSCS, SM]	Strong
+Lrp	ilvX	-	[HIBSCS, SM]	Strong
+Lrp	kbl	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Lrp	leuE	-	[AIBSCS]	Weak
+Lrp	lhgO	+	[BPP, GEA]	Strong
+Lrp	livF	-	[GEA]	Weak
+Lrp	livG	-	[GEA]	Weak
+Lrp	livH	-	[GEA]	Weak
+Lrp	livJ	-	[BPP, GEA, HIBSCS, SM]	Strong
+Lrp	livK	-	[GEA]	Weak
+Lrp	livM	-	[GEA]	Weak
+Lrp	lrp	-	[AIBSCS, BCE, GEA, HIBSCS, SM]	Strong
+Lrp	lysP	+	[BPP, GEA]	Strong
+Lrp	lysU	-	[HIBSCS, SM]	Strong
+Lrp	malT	+	[GEA]	Weak
+Lrp	micF	-	[BPP, GEA]	Strong
+Lrp	ompC	-	[AIBSCS, BPP, GEA]	Strong
+Lrp	oppA	-	[BPP]	Strong
+Lrp	oppB	-	[BPP]	Strong
+Lrp	oppC	-	[BPP]	Strong
+Lrp	oppD	-	[BPP]	Strong
+Lrp	oppF	-	[BPP]	Strong
+Lrp	osmC	+	[BPP, GEA, HIBSCS, SM]	Strong
+Lrp	osmC	-	[BPP, GEA, HIBSCS, SM]	Strong
+Lrp	osmY	-	[BPP, GEA, HIBSCS]	Strong
+Lrp	rrfA	-	[BCE, BPP]	Strong
+Lrp	rrfB	-	[BPP, GEA, IEP]	Strong
+Lrp	rrfC	-	[BPP, IDA]	Strong
+Lrp	rrfD	-	[GEA]	Weak
+Lrp	rrfE	-	[GEA]	Weak
+Lrp	rrfF	-	[GEA]	Weak
+Lrp	rrfG	-	[GEA]	Weak
+Lrp	rrfH	-	[GEA]	Weak
+Lrp	rrlA	-	[BCE, BPP]	Strong
+Lrp	rrlB	-	[BPP, GEA, IEP]	Strong
+Lrp	rrlC	-	[BPP, IDA]	Strong
+Lrp	rrlD	-	[GEA]	Weak
+Lrp	rrlE	-	[GEA]	Weak
+Lrp	rrlG	-	[GEA]	Weak
+Lrp	rrlH	-	[GEA]	Weak
+Lrp	rrsA	-	[BCE, BPP]	Strong
+Lrp	rrsB	-	[BPP, GEA, IEP]	Strong
+Lrp	rrsC	-	[BPP, IDA]	Strong
+Lrp	rrsD	-	[GEA]	Weak
+Lrp	rrsE	-	[GEA]	Weak
+Lrp	rrsG	-	[GEA]	Weak
+Lrp	rrsH	-	[GEA]	Weak
+Lrp	sdaA	-	[AIBSCS]	Weak
+Lrp	serA	+	[BPP, GEA]	Strong
+Lrp	serA	-	[BPP, GEA]	Strong
+Lrp	serC	+	[GEA, HIBSCS, SM]	Strong
+Lrp	ssrS	-	[BPP, GEA]	Strong
+Lrp	stpA	+	[BCE, BPP, GEA, HIBSCS]	Strong
+Lrp	tdh	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+Lrp	thrV	-	[GEA]	Weak
+Lrp	yeiL	+	[GEA, HIBSCS]	Weak
+Lrp	yhiD	-	[AIBSCS, GEA]	Weak
+Lrp	yojI	+	[GEA, ICWHO]	Weak
+LsrR	lsrA	-	[BPP, GEA, SM]	Strong
+LsrR	lsrB	-	[BPP, GEA, SM]	Strong
+LsrR	lsrC	-	[BPP, GEA, SM]	Strong
+LsrR	lsrD	-	[BPP, GEA, SM]	Strong
+LsrR	lsrF	-	[BPP, GEA, SM]	Strong
+LsrR	lsrG	-	[BPP, GEA, SM]	Strong
+LsrR	lsrK	-	[BPP, GEA, SM]	Strong
+LsrR	lsrR	-	[BPP, GEA, SM]	Strong
+LsrR	tam	-	[BPP, GEA, SM]	Strong
+LysR	lysA	+	[GEA]	Weak
+LysR	lysR	-	[GEA]	Weak
+MalI	malI	-	[BCE, GEA, SM]	Strong
+MalI	malX	-	[BCE, GEA, SM]	Strong
+MalI	malY	-	[BCE, GEA, SM]	Strong
+MalT	lamB	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+MalT	malE	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+MalT	malF	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+MalT	malG	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+MalT	malK	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+MalT	malM	+	[AIBSCS, BPP, HIBSCS, SM]	Strong
+MalT	malP	+	[AIBSCS, BPP, SM]	Strong
+MalT	malQ	+	[AIBSCS, BPP, SM]	Strong
+MalT	malS	+	[AIBSCS, BCE]	Weak
+MalT	malZ	+	[AIBSCS]	Weak
+MarA	acnA	+	[BPP, GEA, HIBSCS]	Strong
+MarA	acrA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	acrB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	acrZ	+	[GEA, IHBCE]	Weak
+MarA	dctR	-	[GEA, HIBSCS]	Weak
+MarA	decR	+	[AIBSCS]	Weak
+MarA	fpr	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	fumC	+	[BPP, GEA]	Strong
+MarA	hdeA	-	[APPH, GEA, HIBSCS, SM]	Strong
+MarA	hdeB	-	[APPH, GEA, HIBSCS, SM]	Strong
+MarA	inaA	+	[BPP, GEA, HIBSCS]	Strong
+MarA	marA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	marB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	marR	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	micF	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+MarA	nfo	+	[AIBSCS, GEA, HIBSCS]	Weak
+MarA	nfsA	+	[BPP, GEA, HIBSCS]	Strong
+MarA	nfsB	+	[BPP, GEA, HIBSCS]	Strong
+MarA	poxB	+	[GEA, HIBSCS]	Weak
+MarA	pqiA	+	[BPP, GEA, HIBSCS]	Strong
+MarA	pqiB	+	[BPP, GEA, HIBSCS]	Strong
+MarA	purA	-	[BPP, GEA, HIBSCS, SM]	Strong
+MarA	putA	+	[GEA]	Weak
+MarA	rimK	+	[BPP, GEA, HIBSCS]	Strong
+MarA	rob	-	[BPP, GEA, HIBSCS, SM]	Strong
+MarA	slp	-	[GEA, HIBSCS]	Weak
+MarA	sodA	+	[BPP, HIBSCS]	Strong
+MarA	tolC	+	[AIBSCS, GEA]	Weak
+MarA	waaY	+	[GEA, HIBSCS]	Weak
+MarA	waaZ	+	[GEA, HIBSCS]	Weak
+MarA	ybjC	+	[BPP, GEA, HIBSCS]	Strong
+MarA	ybjN	+	[BPP, GEA, HIBSCS]	Strong
+MarA	ygiA	+	[AIBSCS, GEA]	Weak
+MarA	ygiB	+	[AIBSCS, GEA]	Weak
+MarA	ygiC	+	[AIBSCS, GEA]	Weak
+MarA	yhiD	-	[APPH, GEA, HIBSCS, SM]	Strong
+MarA	yncE	+	[GEA, HIBSCS]	Weak
+MarA	zwf	+	[BPP, GEA, HIBSCS]	Strong
+MarR	marA	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+MarR	marB	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+MarR	marR	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+MatA	ecpA	+	[BPP]	Strong
+MatA	ecpR	+	[BPP]	Strong
+MatA	flhC	-	[BPP, GEA]	Strong
+MatA	flhD	-	[BPP, GEA]	Strong
+MatA	fliA	-	[BPP]	Strong
+MatA	fliC	-	[BPP]	Strong
+MatA	fliZ	-	[BPP]	Strong
+MatA	tcyJ	-	[BPP]	Strong
+MazE	mazE	-	[BCE, GEA, SM]	Strong
+MazE	mazF	-	[BCE, GEA, SM]	Strong
+MazE	mazG	-	[BCE, GEA, SM]	Strong
+MazE-MazF	mazE	-	[BCE, GEA, SM]	Strong
+MazE-MazF	mazF	-	[BCE, GEA, SM]	Strong
+MazE-MazF	mazG	-	[BCE, GEA, SM]	Strong
+McbR	mcbA	-	[BPP, GEA]	Strong
+McbR	yciE	+	[BPP, GEA]	Strong
+McbR	yciF	+	[BPP, GEA]	Strong
+McbR	yciG	+	[BPP, GEA]	Strong
+MelR	melA	+	[BPP, GEA, HIBSCS, SM]	Strong
+MelR	melA	-	[BPP, GEA, HIBSCS, SM]	Strong
+MelR	melB	+	[BPP, GEA, HIBSCS, SM]	Strong
+MelR	melB	-	[BPP, GEA, HIBSCS, SM]	Strong
+MelR	melR	+	[BPP, GEA, SM]	Strong
+MelR	melR	-	[BPP, GEA, HIBSCS, SM]	Strong
+MetJ	ahpC	-	[AIBSCS]	Weak
+MetJ	ahpF	-	[AIBSCS]	Weak
+MetJ	folE	-	[AIBSCS, BPP, GEA]	Strong
+MetJ	metA	-	[AIBSCS, BCE, BPP, GEA]	Strong
+MetJ	metB	-	[AIBSCS, GEA]	Weak
+MetJ	metC	-	[BPP]	Strong
+MetJ	metE	-	[BPP]	Strong
+MetJ	metF	-	[AIBSCS, BCE, SM]	Strong
+MetJ	metI	-	[AIBSCS, GEA, HIBSCS]	Weak
+MetJ	metK	-	[AIBSCS]	Weak
+MetJ	metL	-	[AIBSCS, GEA]	Weak
+MetJ	metN	-	[AIBSCS, GEA, HIBSCS]	Weak
+MetJ	metQ	-	[AIBSCS, GEA, HIBSCS]	Weak
+MetJ	metR	-	[BPP]	Strong
+MetJ	yeiB	-	[AIBSCS, BPP, GEA]	Strong
+MetR	glyA	+	[BPP, GEA, HIBSCS, SM]	Strong
+MetR	glyA	+-	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+MetR	hmp	+	[BPP, GEA, HIBSCS, IMP, SM]	Strong
+MetR	metE	+	[BPP, GEA, HIBSCS]	Strong
+MetR	metH	+	[GEA, HIBSCS]	Weak
+MetR	metR	-	[BPP, GEA, HIBSCS]	Strong
+MhpR	mhpA	+	[BCE, GEA, HIBSCS, SM]	Strong
+MhpR	mhpB	+	[BCE, GEA, HIBSCS, SM]	Strong
+MhpR	mhpC	+	[BCE, GEA, HIBSCS, SM]	Strong
+MhpR	mhpD	+	[BCE, GEA, HIBSCS, SM]	Strong
+MhpR	mhpE	+	[BCE, GEA, HIBSCS, SM]	Strong
+MhpR	mhpF	+	[BCE, GEA, HIBSCS, SM]	Strong
+Mlc	crr	-	[BPP, GEA, HIBSCS]	Strong
+Mlc	malT	-	[BCE, GEA, HIBSCS]	Weak
+Mlc	manX	-	[BCE, GEA]	Weak
+Mlc	manY	-	[BCE, GEA]	Weak
+Mlc	manZ	-	[BCE, GEA]	Weak
+Mlc	mlc	-	[BCE, GEA, HIBSCS]	Weak
+Mlc	ptsG	-	[BPP, GEA, HIBSCS]	Strong
+Mlc	ptsH	-	[BPP, GEA, HIBSCS]	Strong
+Mlc	ptsI	-	[BPP, GEA, HIBSCS]	Strong
+Mlc	ynfK	-	[BCE, GEA, HIBSCS]	Weak
+MlrA	cadC	+	[BPP, HIBSCS]	Strong
+MlrA	csgD	+	[BPP, GEA]	Strong
+MlrA	csgE	+	[BPP, GEA]	Strong
+MlrA	csgF	+	[BPP, GEA]	Strong
+MlrA	csgG	+	[BPP, GEA]	Strong
+MlrA	ibaG	+	[BPP, HIBSCS]	Strong
+MlrA	obgE	+	[BPP, HIBSCS]	Strong
+MlrA	rplU	+	[BPP, HIBSCS]	Strong
+MlrA	rpmA	+	[BPP, HIBSCS]	Strong
+MlrA	yhbE	+	[BPP, HIBSCS]	Strong
+MngR	mngA	-	[BPP, GEA, HIBSCS]	Strong
+MngR	mngB	-	[BPP, GEA, HIBSCS]	Strong
+MngR	mngR	-	[BPP, GEA, HIBSCS]	Strong
+MntR	dps	-	[GEA, HIBSCS]	Weak
+MntR	mntH	-	[AIBSCS, BPP, GEA]	Strong
+MntR	mntP	+	[GEA, HIBSCS]	Weak
+MntR	mntS	-	[GEA, HIBSCS]	Weak
+MntR	rybA	-	[GEA, HIBSCS]	Weak
+ModE	ccmA	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmB	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmC	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmD	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmE	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmF	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmG	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	ccmH	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	deoA	-	[BPP, GEA, HIBSCS]	Strong
+ModE	deoB	-	[BPP, GEA, HIBSCS]	Strong
+ModE	deoC	-	[BPP, GEA, HIBSCS]	Strong
+ModE	deoD	-	[BPP, GEA, HIBSCS]	Strong
+ModE	dmsA	-	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	dmsB	-	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	dmsC	-	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	hycA	+	[BPP, GEA]	Strong
+ModE	hycB	+	[BPP, GEA]	Strong
+ModE	hycC	+	[BPP, GEA]	Strong
+ModE	hycD	+	[BPP, GEA]	Strong
+ModE	hycE	+	[BPP, GEA]	Strong
+ModE	hycF	+	[BPP, GEA]	Strong
+ModE	hycG	+	[BPP, GEA]	Strong
+ModE	hycH	+	[BPP, GEA]	Strong
+ModE	hycI	+	[BPP, GEA]	Strong
+ModE	moaA	+	[BPP, GEA]	Strong
+ModE	moaB	+	[BPP, GEA]	Strong
+ModE	moaC	+	[BPP, GEA]	Strong
+ModE	moaD	+	[BPP, GEA]	Strong
+ModE	moaE	+	[BPP, GEA]	Strong
+ModE	modA	-	[BPP, GEA, SM]	Strong
+ModE	modB	-	[BPP, GEA, SM]	Strong
+ModE	modC	-	[BPP, GEA, SM]	Strong
+ModE	napA	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	napB	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	napC	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	napD	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	napF	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	napG	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	napH	+	[BPP, GEA, HIBSCS, SM]	Strong
+ModE	narL	+	[BPP, GEA, HIBSCS]	Strong
+ModE	narX	+	[BPP, GEA, HIBSCS]	Strong
+ModE	oppA	-	[GEA]	Weak
+ModE	oppB	-	[GEA]	Weak
+ModE	oppC	-	[GEA]	Weak
+ModE	oppD	-	[GEA]	Weak
+ModE	oppF	-	[GEA]	Weak
+MprA	acrA	-	[AIBSCS]	Weak
+MprA	acrB	-	[AIBSCS]	Weak
+MprA	emrA	-	[BPP]	Strong
+MprA	emrB	-	[BPP]	Strong
+MprA	mprA	-	[BPP]	Strong
+MprA	nmpC	-	[AIBSCS]	Weak
+MqsA	csgD	-	[BPP, GEA, HIBSCS]	Strong
+MqsA	csgE	-	[BPP, GEA, HIBSCS]	Strong
+MqsA	csgF	-	[BPP, GEA, HIBSCS]	Strong
+MqsA	csgG	-	[BPP, GEA, HIBSCS]	Strong
+MqsA	cspD	-	[BPP, GEA]	Strong
+MqsA	mqsA	-	[BPP, HIBSCS, IHBCE]	Strong
+MqsA	mqsR	-	[BPP, HIBSCS, IHBCE]	Strong
+MqsA	rpoS	-	[BPP, GEA, IHBCE, SM]	Strong
+MraZ	ddlB	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	ftsA	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	ftsI	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	ftsL	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	ftsQ	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	ftsW	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	ftsZ	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	lpxC	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	mioC	-	[AIBSCS, BPP, GEA]	Strong
+MraZ	mraY	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	mraZ	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	murC	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	murD	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	murE	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	murF	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	murG	-	[AIBSCS, BPP, GEA, SM]	Strong
+MraZ	rsmH	-	[AIBSCS, BPP, GEA, SM]	Strong
+MtlR	mtlA	-	[GEA]	Weak
+MtlR	mtlD	-	[GEA]	Weak
+MtlR	mtlR	-	[GEA]	Weak
+MurR	murP	-	[BPP, GEA, ICWHO]	Strong
+MurR	murQ	-	[BPP, GEA, ICWHO]	Strong
+MurR	murR	+-	[GEA, HIBSCS]	Weak
+Nac	asnC	-	[GEA, HIBSCS]	Weak
+Nac	codA	+	[AIBSCS, BPP, GEA, SM]	Strong
+Nac	codB	+	[AIBSCS, BPP, GEA, SM]	Strong
+Nac	feaR	+	[IHBCE]	Weak
+Nac	gabD	+	[GEA, HIBSCS]	Weak
+Nac	gabP	+	[GEA, HIBSCS]	Weak
+Nac	gabT	+	[GEA, HIBSCS]	Weak
+Nac	gdhA	-	[GEA, HIBSCS]	Weak
+Nac	gltB	-	[GEA]	Weak
+Nac	gltD	-	[GEA]	Weak
+Nac	gltF	-	[GEA]	Weak
+Nac	mioC	-	[GEA, HIBSCS]	Weak
+Nac	mnmG	-	[GEA, HIBSCS]	Weak
+Nac	nac	-	[BPP, GEA, HIBSCS]	Strong
+Nac	nupC	+	[GEA]	Weak
+Nac	patD	+	[GEA, HIBSCS, IDA]	Strong
+Nac	serA	-	[GEA, HIBSCS]	Weak
+Nac	ydcS	+	[GEA, HIBSCS, IDA]	Strong
+Nac	ydcT	+	[GEA, HIBSCS, IDA]	Strong
+Nac	ydcU	+	[GEA, HIBSCS, IDA]	Strong
+Nac	ydcV	+	[GEA, HIBSCS, IDA]	Strong
+NadR	nadA	-	[ICWHO, IMP]	Weak
+NadR	nadB	-	[AIBSCS, BPP, GEA, IMP]	Strong
+NadR	pncB	-	[AIBSCS]	Weak
+NadR	pnuC	-	[ICWHO, IMP]	Weak
+NagC	chbA	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	chbB	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	chbC	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	chbF	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	chbG	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	chbR	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	chiP	-	[AIBSCS, BPP, GEA]	Strong
+NagC	creA	-	[AIBSCS]	Weak
+NagC	creB	-	[AIBSCS]	Weak
+NagC	creC	-	[AIBSCS]	Weak
+NagC	creD	-	[AIBSCS]	Weak
+NagC	crr	-	[AIBSCS]	Weak
+NagC	dinI	-	[AIBSCS]	Weak
+NagC	feoA	?	[AIBSCS]	Weak
+NagC	feoB	?	[AIBSCS]	Weak
+NagC	feoC	?	[AIBSCS]	Weak
+NagC	fimB	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	galP	-	[AIBSCS, BPP, SM]	Strong
+NagC	glmS	+	[BPP, HIBSCS, SM]	Strong
+NagC	glmS	-	[BPP, HIBSCS, SM]	Strong
+NagC	glmU	+	[BPP, HIBSCS, SM]	Strong
+NagC	glmU	-	[BPP, HIBSCS, SM]	Strong
+NagC	manX	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+NagC	manY	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+NagC	manZ	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+NagC	nagA	-	[BPP, GEA, SM]	Strong
+NagC	nagB	-	[BPP, GEA, SM]	Strong
+NagC	nagC	-	[BPP, GEA, SM]	Strong
+NagC	nagE	-	[BPP, GEA, SM]	Strong
+NagC	nanC	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	nanM	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	nanS	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NagC	ptsH	-	[AIBSCS]	Weak
+NagC	ptsI	-	[AIBSCS]	Weak
+NagC	umpH	-	[BPP, GEA, SM]	Strong
+NagC	ybfN	-	[AIBSCS, BPP, GEA]	Strong
+NagC	ydeM	-	[AIBSCS]	Weak
+NagC	ydeN	-	[AIBSCS]	Weak
+NagC	ydeP	-	[AIBSCS]	Weak
+NanR	fimB	+	[BPP, GEA, HIBSCS, SM]	Strong
+NanR	nanA	-	[BPP, GEA, SM]	Strong
+NanR	nanC	-	[BPP, GEA, HIBSCS, SM]	Strong
+NanR	nanE	-	[BPP, GEA, SM]	Strong
+NanR	nanK	-	[BPP, GEA, SM]	Strong
+NanR	nanM	-	[BPP, GEA, HIBSCS, SM]	Strong
+NanR	nanS	-	[BPP, GEA, HIBSCS, SM]	Strong
+NanR	nanT	-	[BPP, GEA, SM]	Strong
+NanR	yhcH	-	[BPP, GEA, SM]	Strong
+NanR	yjhB	-	[BPP, GEA, SM]	Strong
+NanR	yjhC	-	[BPP, GEA, SM]	Strong
+NarL	adhE	-	[GEA, HIBSCS]	Weak
+NarL	aspA	-	[BPP, GEA]	Strong
+NarL	caiF	-	[GEA]	Weak
+NarL	ccmA	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmB	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmC	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmD	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmE	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmF	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmG	-	[GEA, HIBSCS, SM]	Strong
+NarL	ccmH	-	[GEA, HIBSCS, SM]	Strong
+NarL	citC	-	[AIBSCS]	Weak
+NarL	citD	-	[AIBSCS]	Weak
+NarL	citE	-	[AIBSCS]	Weak
+NarL	citF	-	[AIBSCS]	Weak
+NarL	citG	-	[AIBSCS]	Weak
+NarL	citX	-	[AIBSCS]	Weak
+NarL	cydC	+	[GEA, HIBSCS]	Weak
+NarL	cydD	+	[GEA, HIBSCS]	Weak
+NarL	cysG	+	[BCE, BPP, GEA, SM]	Strong
+NarL	dcuA	-	[BPP, GEA]	Strong
+NarL	dcuB	-	[GEA, HIBSCS]	Weak
+NarL	dcuR	-	[BPP, GEA, HIBSCS]	Strong
+NarL	dcuS	-	[BPP, GEA, HIBSCS]	Strong
+NarL	dmsA	-	[BCE, BPP, HIBSCS]	Strong
+NarL	dmsB	-	[BCE, BPP, HIBSCS]	Strong
+NarL	dmsC	-	[BCE, BPP, HIBSCS]	Strong
+NarL	dmsD	-	[AIBSCS, BPP]	Strong
+NarL	dpiA	-	[AIBSCS]	Weak
+NarL	dpiB	-	[AIBSCS]	Weak
+NarL	fdhF	-	[BPP, GEA]	Strong
+NarL	fdnG	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+NarL	fdnH	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+NarL	fdnI	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+NarL	focA	-	[BPP, GEA, HIBSCS]	Strong
+NarL	frdA	-	[BPP, HIBSCS]	Strong
+NarL	frdB	-	[BPP, HIBSCS]	Strong
+NarL	frdC	-	[BPP, HIBSCS]	Strong
+NarL	frdD	-	[BPP, HIBSCS]	Strong
+NarL	fumB	-	[GEA, HIBSCS]	Weak
+NarL	hcp	+	[BPP, GEA, HIBSCS]	Strong
+NarL	hcr	+	[BPP, GEA, HIBSCS]	Strong
+NarL	hyaA	-	[GEA, HIBSCS]	Weak
+NarL	hyaB	-	[GEA, HIBSCS]	Weak
+NarL	hyaC	-	[GEA, HIBSCS]	Weak
+NarL	hyaD	-	[GEA, HIBSCS]	Weak
+NarL	hyaE	-	[GEA, HIBSCS]	Weak
+NarL	hyaF	-	[GEA, HIBSCS]	Weak
+NarL	hybA	-	[GEA, HIBSCS]	Weak
+NarL	hybB	-	[GEA, HIBSCS]	Weak
+NarL	hybC	-	[GEA, HIBSCS]	Weak
+NarL	hybD	-	[GEA, HIBSCS]	Weak
+NarL	hybE	-	[GEA, HIBSCS]	Weak
+NarL	hybF	-	[GEA, HIBSCS]	Weak
+NarL	hybG	-	[GEA, HIBSCS]	Weak
+NarL	hybO	-	[GEA, HIBSCS]	Weak
+NarL	moeA	+	[AIBSCS, GEA]	Weak
+NarL	moeB	+	[AIBSCS, GEA]	Weak
+NarL	napA	-	[GEA, HIBSCS, SM]	Strong
+NarL	napB	-	[GEA, HIBSCS, SM]	Strong
+NarL	napC	-	[GEA, HIBSCS, SM]	Strong
+NarL	napD	-	[GEA, HIBSCS, SM]	Strong
+NarL	napF	-	[GEA, HIBSCS, SM]	Strong
+NarL	napG	-	[GEA, HIBSCS, SM]	Strong
+NarL	napH	-	[GEA, HIBSCS, SM]	Strong
+NarL	narG	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	narH	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	narI	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	narJ	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	narK	+	[BPP, HIBSCS, SM]	Strong
+NarL	nikA	-	[GEA]	Weak
+NarL	nikB	-	[GEA]	Weak
+NarL	nikC	-	[GEA]	Weak
+NarL	nikD	-	[GEA]	Weak
+NarL	nikE	-	[GEA]	Weak
+NarL	nikR	-	[GEA]	Weak
+NarL	nirB	+	[BCE, BPP, GEA, SM]	Strong
+NarL	nirC	+	[BCE, BPP, GEA, SM]	Strong
+NarL	nirD	+	[BCE, BPP, GEA, SM]	Strong
+NarL	norV	-	[GEA, HIBSCS]	Weak
+NarL	norW	-	[GEA, HIBSCS]	Weak
+NarL	nrfA	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfA	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfA	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfB	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfB	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfB	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfC	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfC	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfC	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfD	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfD	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfD	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfE	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfE	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfE	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfF	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfF	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfF	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfG	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfG	+-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nrfG	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	nuoA	+	[GEA, HIBSCS]	Weak
+NarL	nuoB	+	[GEA, HIBSCS]	Weak
+NarL	nuoC	+	[GEA, HIBSCS]	Weak
+NarL	nuoE	+	[GEA, HIBSCS]	Weak
+NarL	nuoF	+	[GEA, HIBSCS]	Weak
+NarL	nuoG	+	[GEA, HIBSCS]	Weak
+NarL	nuoH	+	[GEA, HIBSCS]	Weak
+NarL	nuoI	+	[GEA, HIBSCS]	Weak
+NarL	nuoJ	+	[GEA, HIBSCS]	Weak
+NarL	nuoK	+	[GEA, HIBSCS]	Weak
+NarL	nuoL	+	[GEA, HIBSCS]	Weak
+NarL	nuoM	+	[GEA, HIBSCS]	Weak
+NarL	nuoN	+	[GEA, HIBSCS]	Weak
+NarL	ogt	+	[BPP]	Strong
+NarL	ompW	-	[AIBSCS, BPP, GEA]	Strong
+NarL	pflB	-	[BPP, GEA, HIBSCS]	Strong
+NarL	torA	-	[IMP]	Weak
+NarL	torC	-	[IMP]	Weak
+NarL	torD	-	[IMP]	Weak
+NarL	ubiA	-	[GEA]	Weak
+NarL	ubiC	-	[GEA]	Weak
+NarL	ydeP	+	[BPP, GEA]	Strong
+NarL	ydhT	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	ydhU	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	ydhV	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	ydhW	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	ydhX	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	ydhY	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarL	yeaR	+	[AIBSCS, BPP, GEA]	Strong
+NarL	ynfE	-	[AIBSCS, BPP]	Strong
+NarL	ynfF	-	[AIBSCS, BPP]	Strong
+NarL	ynfG	-	[AIBSCS, BPP]	Strong
+NarL	ynfH	-	[AIBSCS, BPP]	Strong
+NarL	yoaG	+	[AIBSCS, BPP, GEA]	Strong
+NarL	ytfE	+	[AIBSCS]	Weak
+NarP	ccmA	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmA	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmB	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmB	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmC	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmC	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmD	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmD	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmE	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmE	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmF	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmF	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmG	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmG	-	[GEA, HIBSCS, SM]	Strong
+NarP	ccmH	+	[GEA, HIBSCS, SM]	Strong
+NarP	ccmH	-	[GEA, HIBSCS, SM]	Strong
+NarP	cysG	+	[BCE, BPP, GEA, SM]	Strong
+NarP	fdhF	+	[GEA]	Weak
+NarP	fdnG	-	[GEA, SM]	Strong
+NarP	fdnH	-	[GEA, SM]	Strong
+NarP	fdnI	-	[GEA, SM]	Strong
+NarP	hcp	+	[GEA, HIBSCS]	Weak
+NarP	hcr	+	[GEA, HIBSCS]	Weak
+NarP	hyaA	-	[GEA, HIBSCS]	Weak
+NarP	hyaB	-	[GEA, HIBSCS]	Weak
+NarP	hyaC	-	[GEA, HIBSCS]	Weak
+NarP	hyaD	-	[GEA, HIBSCS]	Weak
+NarP	hyaE	-	[GEA, HIBSCS]	Weak
+NarP	hyaF	-	[GEA, HIBSCS]	Weak
+NarP	napA	+	[GEA, HIBSCS, SM]	Strong
+NarP	napA	-	[GEA, HIBSCS, SM]	Strong
+NarP	napB	+	[GEA, HIBSCS, SM]	Strong
+NarP	napB	-	[GEA, HIBSCS, SM]	Strong
+NarP	napC	+	[GEA, HIBSCS, SM]	Strong
+NarP	napC	-	[GEA, HIBSCS, SM]	Strong
+NarP	napD	+	[GEA, HIBSCS, SM]	Strong
+NarP	napD	-	[GEA, HIBSCS, SM]	Strong
+NarP	napF	+	[GEA, HIBSCS, SM]	Strong
+NarP	napF	-	[GEA, HIBSCS, SM]	Strong
+NarP	napG	+	[GEA, HIBSCS, SM]	Strong
+NarP	napG	-	[GEA, HIBSCS, SM]	Strong
+NarP	napH	+	[GEA, HIBSCS, SM]	Strong
+NarP	napH	-	[GEA, HIBSCS, SM]	Strong
+NarP	nirB	+	[BCE, BPP, GEA, SM]	Strong
+NarP	nirC	+	[BCE, BPP, GEA, SM]	Strong
+NarP	nirD	+	[BCE, BPP, GEA, SM]	Strong
+NarP	norV	-	[GEA, HIBSCS]	Weak
+NarP	norW	-	[GEA, HIBSCS]	Weak
+NarP	nrfA	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	nrfB	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	nrfC	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	nrfD	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	nrfE	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	nrfF	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	nrfG	+	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	ydeP	-	[BPP, GEA]	Strong
+NarP	ydhT	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	ydhU	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	ydhV	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	ydhW	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	ydhX	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	ydhY	-	[BPP, GEA, HIBSCS, SM]	Strong
+NarP	yeaR	+	[AIBSCS, GEA]	Weak
+NarP	yoaG	+	[AIBSCS, GEA]	Weak
+NarP	ytfE	+	[AIBSCS]	Weak
+NemR	gloA	-	[AIBSCS, BPP, GEA]	Strong
+NemR	nemA	-	[AIBSCS, BPP, GEA]	Strong
+NemR	nemR	-	[AIBSCS, BPP, GEA]	Strong
+NhaR	nhaA	+	[BCE, BPP, GEA]	Strong
+NhaR	nhaA	?	[BCE, BPP, GEA]	Strong
+NhaR	nhaR	+	[BCE, BPP, GEA]	Strong
+NhaR	nhaR	?	[BCE, BPP, GEA]	Strong
+NhaR	osmC	+	[BCE, GEA, SM]	Strong
+NhaR	pgaA	+	[BPP, GEA, HIBSCS]	Strong
+NhaR	pgaB	+	[BPP, GEA, HIBSCS]	Strong
+NhaR	pgaC	+	[BPP, GEA, HIBSCS]	Strong
+NhaR	pgaD	+	[BPP, GEA, HIBSCS]	Strong
+NikR	nikA	-	[BPP]	Strong
+NikR	nikB	-	[BPP]	Strong
+NikR	nikC	-	[BPP]	Strong
+NikR	nikD	-	[BPP]	Strong
+NikR	nikE	-	[BPP]	Strong
+NikR	nikR	-	[BPP]	Strong
+NimR	nimR	-	[BPP, GEA, ICWHO]	Strong
+NimR	nimT	-	[BPP, GEA, ICWHO]	Strong
+NorR	norR	-	[AIBSCS, BPP, GEA]	Strong
+NorR	norV	+	[AIBSCS, BPP, GEA]	Strong
+NorR	norW	+	[AIBSCS, BPP, GEA]	Strong
+NrdR	nrdA	-	[BPP, GEA, HIBSCS, SM]	Strong
+NrdR	nrdB	-	[BPP, GEA, HIBSCS, SM]	Strong
+NrdR	nrdD	-	[BPP, GEA, HIBSCS]	Strong
+NrdR	nrdE	-	[BPP, GEA, HIBSCS]	Strong
+NrdR	nrdF	-	[BPP, GEA, HIBSCS]	Strong
+NrdR	nrdG	-	[BPP, GEA, HIBSCS]	Strong
+NrdR	nrdH	-	[BPP, GEA, HIBSCS]	Strong
+NrdR	nrdI	-	[BPP, GEA, HIBSCS]	Strong
+NrdR	yfaE	-	[BPP, GEA, HIBSCS, SM]	Strong
+NsrR	aceE	-	[GEA, HIBSCS]	Weak
+NsrR	aceF	-	[GEA, HIBSCS]	Weak
+NsrR	bamE	-	[GEA, HIBSCS]	Weak
+NsrR	bdcA	-	[GEA, HIBSCS]	Weak
+NsrR	cdd	-	[GEA, HIBSCS]	Weak
+NsrR	dkgB	-	[GEA, HIBSCS]	Weak
+NsrR	dsdC	-	[GEA, HIBSCS]	Weak
+NsrR	feaB	-	[GEA, HIBSCS]	Weak
+NsrR	feaR	-	[GEA, HIBSCS]	Weak
+NsrR	fhlA	-	[GEA, HIBSCS]	Weak
+NsrR	fliA	-	[GEA, HIBSCS, SM]	Strong
+NsrR	fliZ	-	[GEA, HIBSCS, SM]	Strong
+NsrR	grxD	-	[GEA, HIBSCS]	Weak
+NsrR	hcp	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	hcr	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	hmp	-	[AIBSCS, GEA, HIBSCS]	Weak
+NsrR	hycA	-	[GEA, HIBSCS]	Weak
+NsrR	hycB	-	[GEA, HIBSCS]	Weak
+NsrR	hycC	-	[GEA, HIBSCS]	Weak
+NsrR	hycD	-	[GEA, HIBSCS]	Weak
+NsrR	hycE	-	[GEA, HIBSCS]	Weak
+NsrR	hycF	-	[GEA, HIBSCS]	Weak
+NsrR	hycG	-	[GEA, HIBSCS]	Weak
+NsrR	hycH	-	[GEA, HIBSCS]	Weak
+NsrR	hycI	-	[GEA, HIBSCS]	Weak
+NsrR	hypA	-	[GEA, HIBSCS]	Weak
+NsrR	hypB	-	[GEA, HIBSCS]	Weak
+NsrR	hypC	-	[GEA, HIBSCS]	Weak
+NsrR	hypD	-	[GEA, HIBSCS]	Weak
+NsrR	hypE	-	[GEA, HIBSCS]	Weak
+NsrR	ihfA	-	[GEA, HIBSCS]	Weak
+NsrR	infC	-	[GEA, HIBSCS]	Weak
+NsrR	lrp	-	[GEA, HIBSCS]	Weak
+NsrR	mepH	-	[GEA, HIBSCS]	Weak
+NsrR	mhpT	-	[GEA, HIBSCS]	Weak
+NsrR	ndh	-	[GEA, HIBSCS]	Weak
+NsrR	norR	-	[GEA, HIBSCS]	Weak
+NsrR	nrfA	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	nrfB	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	nrfC	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	nrfD	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	nrfE	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	nrfF	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	nrfG	-	[BCE, GEA, HIBSCS, SM]	Strong
+NsrR	pgpC	-	[GEA, HIBSCS]	Weak
+NsrR	pheM	-	[GEA, HIBSCS]	Weak
+NsrR	pheS	-	[GEA, HIBSCS]	Weak
+NsrR	pheT	-	[GEA, HIBSCS]	Weak
+NsrR	rfe	-	[GEA, HIBSCS]	Weak
+NsrR	rffC	-	[GEA, HIBSCS]	Weak
+NsrR	rffG	-	[GEA, HIBSCS]	Weak
+NsrR	rffH	-	[GEA, HIBSCS]	Weak
+NsrR	rffM	-	[GEA, HIBSCS]	Weak
+NsrR	rffT	-	[GEA, HIBSCS]	Weak
+NsrR	rplT	-	[GEA, HIBSCS]	Weak
+NsrR	rpmI	-	[GEA, HIBSCS]	Weak
+NsrR	rybB	-	[GEA]	Weak
+NsrR	sodB	-	[AIBSCS, GEA]	Weak
+NsrR	sufA	-	[GEA, HIBSCS]	Weak
+NsrR	sufB	-	[GEA, HIBSCS]	Weak
+NsrR	sufC	-	[GEA, HIBSCS]	Weak
+NsrR	sufD	-	[GEA, HIBSCS]	Weak
+NsrR	sufE	-	[GEA, HIBSCS]	Weak
+NsrR	sufS	-	[GEA, HIBSCS]	Weak
+NsrR	tadA	-	[GEA, HIBSCS]	Weak
+NsrR	tcyJ	-	[GEA, HIBSCS, SM]	Strong
+NsrR	tehA	-	[AIBSCS, GEA, HIBSCS]	Weak
+NsrR	tehB	-	[AIBSCS, GEA, HIBSCS]	Weak
+NsrR	thrS	-	[GEA, HIBSCS]	Weak
+NsrR	tsgA	-	[GEA, HIBSCS]	Weak
+NsrR	waaH	-	[GEA, HIBSCS]	Weak
+NsrR	wecB	-	[GEA, HIBSCS]	Weak
+NsrR	wecC	-	[GEA, HIBSCS]	Weak
+NsrR	wecE	-	[GEA, HIBSCS]	Weak
+NsrR	wzxE	-	[GEA, HIBSCS]	Weak
+NsrR	wzyE	-	[GEA, HIBSCS]	Weak
+NsrR	wzzE	-	[GEA, HIBSCS]	Weak
+NsrR	ydbD	-	[GEA, HIBSCS]	Weak
+NsrR	yeaE	-	[GEA, HIBSCS]	Weak
+NsrR	yeaR	-	[AIBSCS, GEA]	Weak
+NsrR	ygbA	-	[AIBSCS, GEA, HIBSCS]	Weak
+NsrR	yoaG	-	[AIBSCS, GEA]	Weak
+NsrR	ytfE	-	[AIBSCS, GEA, HIBSCS, SM]	Strong
+NtrC	amtB	+	[HIBSCS]	Weak
+NtrC	argT	+	[AIBSCS, GEA]	Weak
+NtrC	astA	+	[AIBSCS, BPP, GEA]	Strong
+NtrC	astB	+	[AIBSCS, BPP, GEA]	Strong
+NtrC	astC	+	[AIBSCS, BPP, GEA]	Strong
+NtrC	astD	+	[AIBSCS, BPP, GEA]	Strong
+NtrC	astE	+	[AIBSCS, BPP, GEA]	Strong
+NtrC	cbl	+	[GEA]	Weak
+NtrC	ddpA	+	[AIBSCS, GEA]	Weak
+NtrC	ddpB	+	[AIBSCS, GEA]	Weak
+NtrC	ddpC	+	[AIBSCS, GEA]	Weak
+NtrC	ddpD	+	[AIBSCS, GEA]	Weak
+NtrC	ddpF	+	[AIBSCS, GEA]	Weak
+NtrC	ddpX	+	[AIBSCS, GEA]	Weak
+NtrC	glnA	+	[BPP, GEA, HIBSCS, SM]	Strong
+NtrC	glnA	-	[BPP, GEA, HIBSCS, SM]	Strong
+NtrC	glnG	+	[BPP, GEA, HIBSCS, SM]	Strong
+NtrC	glnG	-	[BPP, GEA, HIBSCS, SM]	Strong
+NtrC	glnH	+	[BPP, HIBSCS]	Strong
+NtrC	glnH	-	[BPP, HIBSCS]	Strong
+NtrC	glnK	+	[HIBSCS]	Weak
+NtrC	glnL	+	[BPP, GEA, HIBSCS, SM]	Strong
+NtrC	glnL	-	[BPP, GEA, HIBSCS, SM]	Strong
+NtrC	glnP	+	[BPP, HIBSCS]	Strong
+NtrC	glnP	-	[BPP, HIBSCS]	Strong
+NtrC	glnQ	+	[BPP, HIBSCS]	Strong
+NtrC	glnQ	-	[BPP, HIBSCS]	Strong
+NtrC	hisJ	+	[AIBSCS, GEA]	Weak
+NtrC	hisM	+	[AIBSCS, GEA]	Weak
+NtrC	hisP	+	[AIBSCS, GEA]	Weak
+NtrC	hisQ	+	[AIBSCS, GEA]	Weak
+NtrC	nac	+	[HIBSCS]	Weak
+NtrC	patA	+	[AIBSCS, GEA, IEP]	Weak
+NtrC	potF	+	[GEA]	Weak
+NtrC	potG	+	[GEA]	Weak
+NtrC	potH	+	[GEA]	Weak
+NtrC	potI	+	[GEA]	Weak
+NtrC	relA	+	[BPP, GEA]	Strong
+NtrC	rpoE	+	[BPP, HIBSCS]	Strong
+NtrC	rseA	+	[BPP, HIBSCS]	Strong
+NtrC	rseB	+	[BPP, HIBSCS]	Strong
+NtrC	rseC	+	[BPP, HIBSCS]	Strong
+NtrC	rutA	+	[AIBSCS, GEA]	Weak
+NtrC	rutB	+	[AIBSCS, GEA]	Weak
+NtrC	rutC	+	[AIBSCS, GEA]	Weak
+NtrC	rutD	+	[AIBSCS, GEA]	Weak
+NtrC	rutE	+	[AIBSCS, GEA]	Weak
+NtrC	rutF	+	[AIBSCS, GEA]	Weak
+NtrC	rutG	+	[AIBSCS, GEA]	Weak
+NtrC	yeaG	+	[GEA]	Weak
+NtrC	yeaH	+	[GEA]	Weak
+NtrC	yhdW	+	[AIBSCS, GEA]	Weak
+NtrC	yhdX	+	[AIBSCS, GEA]	Weak
+NtrC	yhdY	+	[AIBSCS, GEA]	Weak
+NtrC	yhdZ	+	[AIBSCS, GEA]	Weak
+OmpR	bolA	-	[BPP, HIBSCS]	Strong
+OmpR	csgD	+	[BPP, GEA, HIBSCS]	Strong
+OmpR	csgE	+	[BPP, GEA, HIBSCS]	Strong
+OmpR	csgF	+	[BPP, GEA, HIBSCS]	Strong
+OmpR	csgG	+	[BPP, GEA, HIBSCS]	Strong
+OmpR	dtpA	+	[BPP, GEA]	Strong
+OmpR	ecnB	-	[HIBSCS]	Weak
+OmpR	fadL	-	[GEA, HIBSCS, SM]	Strong
+OmpR	flhC	-	[HIBSCS]	Weak
+OmpR	flhD	-	[HIBSCS]	Weak
+OmpR	micF	+	[BPP, GEA, HIBSCS, SM]	Strong
+OmpR	nmpC	-	[HIBSCS, SM]	Strong
+OmpR	ompC	+	[BPP, GEA, HIBSCS, SM]	Strong
+OmpR	ompF	+	[BPP, GEA, HIBSCS, SM]	Strong
+OmpR	ompF	+-	[AIBSCS, BCE, BPP, GEA, HIBSCS, SM]	Strong
+OmpR	ompF	-	[BPP, GEA]	Strong
+OmpR	omrA	+	[GEA, HIBSCS]	Weak
+OmpR	omrB	+	[GEA, HIBSCS]	Weak
+OmpR	pgaA	-	[BPP, GEA, HIBSCS]	Strong
+OmpR	pgaB	-	[BPP, GEA, HIBSCS]	Strong
+OmpR	pgaC	-	[BPP, GEA, HIBSCS]	Strong
+OmpR	pgaD	-	[BPP, GEA, HIBSCS]	Strong
+OmpR	sra	-	[GEA]	Weak
+OxyR	ahpC	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	ahpF	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	dps	+	[HIBSCS]	Weak
+OxyR	dsbG	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	fhuF	-	[BPP, GEA, HIBSCS]	Strong
+OxyR	flu	-	[BPP, GEA, HIBSCS, SM]	Strong
+OxyR	fur	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	gntP	-	[GEA, HIBSCS]	Weak
+OxyR	gor	+	[GEA]	Weak
+OxyR	grxA	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	hcp	+	[BPP, GEA]	Strong
+OxyR	hcr	+	[BPP, GEA]	Strong
+OxyR	hemH	+	[BPP, GEA]	Strong
+OxyR	isrC	-	[BPP, GEA, HIBSCS, SM]	Strong
+OxyR	katG	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	mntH	+	[AIBSCS, GEA, HIBSCS, SM]	Strong
+OxyR	nfsA	-	[BPP, GEA, HIBSCS]	Strong
+OxyR	oxyR	-	[BPP, GEA, HIBSCS]	Strong
+OxyR	oxyS	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	rimK	-	[BPP, GEA, HIBSCS]	Strong
+OxyR	sufA	+	[BPP, GEA, SM]	Strong
+OxyR	sufB	+	[BPP, GEA, SM]	Strong
+OxyR	sufC	+	[BPP, GEA, SM]	Strong
+OxyR	sufD	+	[BPP, GEA, SM]	Strong
+OxyR	sufE	+	[BPP, GEA, SM]	Strong
+OxyR	sufS	+	[BPP, GEA, SM]	Strong
+OxyR	trxC	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	uof	+	[BPP, GEA, HIBSCS]	Strong
+OxyR	uxuA	-	[GEA, HIBSCS]	Weak
+OxyR	uxuB	-	[GEA, HIBSCS]	Weak
+OxyR	ybjC	-	[BPP, GEA, HIBSCS]	Strong
+OxyR	ybjN	-	[BPP, GEA, HIBSCS]	Strong
+OxyR	ychF	-	[BPP, HIBSCS]	Strong
+OxyR	yhjA	+	[AIBSCS, BPP, HIBSCS]	Strong
+PaaX	paaA	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaB	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaC	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaD	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaE	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaF	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaG	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaH	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaI	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaJ	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaK	-	[BCE, GEA, HIBSCS, SM]	Strong
+PaaX	paaX	-	[BPP, HIBSCS]	Strong
+PaaX	paaY	-	[BPP, HIBSCS]	Strong
+PaaX	paaZ	-	[BCE, GEA, HIBSCS, SM]	Strong
+PdeL	pdeL	+	[BPP, GEA, IHBCE]	Strong
+PdhR	aceE	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+PdhR	aceF	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+PdhR	cyoA	-	[BPP, GEA, HIBSCS]	Strong
+PdhR	cyoB	-	[BPP, GEA, HIBSCS]	Strong
+PdhR	cyoC	-	[BPP, GEA, HIBSCS]	Strong
+PdhR	cyoD	-	[BPP, GEA, HIBSCS]	Strong
+PdhR	cyoE	-	[BPP, GEA, HIBSCS]	Strong
+PdhR	ddlB	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	fecA	+	[AIBSCS, GEA]	Weak
+PdhR	fecB	+	[AIBSCS, GEA]	Weak
+PdhR	fecC	+	[AIBSCS, GEA]	Weak
+PdhR	fecD	+	[AIBSCS, GEA]	Weak
+PdhR	fecE	+	[AIBSCS, GEA]	Weak
+PdhR	ftsA	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	ftsI	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	ftsL	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	ftsQ	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	ftsW	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	ftsZ	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	glcA	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	glcB	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	glcD	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	glcE	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	glcF	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	glcG	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	grcA	-	[GEA, HIBSCS]	Weak
+PdhR	hemL	-	[AIBSCS]	Weak
+PdhR	hha	-	[AIBSCS]	Weak
+PdhR	lpd	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+PdhR	lpxC	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	mraY	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	mraZ	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	murC	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	murD	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	murE	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	murF	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	murG	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	ndh	-	[BPP, GEA, HIBSCS]	Strong
+PdhR	pdhR	-	[AIBSCS, BCE, BPP, GEA, HIBSCS]	Strong
+PdhR	rsmH	-	[AIBSCS, BPP, GEA]	Strong
+PdhR	tomB	-	[AIBSCS]	Weak
+PepA	carA	-	[BPP, GEA, IMP]	Strong
+PepA	carB	-	[BPP, GEA, IMP]	Strong
+PepA	pepA	-	[BPP]	Strong
+PgrR	mpaA	-	[BPP, GEA, IGI]	Strong
+PgrR	tyrR	-	[BPP, GEA, IGI]	Strong
+PgrR	ycjF	-	[BPP, GEA, IGI]	Strong
+PgrR	ycjG	-	[BPP, GEA, IGI]	Strong
+PgrR	ycjX	-	[BPP, GEA, IGI]	Strong
+PgrR	ycjY	-	[BPP, GEA, IGI]	Strong
+PgrR	ymjC	-	[BPP, GEA, IGI]	Strong
+PgrR	ymjD	-	[BPP, GEA, IGI]	Strong
+PhoB	adiC	+	[GEA]	Weak
+PhoB	amn	+	[AIBSCS, GEA]	Weak
+PhoB	argP	+	[GEA, HIBSCS]	Weak
+PhoB	asr	+	[BCE, GEA, HIBSCS]	Weak
+PhoB	cra	-	[GEA]	Weak
+PhoB	cusA	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	cusB	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	cusC	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	cusF	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	cusR	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	cusS	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	eda	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	feaR	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	gadW	+	[GEA]	Weak
+PhoB	gadX	+	[GEA]	Weak
+PhoB	mipA	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	ompF	+	[GEA]	Weak
+PhoB	phnC	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnD	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnE_1	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnE_2	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnF	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnG	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnH	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnI	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnJ	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnK	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnL	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnM	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnN	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnO	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phnP	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phoA	+	[BCE, GEA, SM]	Strong
+PhoB	phoB	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phoE	+	[BCE, GEA, SM]	Strong
+PhoB	phoH	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phoQ	+	[GEA]	Weak
+PhoB	phoR	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	phoU	+	[BCE, GEA, HIBSCS, SM]	Strong
+PhoB	pitB	-	[IMP]	Weak
+PhoB	prpR	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	psiE	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	psiF	+	[BCE, GEA, SM]	Strong
+PhoB	pstA	+	[BCE, GEA, HIBSCS, SM]	Strong
+PhoB	pstB	+	[BCE, GEA, HIBSCS, SM]	Strong
+PhoB	pstC	+	[BCE, GEA, HIBSCS, SM]	Strong
+PhoB	pstS	+	[BCE, GEA, HIBSCS, SM]	Strong
+PhoB	sbcC	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	sbcD	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	tktB	+	[GEA]	Weak
+PhoB	ugpA	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpA	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpB	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpB	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpC	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpC	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpE	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpE	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpQ	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	ugpQ	-	[BPP, GEA, HIBSCS]	Strong
+PhoB	waaH	+	[AIBSCS, GEA]	Weak
+PhoB	ydfH	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	yedX	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	yegH	+	[BPP, GEA, HIBSCS]	Strong
+PhoB	yhjC	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	acrA	-	[GEA]	Weak
+PhoP	acrB	-	[GEA]	Weak
+PhoP	argD	-	[AIBSCS, GEA]	Weak
+PhoP	borD	+	[BPP, HIBSCS]	Strong
+PhoP	cysB	+	[AIBSCS, HIBSCS]	Weak
+PhoP	dcuD	-	[AIBSCS, GEA]	Weak
+PhoP	fadL	+	[AIBSCS, GEA]	Weak
+PhoP	gadE	+	[GEA, HIBSCS]	Weak
+PhoP	gadF	+	[GEA, HIBSCS]	Weak
+PhoP	gadW	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	glgA	+	[AIBSCS, GEA]	Weak
+PhoP	glgB	+	[AIBSCS, GEA]	Weak
+PhoP	glgC	+	[AIBSCS, GEA]	Weak
+PhoP	glgP	+	[AIBSCS, GEA]	Weak
+PhoP	glgX	+	[AIBSCS, GEA]	Weak
+PhoP	hdeA	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	hdeB	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	hdeD	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	hemL	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	iraM	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	malS	+	[AIBSCS, GEA]	Weak
+PhoP	metB	+	[AIBSCS, GEA]	Weak
+PhoP	metL	+	[AIBSCS, GEA]	Weak
+PhoP	mgrB	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	mgrR	+	[GEA, HIBSCS]	Weak
+PhoP	mgtA	+	[BPP, GEA, HIBSCS, SM]	Strong
+PhoP	mgtL	+	[BPP, GEA, HIBSCS, SM]	Strong
+PhoP	nagA	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	ompT	+	[GEA, HIBSCS]	Weak
+PhoP	pagP	+	[GEA, HIBSCS]	Weak
+PhoP	phoP	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PhoP	phoP	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PhoP	phoQ	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PhoP	phoQ	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PhoP	purD	+	[AIBSCS, GEA]	Weak
+PhoP	purH	+	[AIBSCS, GEA]	Weak
+PhoP	rstA	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PhoP	rstB	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PhoP	rutA	+	[AIBSCS, GEA]	Weak
+PhoP	rutB	+	[AIBSCS, GEA]	Weak
+PhoP	rutC	+	[AIBSCS, GEA]	Weak
+PhoP	rutD	+	[AIBSCS, GEA]	Weak
+PhoP	rutE	+	[AIBSCS, GEA]	Weak
+PhoP	rutF	+	[AIBSCS, GEA]	Weak
+PhoP	rutG	+	[AIBSCS, GEA]	Weak
+PhoP	safA	-	[GEA, HIBSCS, SM]	Strong
+PhoP	slyB	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	slyB	-	[BPP, GEA, HIBSCS]	Strong
+PhoP	tolC	+	[GEA, HIBSCS]	Weak
+PhoP	treR	-	[BPP, GEA, HIBSCS, SM]	Strong
+PhoP	ybjG	+	[GEA, HIBSCS]	Weak
+PhoP	ydeO	-	[GEA, HIBSCS, SM]	Strong
+PhoP	ydeP	-	[GEA, HIBSCS]	Weak
+PhoP	ygiA	+	[GEA, HIBSCS]	Weak
+PhoP	ygiB	+	[GEA, HIBSCS]	Weak
+PhoP	ygiC	+	[GEA, HIBSCS]	Weak
+PhoP	yhiD	+	[BPP, GEA, HIBSCS]	Strong
+PhoP	yneM	+	[GEA, HIBSCS]	Weak
+PhoP	yrbL	+	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PrpR	prpB	+	[GEA, HIBSCS]	Weak
+PrpR	prpC	+	[GEA, HIBSCS]	Weak
+PrpR	prpD	+	[GEA, HIBSCS]	Weak
+PrpR	prpE	+	[GEA, HIBSCS]	Weak
+PrpR	prpR	-	[GEA, HIBSCS]	Weak
+PspF	pspA	+	[BCE, BPP, GEA]	Strong
+PspF	pspB	+	[BCE, BPP, GEA]	Strong
+PspF	pspC	+	[BCE, BPP, GEA]	Strong
+PspF	pspD	+	[BCE, BPP, GEA]	Strong
+PspF	pspE	+	[BCE, BPP, GEA]	Strong
+PspF	pspF	-	[BCE, BPP, GEA]	Strong
+PspF	pspG	+	[BPP, GEA, ICA]	Strong
+PurR	carA	-	[AIBSCS, BPP, GEA]	Strong
+PurR	carB	-	[AIBSCS, BPP, GEA]	Strong
+PurR	codA	-	[AIBSCS, GEA, HIBSCS]	Weak
+PurR	codB	-	[AIBSCS, GEA, HIBSCS]	Weak
+PurR	cvpA	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+PurR	gcvH	-	[AIBSCS, GEA, HIBSCS]	Weak
+PurR	gcvP	-	[AIBSCS, GEA, HIBSCS]	Weak
+PurR	gcvT	-	[AIBSCS, GEA, HIBSCS]	Weak
+PurR	glnB	-	[BCE, GEA, HIBSCS]	Weak
+PurR	glyA	-	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+PurR	guaA	-	[AIBSCS, BCE, GEA]	Weak
+PurR	guaB	-	[AIBSCS, BCE, GEA]	Weak
+PurR	hflD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PurR	prs	-	[BCE, GEA, HIBSCS]	Weak
+PurR	purA	-	[BPP, GEA, HIBSCS]	Strong
+PurR	purB	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PurR	purC	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PurR	purD	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PurR	purE	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+PurR	purF	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+PurR	purH	-	[AIBSCS, BPP, GEA, HIBSCS]	Strong
+PurR	purK	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+PurR	purL	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+PurR	purM	-	[AIBSCS, GEA, HIBSCS, SM]	Strong
+PurR	purN	-	[AIBSCS, GEA, HIBSCS, SM]	Strong
+PurR	purR	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+PurR	pyrC	-	[BPP, GEA, HIBSCS, SM]	Strong
+PurR	pyrD	-	[AIBSCS, BCE, GEA, HIBSCS]	Weak
+PurR	speA	-	[BCE, GEA, HIBSCS]	Weak
+PurR	speB	-	[BCE, GEA, HIBSCS]	Weak
+PurR	ubiX	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+PutA	putA	-	[BPP, GEA, SM]	Strong
+PutA	putP	-	[BPP, GEA, SM]	Strong
+PuuR	puuA	-	[BPP, GEA, IC, SM]	Strong
+PuuR	puuB	-	[BPP, GEA, IC, SM]	Strong
+PuuR	puuC	-	[BPP, GEA, IC, SM]	Strong
+PuuR	puuD	-	[BPP, GEA, IC, SM]	Strong
+PuuR	puuE	-	[BPP, GEA, IC, SM]	Strong
+PuuR	puuP	-	[BPP, GEA, IC, SM]	Strong
+PuuR	puuR	-	[BPP, GEA, IC, SM]	Strong
+QseB	flhC	+	[GEA]	Weak
+QseB	flhD	+	[GEA]	Weak
+QseB	qseB	+	[BPP, GEA]	Strong
+QseB	qseC	+	[BPP, GEA]	Strong
+RbsR	add	+	[AIBSCS, BPP, GEA]	Strong
+RbsR	purD	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	purH	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	rbsA	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	rbsB	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	rbsC	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	rbsD	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	rbsK	-	[AIBSCS, BPP, GEA]	Strong
+RbsR	rbsR	-	[AIBSCS, BPP, GEA]	Strong
+RcdA	asr	+	[BPP, GEA, IC]	Strong
+RcdA	bluF	+	[BPP, GEA, HIBSCS]	Strong
+RcdA	csgD	+	[BPP, GEA, IC]	Strong
+RcdA	csgE	+	[BPP, GEA, IC]	Strong
+RcdA	csgF	+	[BPP, GEA, IC]	Strong
+RcdA	csgG	+	[BPP, GEA, IC]	Strong
+RcdA	sulA	-	[BPP, GEA, HIBSCS]	Strong
+RcdA	yagK	-	[BPP]	Strong
+RcdA	ydeI	+	[BPP, GEA]	Strong
+RclR	rclA	+	[BPP, GEA]	Strong
+RclR	rclB	+	[BPP, GEA]	Strong
+RclR	rclC	+	[BPP, GEA]	Strong
+RcnR	rcnA	-	[BPP, GEA]	Strong
+RcnR	rcnB	-	[BPP, GEA]	Strong
+RcnR	rcnR	-	[BPP, GEA]	Strong
+RcsAB	csgD	-	[GEA]	Weak
+RcsAB	csgE	-	[GEA]	Weak
+RcsAB	csgF	-	[GEA]	Weak
+RcsAB	csgG	-	[GEA]	Weak
+RcsAB	flhC	-	[BPP, GEA, SM]	Strong
+RcsAB	flhD	-	[BPP, GEA, SM]	Strong
+RcsAB	rcsA	+	[AIBSCS, BCE, BPP, GEA, SM]	Strong
+RcsAB	wcaA	+	[AIBSCS, BPP, GEA, SM]	Strong
+RcsAB	wcaB	+	[AIBSCS, BPP, GEA, SM]	Strong
+RcsAB	wza	+	[AIBSCS, BPP, GEA, SM]	Strong
+RcsAB	wzb	+	[AIBSCS, BPP, GEA, SM]	Strong
+RcsAB	wzc	+	[AIBSCS, BPP, GEA, SM]	Strong
+RcsAB	yjbE	+	[GEA, HIBSCS]	Weak
+RcsAB	yjbF	+	[GEA, HIBSCS]	Weak
+RcsAB	yjbG	+	[GEA, HIBSCS]	Weak
+RcsAB	yjbH	+	[GEA, HIBSCS]	Weak
+RcsB	bdm	+	[BPP, GEA]	Strong
+RcsB	ftsA	+	[GEA, HIBSCS, SM]	Strong
+RcsB	ftsZ	+	[GEA, HIBSCS, SM]	Strong
+RcsB	gadA	-	[BPP, GEA, IHBCE, SM]	Strong
+RcsB	gadB	+	[GEA, HIBSCS]	Weak
+RcsB	gadC	+	[GEA, HIBSCS]	Weak
+RcsB	gadX	-	[BPP, GEA, IHBCE, SM]	Strong
+RcsB	gadY	+	[GEA]	Weak
+RcsB	hdeA	+	[GEA]	Weak
+RcsB	hdeB	+	[GEA]	Weak
+RcsB	hdeD	+	[GEA]	Weak
+RcsB	lolA	+	[GEA, HIBSCS]	Weak
+RcsB	osmB	+	[GEA, HIBSCS]	Weak
+RcsB	osmC	+	[BPP, GEA, SM]	Strong
+RcsB	rarA	+	[GEA, HIBSCS]	Weak
+RcsB	rpoE	+	[BPP, HIBSCS, SM]	Strong
+RcsB	rprA	+	[GEA, HIBSCS, SM]	Strong
+RcsB	rseA	+	[BPP, HIBSCS, SM]	Strong
+RcsB	rseB	+	[BPP, HIBSCS, SM]	Strong
+RcsB	rseC	+	[BPP, HIBSCS, SM]	Strong
+RcsB	safA	+	[GEA]	Weak
+RcsB	sra	+	[BPP, GEA]	Strong
+RcsB	ydeO	+	[GEA]	Weak
+RcsB	ydeP	+	[BPP, GEA]	Strong
+RcsB	yhiD	+	[GEA]	Weak
+RcsB-BglJ	bglB	+	[AIBSCS, GEA, HIBSCS, SM]	Strong
+RcsB-BglJ	bglF	+	[AIBSCS, GEA, HIBSCS, SM]	Strong
+RcsB-BglJ	bglG	+	[AIBSCS, GEA, HIBSCS, SM]	Strong
+RcsB-BglJ	leuO	+	[GEA, HIBSCS, SM]	Strong
+RcsB-BglJ	molR_1	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	sfsB	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	yecT	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ygiZ	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	yidL	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ykiA	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ynbA	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ynbB	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ynbC	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ynbD	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	ynjI	+	[AIBSCS, GEA]	Weak
+RcsB-BglJ	yqhG	+	[AIBSCS, GEA]	Weak
+RelB	hokD	-	[BPP, GEA, HIBSCS]	Strong
+RelB	relB	-	[BPP, GEA, HIBSCS]	Strong
+RelB	relE	-	[BPP, GEA, HIBSCS]	Strong
+RelB-RelE	hokD	-	[BPP, GEA, HIBSCS]	Strong
+RelB-RelE	relB	-	[BPP, GEA, HIBSCS]	Strong
+RelB-RelE	relE	-	[BPP, GEA, HIBSCS]	Strong
+RhaR	rhaR	+	[BCE, BPP, GEA, HIBSCS]	Strong
+RhaR	rhaS	+	[BCE, BPP, GEA, HIBSCS]	Strong
+RhaS	rhaA	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+RhaS	rhaB	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+RhaS	rhaD	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+RhaS	rhaR	+	[BPP, GEA]	Strong
+RhaS	rhaR	?	[BPP, HIBSCS]	Strong
+RhaS	rhaS	+	[BPP, GEA]	Strong
+RhaS	rhaS	?	[BPP, HIBSCS]	Strong
+RhaS	rhaT	+	[AIBSCS, BPP, GEA, HIBSCS, SM]	Strong
+RhaS	rhaT	?	[BPP, HIBSCS]	Strong
+Rob	acnA	+	[GEA, HIBSCS]	Weak
+Rob	acrA	+	[BPP, GEA]	Strong
+Rob	acrB	+	[BPP, GEA]	Strong
+Rob	acrZ	+	[GEA, IHBCE]	Weak
+Rob	aslB	+	[GEA]	Weak
+Rob	fumC	+	[BPP, GEA, IEP]	Strong
+Rob	inaA	+	[BPP, GEA, HIBSCS]	Strong
+Rob	ldtB	+	[GEA]	Weak
+Rob	marA	+	[BPP, GEA, HIBSCS, SM]	Strong
+Rob	marB	+	[BPP, GEA, HIBSCS, SM]	Strong
+Rob	marR	+	[BPP, GEA, HIBSCS, SM]	Strong
+Rob	micF	+	[BPP, GEA, HIBSCS]	Strong
+Rob	mltF	+	[GEA]	Weak
+Rob	nfo	+	[GEA, HIBSCS]	Weak
+Rob	nfsA	+	[GEA, HIBSCS]	Weak
+Rob	nfsB	+	[GEA, HIBSCS]	Weak
+Rob	rimK	+	[GEA, HIBSCS]	Weak
+Rob	rob	-	[BPP, GEA, HIBSCS]	Strong
+Rob	sodA	+	[HIBSCS]	Weak
+Rob	tolC	+	[AIBSCS, GEA]	Weak
+Rob	ybjC	+	[GEA, HIBSCS]	Weak
+Rob	ybjN	+	[GEA, HIBSCS]	Weak
+Rob	ygiA	+	[AIBSCS, GEA]	Weak
+Rob	ygiB	+	[AIBSCS, GEA]	Weak
+Rob	ygiC	+	[AIBSCS, GEA]	Weak
+Rob	zwf	+	[BPP]	Strong
+RstA	asr	+	[BPP, GEA, HIBSCS]	Strong
+RstA	csgD	-	[BPP, GEA, HIBSCS]	Strong
+RstA	csgE	-	[BPP, GEA, HIBSCS]	Strong
+RstA	csgF	-	[BPP, GEA, HIBSCS]	Strong
+RstA	csgG	-	[BPP, GEA, HIBSCS]	Strong
+RstA	narG	+	[HIBSCS]	Weak
+RstA	narH	+	[HIBSCS]	Weak
+RstA	narI	+	[HIBSCS]	Weak
+RstA	narJ	+	[HIBSCS]	Weak
+RstA	ompF	-	[HIBSCS, NTAS]	Weak
+RtcR	rtcA	+	[GEA]	Weak
+RtcR	rtcB	+	[GEA]	Weak
+RutR	carA	+	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	carB	+	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	fepB	-	[AIBSCS, BPP, GEA]	Strong
+RutR	gadW	-	[BPP, GEA]	Strong
+RutR	gadX	-	[BPP, GEA]	Strong
+RutR	gloA	-	[AIBSCS, BPP, GEA]	Strong
+RutR	nemA	-	[AIBSCS, BPP, GEA]	Strong
+RutR	nemR	-	[AIBSCS, BPP, GEA]	Strong
+RutR	pdeR	-	[GEA]	Weak
+RutR	rutA	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutB	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutC	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutD	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutE	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutF	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutG	-	[AIBSCS, BPP, GEA, SM]	Strong
+RutR	rutR	-	[AIBSCS, BPP, GEA, SM]	Strong
+SdiA	ftsA	-	[BPP, GEA]	Strong
+SdiA	ftsQ	+	[BPP, GEA]	Strong
+SdiA	ftsQ	-	[BPP, GEA]	Strong
+SdiA	ftsZ	-	[BPP, GEA]	Strong
+SdiA	gadW	+	[GEA]	Weak
+SdiA	ydiV	+	[AIBSCS, BPP, GEA]	Strong
+SgrR	alaC	+	[GEA, HIBSCS, SM]	Strong
+SgrR	setA	+	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	sgrR	-	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	sgrS	+	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	sgrT	+	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	sroA	-	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	tbpA	-	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	thiP	-	[BPP, GEA, HIBSCS, SM]	Strong
+SgrR	thiQ	-	[BPP, GEA, HIBSCS, SM]	Strong
+SlyA	hlyE	+	[BPP, GEA]	Strong
+SoxR	fumC	+	[BPP, GEA]	Strong
+SoxR	soxR	-	[BPP, GEA]	Strong
+SoxR	soxS	+	[BPP, GEA]	Strong
+SoxS	acnA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	acrA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	acrB	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	acrZ	+	[GEA, IHBCE]	Weak
+SoxS	fldA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	fldB	+	[GEA, HIBSCS]	Weak
+SoxS	fpr	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	fumC	+	[BPP, GEA]	Strong
+SoxS	fur	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	inaA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	marA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	marB	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	marR	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	micF	+	[BCE, BPP]	Strong
+SoxS	nfo	+	[BCE, GEA, HIBSCS]	Weak
+SoxS	nfsA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	nfsB	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	ompN	+	[BPP, GEA, HIBSCS, SM]	Strong
+SoxS	pgi	+	[GEA, HIBSCS]	Weak
+SoxS	poxB	+	[GEA, HIBSCS]	Weak
+SoxS	pqiA	+	[BPP, GEA, HIBSCS, SM]	Strong
+SoxS	pqiB	+	[BPP, GEA, HIBSCS, SM]	Strong
+SoxS	ptsG	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	ribA	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	rimK	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	rob	-	[BPP, HIBSCS]	Strong
+SoxS	sodA	+	[BCE, BPP, GEA, HIBSCS]	Strong
+SoxS	soxS	-	[BPP, GEA]	Strong
+SoxS	tolC	+	[AIBSCS, GEA]	Weak
+SoxS	uof	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	waaY	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	waaZ	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	ybjC	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	ybjN	+	[BPP, GEA, HIBSCS]	Strong
+SoxS	ydbK	+	[BPP, GEA, HIBSCS, SM]	Strong
+SoxS	ygiA	+	[AIBSCS, GEA]	Weak
+SoxS	ygiB	+	[AIBSCS, GEA]	Weak
+SoxS	ygiC	+	[AIBSCS, GEA]	Weak
+SoxS	zinT	+	[GEA]	Weak
+SoxS	zwf	+	[BPP, GEA, HIBSCS, SM]	Strong
+StpA	bglB	-	[GEA]	Weak
+StpA	bglF	-	[GEA]	Weak
+StpA	bglG	-	[GEA]	Weak
+StpA	fau	-	[BPP, GEA]	Strong
+StpA	leuO	-	[GEA]	Weak
+StpA	ssrS	-	[BPP, GEA]	Strong
+StpA	stpA	-	[GEA]	Weak
+SutR	cysE	-	[BPP, GEA]	Strong
+SutR	fliA	-	[AIBSCS, BPP, GEA]	Strong
+SutR	fliZ	-	[AIBSCS, BPP, GEA]	Strong
+SutR	sutR	+	[BPP, GEA, HIBSCS]	Strong
+SutR	sutR	-	[BPP, GEA, HIBSCS]	Strong
+SutR	tcyJ	-	[AIBSCS, BPP, GEA]	Strong
+TdcA	tdcA	+	[BCE, GEA, SM]	Strong
+TdcA	tdcB	+	[BCE, GEA, SM]	Strong
+TdcA	tdcC	+	[BCE, GEA, SM]	Strong
+TdcA	tdcD	+	[BCE, GEA, SM]	Strong
+TdcA	tdcE	+	[BCE, GEA, SM]	Strong
+TdcA	tdcF	+	[BCE, GEA, SM]	Strong
+TdcA	tdcG	+	[BCE, GEA, SM]	Strong
+TdcR	tdcA	+	[BCE, SM]	Strong
+TdcR	tdcB	+	[BCE, SM]	Strong
+TdcR	tdcC	+	[BCE, SM]	Strong
+TdcR	tdcD	+	[BCE, SM]	Strong
+TdcR	tdcE	+	[BCE, SM]	Strong
+TdcR	tdcF	+	[BCE, SM]	Strong
+TdcR	tdcG	+	[BCE, SM]	Strong
+TorR	gadA	-	[AIBSCS, GEA]	Weak
+TorR	gadX	-	[AIBSCS, GEA]	Weak
+TorR	hdeA	+	[AIBSCS, GEA]	Weak
+TorR	hdeB	+	[AIBSCS, GEA]	Weak
+TorR	tnaA	+	[BPP, GEA]	Strong
+TorR	tnaB	+	[BPP, GEA]	Strong
+TorR	tnaC	+	[BPP, GEA]	Strong
+TorR	torA	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+TorR	torC	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+TorR	torD	+	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+TorR	torR	-	[BCE, BPP, GEA, HIBSCS, SM]	Strong
+TorR	yhiD	+	[AIBSCS, GEA]	Weak
+TreR	treB	-	[BPP, GEA, HIBSCS]	Strong
+TreR	treC	-	[BPP, GEA, HIBSCS]	Strong
+TrpR	aroH	-	[BPP, GEA, HIBSCS]	Strong
+TrpR	aroL	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	aroM	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	mtr	-	[BPP, GEA, HIBSCS]	Strong
+TrpR	trpA	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	trpB	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	trpC	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	trpD	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	trpE	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	trpL	-	[BPP, GEA, HIBSCS, SM]	Strong
+TrpR	trpR	-	[BPP, GEA, HIBSCS]	Strong
+TrpR	yaiA	-	[BPP, GEA, HIBSCS, SM]	Strong
+TyrR	aroF	-	[GEA, HIBSCS, SM]	Strong
+TyrR	aroG	-	[BPP, HIBSCS, SM]	Strong
+TyrR	aroL	-	[BPP, GEA, SM]	Strong
+TyrR	aroM	-	[BPP, GEA, SM]	Strong
+TyrR	aroP	-	[BPP, GEA, HIBSCS, SM]	Strong
+TyrR	folA	+	[BPP, GEA, HIBSCS, SM]	Strong
+TyrR	mtr	+	[BPP, GEA, HIBSCS, SM]	Strong
+TyrR	tyrA	-	[GEA, HIBSCS, SM]	Strong
+TyrR	tyrB	-	[BPP, GEA, HIBSCS, SM]	Strong
+TyrR	tyrP	+	[BCE, BPP, GEA, SM]	Strong
+TyrR	tyrP	-	[BCE, BPP, GEA, SM]	Strong
+TyrR	tyrR	-	[GEA, HIBSCS]	Weak
+TyrR	yaiA	-	[BPP, GEA, SM]	Strong
+UhpA	uhpT	+	[BCE, BPP, GEA, SM]	Strong
+UidR	uidA	-	[GEA]	Weak
+UidR	uidB	-	[GEA]	Weak
+UidR	uidC	-	[GEA]	Weak
+UidR	uidR	-	[GEA]	Weak
+UlaR	ulaA	-	[BPP, GEA, SM]	Strong
+UlaR	ulaB	-	[BPP, GEA, SM]	Strong
+UlaR	ulaC	-	[BPP, GEA, SM]	Strong
+UlaR	ulaD	-	[BPP, GEA, SM]	Strong
+UlaR	ulaE	-	[BPP, GEA, SM]	Strong
+UlaR	ulaF	-	[BPP, GEA, SM]	Strong
+UlaR	ulaG	-	[BPP, GEA]	Strong
+UvrY	csrB	+	[BPP, GEA]	Strong
+UvrY	csrC	+	[BPP, GEA]	Strong
+UvrY	luxS	+	[BPP, GEA]	Strong
+UvrY	uhpT	+	[BPP, GEA]	Strong
+UvrY	ydeP	+	[BPP, GEA]	Strong
+UxuR	exuR	-	[HIBSCS]	Weak
+UxuR	gntP	-	[BPP, GEA, HIBSCS, SM]	Strong
+UxuR	lgoR	-	[BPP, GEA]	Strong
+UxuR	uidA	-	[GEA, HIBSCS]	Weak
+UxuR	uidB	-	[GEA, HIBSCS]	Weak
+UxuR	uidC	-	[GEA, HIBSCS]	Weak
+UxuR	uxuA	-	[BPP, GEA, HIBSCS, SM]	Strong
+UxuR	uxuB	-	[BPP, GEA, HIBSCS, SM]	Strong
+UxuR	uxuR	-	[AIBSCS, GEA]	Weak
+XapR	xapA	+	[GEA, HIBSCS]	Weak
+XapR	xapB	+	[GEA, HIBSCS]	Weak
+XylR	araC	-	[AIBSCS, BPP, GEA]	Strong
+XylR	xylA	+	[BPP, GEA, HIBSCS]	Strong
+XylR	xylB	+	[BPP, GEA, HIBSCS]	Strong
+XylR	xylF	+	[BPP, GEA, HIBSCS]	Strong
+XylR	xylG	+	[BPP, GEA, HIBSCS]	Strong
+XylR	xylH	+	[BPP, GEA, HIBSCS]	Strong
+XylR	xylR	+	[BPP, GEA, HIBSCS]	Strong
+YdeO	appA	+	[BPP, GEA, IHBCE]	Strong
+YdeO	appB	+	[BPP, GEA, IHBCE]	Strong
+YdeO	appC	+	[BPP, GEA, IHBCE]	Strong
+YdeO	appX	+	[BPP, GEA, IHBCE]	Strong
+YdeO	dctR	+	[BPP, GEA, IHBCE]	Strong
+YdeO	gadE	+	[BPP, GEA, IHBCE]	Strong
+YdeO	gadF	+	[BPP, GEA, IHBCE]	Strong
+YdeO	gadW	+	[BPP, GEA, IHBCE]	Strong
+YdeO	hyaA	+	[BPP, GEA, IHBCE]	Strong
+YdeO	hyaB	+	[BPP, GEA, IHBCE]	Strong
+YdeO	hyaC	+	[BPP, GEA, IHBCE]	Strong
+YdeO	hyaD	+	[BPP, GEA, IHBCE]	Strong
+YdeO	hyaE	+	[BPP, GEA, IHBCE]	Strong
+YdeO	hyaF	+	[BPP, GEA, IHBCE]	Strong
+YdeO	mdtE	+	[BPP, GEA]	Strong
+YdeO	mdtF	+	[BPP, GEA]	Strong
+YdeO	safA	-	[GEA]	Weak
+YdeO	slp	+	[BPP, GEA, IHBCE]	Strong
+YdeO	uspD	+	[BPP, GEA, IHBCE]	Strong
+YdeO	ydeO	-	[GEA]	Weak
+YdeO	yiiS	+	[BPP, GEA, IHBCE]	Strong
+YedW	cusA	+	[HIBSCS]	Weak
+YedW	cusB	+	[HIBSCS]	Weak
+YedW	cusC	+	[HIBSCS]	Weak
+YedW	cusF	+	[HIBSCS]	Weak
+YedW	cusR	+	[HIBSCS]	Weak
+YedW	cusS	+	[HIBSCS]	Weak
+YedW	cyoA	-	[GEA, HIBSCS]	Weak
+YedW	cyoB	-	[GEA, HIBSCS]	Weak
+YedW	cyoC	-	[GEA, HIBSCS]	Weak
+YedW	cyoD	-	[GEA, HIBSCS]	Weak
+YedW	cyoE	-	[GEA, HIBSCS]	Weak
+YedW	yedX	+	[BPP, GEA, HIBSCS]	Strong
+YefM	yefM	-	[BPP, GEA, HIBSCS]	Strong
+YefM	yoeB	-	[BPP, GEA, HIBSCS]	Strong
+YefM-YoeB	yefM	-	[BPP, GEA, HIBSCS]	Strong
+YefM-YoeB	yoeB	-	[BPP, GEA, HIBSCS]	Strong
+YehT	yjiY	+	[BPP, GEA, SM]	Strong
+YeiL	yeiL	+	[GEA]	Weak
+YiaJ	lyxK	-	[BCE, GEA]	Weak
+YiaJ	sgbE	-	[BCE, GEA]	Weak
+YiaJ	sgbH	-	[BCE, GEA]	Weak
+YiaJ	sgbU	-	[BCE, GEA]	Weak
+YiaJ	yiaJ	-	[BCE, GEA]	Weak
+YiaJ	yiaK	-	[BCE, GEA]	Weak
+YiaJ	yiaL	-	[BCE, GEA]	Weak
+YiaJ	yiaM	-	[BCE, GEA]	Weak
+YiaJ	yiaN	-	[BCE, GEA]	Weak
+YiaJ	yiaO	-	[BCE, GEA]	Weak
+YjjQ	dgcN	-	[AIBSCS, GEA]	Weak
+YjjQ	flhC	-	[AIBSCS, GEA, SM]	Strong
+YjjQ	flhD	-	[AIBSCS, GEA, SM]	Strong
+YjjQ	gfcA	-	[AIBSCS, GEA, SM]	Strong
+YjjQ	ompC	-	[AIBSCS, GEA]	Weak
+YjjQ	ybhL	-	[AIBSCS, GEA]	Weak
+YjjQ	yciX	-	[AIBSCS, GEA]	Weak
+YjjQ	yfiB	-	[AIBSCS, GEA]	Weak
+YjjQ	yfiR	-	[AIBSCS, GEA]	Weak
+YjjQ	ymiA	-	[AIBSCS, GEA]	Weak
+YpdB	yhjX	+	[BPP, SM]	Strong
+YqhC	dkgA	+	[BPP, GEA, SM]	Strong
+YqhC	yqhD	+	[BPP, GEA, SM]	Strong
+YqjI	yqjH	-	[BPP, GEA, HIBSCS, SM]	Strong
+YqjI	yqjI	-	[BPP, GEA, HIBSCS, SM]	Strong
+ZntR	zntA	+	[BPP, SM]	Strong
+ZraR	zraP	+	[BPP, GEA, HIBSCS]	Strong
+ZraR	zraR	+	[BPP, GEA, HIBSCS]	Strong
+ZraR	zraS	+	[BPP, GEA, HIBSCS]	Strong
+Zur	ykgM	-	[AIBSCS, GEA, HIBSCS]	Weak
+Zur	ykgO	-	[AIBSCS, GEA, HIBSCS]	Weak
+Zur	zinT	-	[AIBSCS]	Weak
+Zur	znuA	-	[BPP, GEA, HIBSCS]	Strong
+Zur	znuB	-	[BPP, GEA, HIBSCS]	Strong
+Zur	znuC	-	[BPP, GEA, HIBSCS]	Strong
