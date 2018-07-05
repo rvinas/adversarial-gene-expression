@@ -1,16 +1,26 @@
 import numpy as np
 import pandas as pd
+import pickle
 
 DATA_DIR = '../data/E_coli_v4_Build_6'
+SYNTHETIC_DIR = '../data/artificial'
 SUBSET_DIR = '../data/subsets'
 REGULATORY_NET_DIR = '../data/regulatory_networks'
 DEFAULT_DATAFILE = 'E_coli_v4_Build_6_chips907probes4297.tab'
 PROBE_DESCRIPTIONS = 'E_coli_v4_Build_6.probe_set_descriptions'
-DEFAULT_SUBSET = 'crp'
+DEFAULT_REGULATORY_INTERACTIONS = 'regulatory_interactions'
 DEFAULT_TF_TG = 'tf_tg'
+DEFAULT_ROOT_GENE = 'CRP'
+DEFAULT_EVIDENCE = 'Weak'
 
 
 def _parse(lines):
+    """
+    Parse lines from expression file
+    :param lines: list of lines. First row and column have the sample and the gene names, respectively.
+    :return: expression np.array with Shape=(nb_samples, nb_genes), gene names with Shape=(nb_genes,) and sample
+             names with Shape=(nb_samples,)
+    """
     # Parse lines containing gene expressions
     lines_iter = iter(lines)
     line = next(lines_iter, None)
@@ -30,6 +40,11 @@ def _parse(lines):
 
 
 def _transform_to_gene_symbols(gene_names):
+    """
+    Transforms list of gene names to gene symbols (more common names) according to PROBE_DESCRIPTIONS
+    :param gene_names: list of gene names with Shape=(nb_genes,)
+    :return: list of gene symbols (lowercase) for each gene name, with Shape=(nb_genes,)
+    """
     # Transform gene names
     descr = pd.read_csv('{}/{}'.format(DATA_DIR, PROBE_DESCRIPTIONS),
                         delimiter='\t')
@@ -40,8 +55,80 @@ def _transform_to_gene_symbols(gene_names):
     return [symbols_dict[name].lower() for name in gene_names]
 
 
+def _reg_int_df(file_name, minimum_evidence=DEFAULT_EVIDENCE):
+    """
+    Generates Pandas dataframe containing the regulatory interactions, with columns 'tf', 'tg', 'effect',
+    'evidences', 'strength'
+    :param file_name: name of the file where the interactions will be read from. The file has
+           the RegulonDB format
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :return: Pandas dataframe containing the regulatory interactions
+    """
+    # Parse regulatory interactions
+    df = pd.read_csv(file_name,
+                     delimiter='\t',
+                     comment='#',
+                     header=None,
+                     names=['tf', 'tg', 'effect', 'evidences', 'strength'])
 
-def _load_data(name=DEFAULT_DATAFILE, subset=DEFAULT_SUBSET):
+    # Set minimum evidence level
+    accepted_evidences = ['Confirmed']
+    if minimum_evidence.lower() != 'confirmed':
+        accepted_evidences.append('Strong')
+        if minimum_evidence.lower() != 'strong':
+            accepted_evidences.append('Weak')
+    df = df[df['strength'].isin(accepted_evidences)]
+    df['tf'] = df['tf'].str.lower()
+    df['tg'] = df['tg'].str.lower()
+
+    return df
+
+
+def _gene_subset(root_gene, reg_int, minimum_evidence=DEFAULT_EVIDENCE, max_depth=np.inf):
+    """
+    Obtains list of gene symbols of genes that are in the hierarchy of root_gene (genes that are directly or
+    indirectly regulated by root_gene, including root_gene itself).
+    :param root_gene: Gene on top of the hierarchy
+    :param reg_int: Name of the RegulonDB file in SUBSET_DIR where the regulatory interactions will be read from
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param max_depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :return: list of genes in the root_gene hierarchy
+    """
+    # Get dataframe of regulatory interactions
+    file_name = '{}/{}'.format(SUBSET_DIR, reg_int)
+    df = _reg_int_df(file_name, minimum_evidence)
+
+    # Find genes under root_gene in the regulatory network
+    depth = 0
+    gene_set = set()
+    new_gene_set = {root_gene.lower()}
+    while len(gene_set) != len(new_gene_set) and depth <= max_depth:
+        gene_set = new_gene_set
+        df_tfs = df[df['tf'].isin(gene_set)]
+        tgs = df_tfs['tg'].values
+        new_gene_set = gene_set.union(tgs)
+        depth += 1
+
+    return sorted(list(gene_set))
+
+
+def _load_data(name, root_gene=None, reg_int=None, minimum_evidence=None, max_depth=None):
+    """
+    Loads data from the file with the given name in DATA_DIR. Selects genes from the hierarchy of root_gene (genes
+    that are directly or indirectly regulated by root_gene, including root_gene itself) according to RegulonDB file
+    reg_int, selecting only interactions with at least an evidence of minimum_evidence down to a certain level
+    max_depth.
+    :param name: name from file in DATA_DIR containing the expression data
+    :param root_gene: Gene on top of the hierarchy. If None, the full dataset is returned
+    :param reg_int: Name of the RegulonDB file in SUBSET_DIR where the regulatory interactions will be read from
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param max_depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :return: expression np.array with Shape=(nb_samples, nb_genes), gene symbols with Shape=(nb_genes,) and sample
+             names with Shape=(nb_samples,)
+    """
     # Parse data file
     with open('{}/{}'.format(DATA_DIR, name), 'r') as f:
         lines = f.readlines()
@@ -52,14 +139,9 @@ def _load_data(name=DEFAULT_DATAFILE, subset=DEFAULT_SUBSET):
     gene_symbols = _transform_to_gene_symbols(gene_names)
 
     # Select subset of genes
-    if subset is not None:
-        with open('{}/{}'.format(SUBSET_DIR, subset), 'r') as f:
-            gene_subset = f.readline() \
-                .replace(u'\xa0', '') \
-                .rstrip() \
-                .lower() \
-                .split(',')
-            print('Found {} genes in {} subset'.format(len(gene_subset), subset))
+    if root_gene is not None:
+        gene_subset = _gene_subset(root_gene, reg_int, minimum_evidence, max_depth)
+        print('Found {} genes in {} regulatory network'.format(len(gene_subset), root_gene))
         gene_idxs = []
         symb = []
         for gene in gene_subset:
@@ -75,32 +157,99 @@ def _load_data(name=DEFAULT_DATAFILE, subset=DEFAULT_SUBSET):
     return expr, gene_symbols, sample_names
 
 
-def tf_tg_interactions(tf_tg_file=DEFAULT_TF_TG, minimum_evidence='Strong'):
+def tf_tg_interactions(tf_tg_file=DEFAULT_TF_TG, minimum_evidence=DEFAULT_EVIDENCE):
+    """
+    Get dictionary of TF-TG interactions
+    :param tf_tg_file: name of RegulonDB file in REGULATORY_NET_DIR containing the interactions
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :return: dictionary with containing the list of TGs (values) for each TF (keys)
+    """
     # Parse TF-TG regulatory interactions
-    df = pd.read_csv('{}/{}'.format(REGULATORY_NET_DIR, tf_tg_file),
-                     delimiter='\t',
-                     comment='#',
-                     header=None,
-                     names=['tf', 'tg', 'effect', 'evidences', 'strength'])
-
-    # Set minimum evidence level
-    accepted_evidences = ['Confirmed']
-    if minimum_evidence != 'Confirmed':
-        accepted_evidences.append('Strong')
-        if minimum_evidence != 'Strong':
-            accepted_evidences.append('Weak')
+    file_name = '{}/{}'.format(REGULATORY_NET_DIR, tf_tg_file)
+    df = _reg_int_df(file_name, minimum_evidence)
 
     # Select TF-TG interactions with minimum evidence level
-    df = df[df['strength'].isin(accepted_evidences)]
     tf_tg = {}
     for tf, tg in df[['tf', 'tg']].values:
-        tf, tg = tf.lower(), tg.lower()
         if tf in tf_tg:
-            tf_tg[tf].append(tg)
+            if tg not in tf_tg[tf]:
+                tf_tg[tf].append(tg)
         else:
             tf_tg[tf] = [tg]
 
     return tf_tg
+
+
+def get_gene_symbols(name=DEFAULT_DATAFILE):
+    """
+    Returns gene symbols from the file with the given name in DATA_DIR
+    :param name: name from file in DATA_DIR containing the expression data
+    :return: list of gene symbols with Shape=(nb_genes,)
+    """
+    # Parse data file
+    with open('{}/{}'.format(DATA_DIR, name), 'r') as f:
+        lines = f.readlines()
+    expr, gene_names, sample_names = _parse(lines)
+    print('Found {} genes in datafile'.format(len(gene_names)))
+
+    # Transform gene names to gene symbols
+    return _transform_to_gene_symbols(gene_names)
+
+
+def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, max_depth=np.inf,
+                break_loops=True, reg_int=DEFAULT_REGULATORY_INTERACTIONS):
+    """
+    Returns the regulatory network of the genes in gene_symbols.
+    :param gene_symbols: List of genes to be included in the network.
+    :param root_gene: Gene on top of the hierarchy
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param max_depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :param break_loops: Whether to break the loops from lower (or equal) to upper levels in the hierarchy.
+           If True, the resulting network is a Directed Acyclic Graph (DAG).
+    :param reg_int: Name of the RegulonDB file in SUBSET_DIR where the regulatory interactions will be read from
+    :return: list of nodes and dictionary of edges (keys: *from* node, values: dictionary with key *to* node and
+             value regulation type)
+    """
+    # Get dataframe of regulatory interactions
+    file_name = '{}/{}'.format(SUBSET_DIR, reg_int)
+    df = _reg_int_df(file_name, minimum_evidence)
+    df = df[df['tf'].isin(gene_symbols)]
+    df = df[df['tg'].isin(gene_symbols)]
+
+    # Construct network
+    depth = 0
+    nodes = set()
+    nodes_new = {root_gene.lower()}
+    edges = {}
+    while len(nodes) != len(nodes_new) and depth <= max_depth:
+        df_tfs = df[~df['tf'].isin(nodes)]
+        nodes = nodes_new
+        df_tfs = df_tfs[df_tfs['tf'].isin(nodes_new)]
+        tfs = df_tfs['tf'].values
+        tgs = df_tfs['tg'].values
+        reg_types = df_tfs['effect'].values
+        nodes_new = nodes.union(tgs)
+        depth += 1
+        for tf, tg, reg_type in zip(tfs, tgs, reg_types):
+            # We might want to avoid loops. TODO: Take evidence into account?
+            if break_loops and tg in edges:
+                print('Warning: Breaking loop: {}->{}'.format(tf, tg))
+            elif break_loops and tf == tg:
+                print('Warning: Breaking autoregulation loop: {}->{}'.format(tf, tg))
+            else:
+                if tf in edges:
+                    # If edge is present, check if it is necessary to change its regulation type
+                    if tg in edges[tf] and (
+                            (edges[tf][tg] == '+' and reg_type == '-') or (edges[tf][tg] == '-' and reg_type == '+')):
+                        edges[tf][tg] = '+-'
+                    elif tg not in edges[tf]:
+                        edges[tf][tg] = reg_type
+                else:
+                    edges[tf] = {tg: reg_type}
+
+    return nodes, edges
 
 
 def split_replicates(sample_names, split_point=-1):
@@ -131,14 +280,57 @@ def split_replicates(sample_names, split_point=-1):
 
     # Last replicate goes to second set if split_point=-1
     if split_point == -1:
-        indices_second.append(len(sample_names)-1)
+        indices_second.append(len(sample_names) - 1)
 
     assert len(set(indices_first + indices_second)) == len(sample_names)
     return indices_first, indices_second
 
 
-def load_data(name=DEFAULT_DATAFILE, subset=DEFAULT_SUBSET):
-    return _load_data(name, subset)
+def load_data(name=DEFAULT_DATAFILE, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, max_depth=np.inf,
+              reg_int=DEFAULT_REGULATORY_INTERACTIONS):
+    """
+    Loads data from the file with the given name in DATA_DIR. Selects genes from the hierarchy of root_gene (genes
+    that are directly or indirectly regulated by root_gene, including root_gene itself) according to RegulonDB file
+    reg_int, selecting only interactions with at least an evidence of minimum_evidence down to a certain level
+    max_depth.
+    :param name: name from file in DATA_DIR containing the expression data
+    :param root_gene: Gene on top of the hierarchy. If None, the full dataset is returned
+    :param reg_int: Name of the RegulonDB file in SUBSET_DIR where the regulatory interactions will be read from
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param max_depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :return: expression np.array with Shape=(nb_samples, nb_genes), gene symbols with Shape=(nb_genes,) and sample
+             names with Shape=(nb_samples,)
+    """
+    return _load_data(name, root_gene, reg_int, minimum_evidence, max_depth)
+
+
+def save_synthetic(name, expr, gene_symbols):
+    """
+    Saves expression data with Shape=(nb_samples, nb_genes) to pickle file with the given name in SYNTHETIC_DIR.
+    :param name: name of the file in SYNTHETIC_DIR where the expression data will be saved
+    :param expr: np.array of expression data with Shape=(nb_samples, nb_genes)
+    :param gene_symbols: list of gene symbols matching the columns of expr
+    """
+    file = '{}/{}.pkl'.format(SYNTHETIC_DIR, name)
+    data = {'expr': expr,
+            'gene_symbols': gene_symbols}
+    with open(file, 'wb') as f:
+        pickle.dump(data, f)
+
+
+def load_synthetic(name):
+    """
+    Loads expression data from pickle file with the given name (produced by save_synthetic function)
+    :param name: name of the pickle file in SYNTHETIC_DIR containing the expression data
+    :return: np.array of expression with Shape=(nb_samples, nb_genes) and list of gene symbols matching the columns
+    of expr
+    """
+    file = '{}/{}.pkl'.format(SYNTHETIC_DIR, name)
+    with open(file, 'rb') as f:
+        data = pickle.load(f)
+    return data['expr'], data['gene_symbols']
+
 
 if __name__ == '__main__':
     expr, gene_symbols, sample_names = load_data()
@@ -148,4 +340,4 @@ if __name__ == '__main__':
     print(idxs_first)
     print(idxs_second)
     print(len(idxs_first))
-    assert len(set(idxs_first+idxs_second)) == len(sample_names)
+    assert len(set(idxs_first + idxs_second)) == len(sample_names)

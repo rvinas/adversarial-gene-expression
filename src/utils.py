@@ -66,10 +66,10 @@ def compute_tf_tg_corrs(expr, gene_symbols, tf_tg=None):
     tf_tg_corr = []
     tg_tg_corr = []
     for tf, tgs in tf_tg.items():
-        if tf in gene_symbols:
+        tg_idxs = np.array([np.where(gene_symbols == tg)[0] for tg in tgs if tg in gene_symbols]).ravel()
+
+        if tf in gene_symbols and len(tg_idxs)>0:
             # TG-TG correlations
-            present_tgs = [tg for tg in tgs if tg in gene_symbols]
-            tg_idxs = np.searchsorted(gene_symbols, present_tgs)
             expr_tgs = expr[:, tg_idxs]
             corr = correlations_list(expr_tgs, expr_tgs)
             tg_tg_corr += corr.tolist()
@@ -188,14 +188,14 @@ def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
     # non-target genes.
     active_tfs = []
     for tf, tgs in tf_tg.items():
-        if tf in gene_symbols:
+        tg_idxs = np.array([np.where(gene_symbols == tg)[0] for tg in tgs if tg in gene_symbols]).ravel()
+
+        if tf in gene_symbols and len(tg_idxs)>0:
             # Find expressions of TG regulated by TF
-            present_tgs = [tg for tg in tgs if tg in gene_symbols]
-            tg_idxs = np.searchsorted(gene_symbols, present_tgs)
             expr_tgs = expr_norm[:, tg_idxs]
 
             # Find expressions of other genes
-            non_tg_idxs = list(set(range(nb_genes)) - set(tg_idxs))
+            non_tg_idxs = list(set(range(nb_genes)) - set(tg_idxs.tolist()))
             expr_non_tgs = expr_norm[:, non_tg_idxs]
 
             # Compute Wilcoxon's p-value for each sample
@@ -216,7 +216,7 @@ def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
     values = active_tfs
     bins = np.logspace(-10, 1, 20, base=2)
     bins[0] = 0
-    fig, ax = plt.subplots()
+    ax = plt.gca()
     plt.hist(values, bins=bins)
     ax.set_xscale('log', basex=2)
     ax.set_xlim(2 ** -10, 1)
@@ -224,4 +224,3 @@ def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
     ax.set_ylabel('Density')
     # from matplotlib.ticker import FormatStrFormatter
     # ax.xaxis.set_major_formatter(FormatStrFormatter('%.4f'))
-    plt.show()
