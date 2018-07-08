@@ -2,7 +2,7 @@ from keras.layers import Input, Dense, Dropout
 from keras.models import Model
 from keras.optimizers import Adam
 import numpy as np
-from data_pipeline import load_data, save_synthetic, reg_network
+from data_pipeline import load_data, save_synthetic, reg_network, split_train_test
 from utils import *
 from keras import backend as K
 from keras.engine.topology import Layer
@@ -140,9 +140,9 @@ class BioGAN():
     def build_generator(self):
         # Build generator
         noise = Input(shape=(self._latent_dim,))
-        h = Dense(200, activation='relu')(noise)
+        h = Dense(400, activation='relu')(noise)
         h = Dense(self._nb_genes, activation='tanh')(h)
-        # h = GRI(self._root_node, self._nodes, self._edges)(noise)
+        # h = GRI(self._root_node, self._nodes, self._edges)(h)
         model = Model(inputs=noise, outputs=h)
         model.summary()
         return model
@@ -151,6 +151,7 @@ class BioGAN():
         # Build discriminator
         expressions_input = Input(shape=(self._nb_genes,))
         h = Dense(20, activation='relu')(expressions_input)
+        h = Dropout(0.2)(h)
         h = Dense(1, activation='sigmoid')(h)
         model = Model(inputs=expressions_input, outputs=h)
         model.summary()
@@ -199,24 +200,35 @@ class BioGAN():
 
 
 if __name__ == '__main__':
+    # Load data
     root_gene = 'CRP'
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
                                                  minimum_evidence=minimum_evidence,
                                                  max_depth=max_depth)
+    # Split data into train and test sets
+    train_idxs, test_idxs = split_train_test(sample_names)
+    expr_train = expr[train_idxs, :]
+    expr_test = expr[test_idxs, :]
+
+    # Get regulatory network
     nodes, edges = reg_network(root_gene=root_gene,
                                gene_symbols=gene_symbols,
                                minimum_evidence=minimum_evidence,
                                max_depth=max_depth,
                                break_loops=True)
     root_node = root_gene.lower()
+
+    # Standardize data
     mean = np.mean(expr, axis=0)
     std = np.std(expr, axis=0)
-    expr = (expr - mean) / std
-    biogan = BioGAN(expr, root_node, gene_symbols, edges)
+    expr_train = (expr_train - mean) / std
+
+    # Train GAN
+    biogan = BioGAN(expr_train, root_node, gene_symbols, edges)
     biogan.train(epochs=10000, batch_size=32, save_interval=50)
-    s_expr = biogan.generate_batch(expr.shape[0])
+    s_expr = biogan.generate_batch(expr_test.shape[0])
     s_expr = std * s_expr + mean
     file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
     save_synthetic(file_name, s_expr, gene_symbols)

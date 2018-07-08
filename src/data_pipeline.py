@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import pickle
+import random
 
 DATA_DIR = '../data/E_coli_v4_Build_6'
 SYNTHETIC_DIR = '../data/artificial'
@@ -286,6 +287,50 @@ def split_replicates(sample_names, split_point=-1):
     return indices_first, indices_second
 
 
+def split_train_test(sample_names, train_rate=0.75, seed=0):
+    """
+    Split data into a train and a test sets keeping replicates within the same set
+    :param sample_names: list of sample names
+    :param train_rate: percentage of training samples
+    :param seed: random seed
+    :return: lists of train and test sample indices
+    """
+    # Set random seed
+    random.seed(seed)
+
+    # Find replicate segments
+    replicate_ranges = {}
+    for i, name in enumerate(sample_names):
+        repl_nb = int(name.split('_')[-1][1:])
+        n = len(replicate_ranges)
+        if repl_nb == 1:  # First replicate sample
+            replicate_ranges[n] = {'start': i, 'end': i}
+        else:
+            replicate_ranges[n-1]['end'] = i
+
+    # Permute unique samples
+    unique_sample_idxs = list(replicate_ranges.keys())
+    random.shuffle(unique_sample_idxs)
+
+    # Split data
+    nb_unique = len(unique_sample_idxs)
+    split_point = int(train_rate*nb_unique)
+    unique_train = unique_sample_idxs[:split_point]
+
+    # Recover replicates
+    train_idxs = []
+    test_idxs = []
+    for i in range(nb_unique):
+        for j in range(replicate_ranges[i]['start'], replicate_ranges[i]['end']+1):
+            if i in unique_train:
+                train_idxs.append(j)
+            else:
+                test_idxs.append(j)
+
+    assert len(set(train_idxs + test_idxs)) == len(sample_names)
+    return train_idxs, test_idxs
+
+
 def load_data(name=DEFAULT_DATAFILE, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, max_depth=np.inf,
               reg_int=DEFAULT_REGULATORY_INTERACTIONS):
     """
@@ -341,3 +386,7 @@ if __name__ == '__main__':
     print(idxs_second)
     print(len(idxs_first))
     assert len(set(idxs_first + idxs_second)) == len(sample_names)
+
+    idxs_train, idxs_test = split_train_test(sample_names, train_rate=0.7)
+    print(idxs_train)
+    print(idxs_test)

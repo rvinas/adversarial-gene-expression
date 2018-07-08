@@ -4,7 +4,14 @@ import seaborn as sns
 from data_pipeline import tf_tg_interactions
 import scipy.stats
 from statsmodels.stats.multitest import multipletests
+from clustering import Cluster
+from sklearn.metrics import silhouette_score
+from scipy.cluster.hierarchy import linkage, cophenet
 
+
+# ---------------------
+# CORRELATION UTILITIES
+# ---------------------
 
 def pearson_correlation(x, y):
     """
@@ -23,6 +30,16 @@ def pearson_correlation(x, y):
     x_ = standardize(x)
     y_ = standardize(y)
     return np.dot(x_.T, y_) / x.shape[0]
+
+
+def cosine_similarity(x, y):
+    """
+    Computes cosine similarity between vectors x and y
+    :param x: Array of numbers. Shape=(n,)
+    :param y: Array of numbers. Shape=(n,)
+    :return: cosine similarity between vectors
+    """
+    return np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y))
 
 
 def upper_diag_list(m_):
@@ -51,13 +68,14 @@ def correlations_list(x, y, corr_fun=pearson_correlation):
     return upper_diag_list(corr)
 
 
-def compute_tf_tg_corrs(expr, gene_symbols, tf_tg=None):
+def compute_tf_tg_corrs(expr, gene_symbols, tf_tg=None, flat=True):
     """
     Computes the lists of TF-TG and TG-TG correlations
     :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
     :param gene_symbols: list of gene symbols matching the expr matrix. Shape=(nb_genes,)
     :param tf_tg: dict with TF symbol as key and list of TGs' symbols as value
-    :return: flat np.array of TF-TG correlations and flat np.array of TG-TG correlations
+    :param flat: whether to return flat lists
+    :return: lists of TF-TG and TG-TG correlations, respectively
     """
     if tf_tg is None:
         tf_tg = tf_tg_interactions()
@@ -68,22 +86,203 @@ def compute_tf_tg_corrs(expr, gene_symbols, tf_tg=None):
     for tf, tgs in tf_tg.items():
         tg_idxs = np.array([np.where(gene_symbols == tg)[0] for tg in tgs if tg in gene_symbols]).ravel()
 
-        if tf in gene_symbols and len(tg_idxs)>0:
+        if tf in gene_symbols and len(tg_idxs) > 0:
             # TG-TG correlations
             expr_tgs = expr[:, tg_idxs]
             corr = correlations_list(expr_tgs, expr_tgs)
-            tg_tg_corr += corr.tolist()
+            tg_tg_corr += [corr.tolist()]
 
             # TF-TG correlations
             tf_idx = np.argwhere(gene_symbols == tf)[0]
             expr_tf = expr[:, tf_idx]
-            corr = correlations_list(expr_tf[:, None], expr_tgs)
-            tf_tg_corr += corr.tolist()
+            corr = pearson_correlation(expr_tf[:, None], expr_tgs).ravel()
+            tf_tg_corr += [corr.tolist()]
 
-    return np.array(tf_tg_corr), np.array(tg_tg_corr)
+    # Flatten list
+    if flat:
+        tf_tg_corr = [c for corr_l in tf_tg_corr for c in corr_l]
+        tg_tg_corr = [c for corr_l in tg_tg_corr for c in corr_l]
+
+    return tf_tg_corr, tg_tg_corr
 
 
+def gamma_coefficients(expr_x, expr_z):
+    """
+    Compute gamma coefficients for two given expression matrices
+    :param expr_x: matrix of gene expressions. Shape=(nb_samples_1, nb_genes)
+    :param expr_z: matrix of gene expressions. Shape=(nb_samples_2, nb_genes)
+    :return: Gamma(D^X, D^Z), Gamma(D^X, T^X), Gamma(D^Z, T^Z), Gamma(T^X, T^Z)
+             where D^X and D^Z are the distance matrices of expr_x and expr_z (respectively),
+             and T^X and T^Z are the dendrogrammatic distance matrices of expr_x and expr_z (respectively).
+             Gamma(A, B) is a function that computes the correlation between the elements in the upper-diagonal
+             of A and B.
+    """
+    # Compute Gamma(D^X, D^Z)
+    dists_x = 1 - correlations_list(expr_x, expr_x)
+    dists_z = 1 - correlations_list(expr_z, expr_z)
+    gamma_dx_dz = pearson_correlation(dists_x, dists_z)
+
+    # Compute Gamma(D^X, T^X)
+    xl_matrix = hierarchical_clustering(expr_x)
+    gamma_dx_tx, _ = cophenet(xl_matrix, dists_x)
+
+    # Compute Gamma(D^Z, T^Z)
+    zl_matrix = hierarchical_clustering(expr_z)
+    gamma_dz_tz, _ = cophenet(zl_matrix, dists_z)
+
+    # Compute Gamma(T^X, T^Z)
+    gamma_tx_tz = compare_cophenetic(xl_matrix, zl_matrix)
+
+    return gamma_dx_dz, gamma_dx_tx, gamma_dz_tz, gamma_tx_tz
+
+
+def psi_coefficient(tf_tg_x, tf_tg_z, weights_type='nb_genes'):
+    """
+    Computes the psi TF-TG correlation coefficient
+    :param tf_tg_x: list of TF-TG correlations, returned by compute_tf_tg_corrs
+    :param tf_tg_z: list of TF-TG correlations, returned by compute_tf_tg_corrs
+    :param weights_type: for 'nb_genes' the weights for each TF are proportional to the number
+                    target genes that it regulates. For 'ones' the weights are all one.
+    :return: psi correlation coefficient
+    """
+    weights_sum = 0
+    total_sum = 0
+    for cx, cz in zip(tf_tg_x, tf_tg_z):
+        weight = 1
+        if weights_type == 'nb_genes':
+            weight = len(cx)  # nb. of genes regulated by the TF
+        weights_sum += weight
+        cx = np.array(cx)
+        cz = np.array(cz)
+        total_sum += weight * cosine_similarity(cx, cz)  # pearson_correlation(cx, cz)  # TODO: Convert cx and cz to distances?
+    return total_sum / weights_sum
+
+
+def theta_coefficient(tg_tg_x, tg_tg_z, weights_type='nb_genes'):
+    """
+    Computes the theta TG-TG correlation coefficient
+    :param tf_tg_x: list of TG-TG correlations, returned by compute_tf_tg_corrs
+    :param tf_tg_z: list of TG-TG correlations, returned by compute_tf_tg_corrs
+    :param weights_type: for 'nb_genes' the weights for each TF are proportional to the number
+                    target genes that it regulates. For 'ones' the weights are all one.
+    :return: theta correlation coefficient
+    """
+    weights_sum = 0
+    total_sum = 0
+    for cx, cz in zip(tg_tg_x, tg_tg_z):
+        if len(cx) > 0:  # In case a TF only regulates one gene, the list will be empty
+            weight = 1
+            if weights_type == 'nb_genes':
+                weight = len(cx)  # nb. of genes regulated by the TF
+            weights_sum += weight
+            cx = np.array(cx)
+            cz = np.array(cz)
+            total_sum += weight * cosine_similarity(cx, cz)  # TODO: Convert cx and cz to distances?
+    return total_sum / weights_sum
+
+
+# ---------------------
+# CLUSTERING UTILITIES
+# ---------------------
+
+
+def hierarchical_clustering(data, corr_fun=pearson_correlation):
+    """
+    Performs hierarchical clustering to cluster genes according to a gene similarity
+    metric.
+    Reference: Cluster analysis and display of genome-wide expression patterns
+    :param data: numpy array. Shape=(nb_samples, nb_genes)
+    :param corr_fun: function that computes the pairwise correlations between each pair
+                     of genes in data
+    :return scipy linkage matrix
+    """
+    # Perform hierarchical clustering
+    y = 1 - correlations_list(data, data, corr_fun)
+    l_matrix = linkage(y, 'complete')  # 'correlation'
+    return l_matrix
+
+
+def compute_silhouette(data, l_matrix):
+    """
+    Computes silhouette scores of the dendrogram given by l_matrix
+    :param data: numpy array. Shape=(nb_samples, nb_genes)
+    :param l_matrix: Scipy linkage matrix. Shape=(nb_genes-1, 4)
+    :return: list of Silhouette scores
+    """
+    nb_samples, nb_genes = data.shape
+
+    # Form dendrogram and compute Silhouette score at each node
+    clusters = {i: Cluster(index=i) for i in range(nb_genes)}
+    scores = []
+    for i, z in enumerate(l_matrix):
+        c1, c2, dist, n_elems = z
+        clusters[nb_genes + i] = Cluster(c_left=clusters[c1],
+                                         c_right=clusters[c2])
+        c1_indices = clusters[c1].indices
+        c2_indices = clusters[c2].indices
+        labels = [0] * len(c1_indices) + [1] * len(c2_indices)
+        if len(labels) == 2:
+            scores.append(0)
+        else:
+            expr = data[:, clusters[nb_genes + i].indices]
+            m = 1 - pearson_correlation(expr, expr)
+            score = silhouette_score(m, labels, metric='precomputed')
+            scores.append(score)
+
+    return scores
+
+
+def dendrogram_distance(l_matrix, condensed=True):
+    """
+    Computes the distances between each pair of genes according to the scipy linkage
+    matrix.
+    :param l_matrix: Scipy linkage matrix. Shape=(nb_genes-1, 4)
+    :param condensed: whether to return the distances as a flat array containing the
+           upper-triangular of the distance matrix
+    :return: distances
+    """
+    nb_genes = l_matrix.shape[0] + 1
+
+    # Fill distance matrix m
+    clusters = {i: Cluster(index=i) for i in range(nb_genes)}
+    m = np.zeros((nb_genes, nb_genes))
+    for i, z in enumerate(l_matrix):
+        c1, c2, dist, n_elems = z
+        clusters[nb_genes + i] = Cluster(c_left=clusters[c1],
+                                         c_right=clusters[c2])
+        c1_indices = clusters[c1].indices
+        c2_indices = clusters[c2].indices
+
+        for c1_idx in c1_indices:
+            for c2_idx in c2_indices:
+                m[c1_idx, c2_idx] = dist
+                m[c2_idx, c1_idx] = dist
+
+    # Return flat array if condensed
+    if condensed:
+        return upper_diag_list(m)
+
+    return m
+
+
+def compare_cophenetic(l_matrix1, l_matrix2):
+    """
+    Computes the cophenic distance between two dendrograms given as scipy linkage matrices
+    :param l_matrix1: Scipy linkage matrix. Shape=(nb_genes-1, 4)
+    :param l_matrix2: Scipy linkage matrix. Shape=(nb_genes-1, 4)
+    :return: cophenic distance between two dendrograms
+    """
+    dists1 = dendrogram_distance(l_matrix1, condensed=True)
+    dists2 = dendrogram_distance(l_matrix2, condensed=True)
+
+    return pearson_correlation(dists1, dists2)
+
+
+# ---------------------
 # PLOTTING UTILITIES
+# ---------------------
+
+
 def plot_intensities(expr, plot_quantiles=True):
     """
     Plot intensities histogram
@@ -190,7 +389,7 @@ def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
     for tf, tgs in tf_tg.items():
         tg_idxs = np.array([np.where(gene_symbols == tg)[0] for tg in tgs if tg in gene_symbols]).ravel()
 
-        if tf in gene_symbols and len(tg_idxs)>0:
+        if tf in gene_symbols and len(tg_idxs) > 0:
             # Find expressions of TG regulated by TF
             expr_tgs = expr_norm[:, tg_idxs]
 
