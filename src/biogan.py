@@ -1,13 +1,15 @@
 from keras.layers import Input, Dense, Dropout, LeakyReLU, BatchNormalization
 from keras.models import Model
-from keras.optimizers import Adam
+from keras.optimizers import Adam, SGD
 import numpy as np
 from data_pipeline import load_data, save_synthetic, reg_network, split_train_test
 from utils import *
 from keras import backend as K
 from keras.engine.topology import Layer
-from keras.regularizers import l1
+from keras.callbacks import TensorBoard
 import warnings
+import datetime
+import tensorflow as tf
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
@@ -119,6 +121,7 @@ class BioGAN():
         self.discriminator.compile(loss='binary_crossentropy',
                                    optimizer=optimizer,
                                    metrics=['accuracy'])
+        self._gradients_discr = self.gradients_norm(self.discriminator)
 
         # Build the generator
         self.generator = self.build_generator()
@@ -137,6 +140,7 @@ class BioGAN():
         # Trains the generator to fool the discriminator
         self.combined = Model(z, valid)
         self.combined.compile(loss='binary_crossentropy', optimizer=optimizer)
+        self._gradients_gen = self.gradients_norm(self.combined)
 
     def build_generator(self):
         # Build generator
@@ -161,23 +165,56 @@ class BioGAN():
         model.summary()
         return model
 
-    def train(self, epochs, batch_size=32, save_interval=50, max_replay_len=6400):
-        # Adversarial ground truths
-        valid = np.ones((batch_size, 1))
-        fake = np.zeros((batch_size, 1))
+    @staticmethod
+    def _write_log(callback, names, logs, batch_nb):
+        for name, value in zip(names, logs):
+            summary = tf.Summary()
+            summary_value = summary.value.add()
+            summary_value.simple_value = value
+            summary_value.tag = name
+            callback.writer.add_summary(summary, batch_nb)
+            callback.writer.flush()
 
+    @staticmethod
+    def gradients_norm(model):
+        grads = K.gradients(model.total_loss, model.trainable_weights)
+        summed_squares = tf.stack([K.sum(K.square(g)) for g in grads])
+        norm = K.sqrt(K.sum(summed_squares))
+
+        input_tensors = [model.inputs[0],  # input data
+                         model.sample_weights[0],  # how much to weight each sample by
+                         model.targets[0],  # labels
+                         K.learning_phase(),  # train or test mode
+                         ]
+
+        return K.function(inputs=input_tensors, outputs=[norm])
+
+    def train(self, epochs, batch_size=32, save_interval=50, max_replay_len=6400):
+        # Prepare TensorBoard callback
+        time_now = str(datetime.datetime.now())
+        log_path = '../logs/discr/{}'.format(time_now)
+        callback_discr = TensorBoard(log_path)
+        callback_discr.set_model(self.discriminator)
+        log_path = '../logs/gen/{}'.format(time_now)
+        callback_gen = TensorBoard(log_path)
+        callback_gen.set_model(self.generator)
+        names = ['train_loss', 'gradient_norm']
+
+        # Initialize replay buffer
         noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
         x_fake = self.generator.predict(noise)
         replay_buffer = np.array(x_fake)
+
+        # Train GAN
         for epoch in range(epochs):
 
             # ---------------------
             #  Train Discriminator
             # ---------------------
 
-            # Select a random half of images
-            idx = np.random.randint(0, self._nb_samples, batch_size)
-            x_real = self._data[idx, :]
+            # Select random samples
+            idxs = np.random.randint(0, self._nb_samples, batch_size)
+            x_real = self._data[idxs, :]
 
             # Sample noise and generate a batch of new images
             noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
@@ -186,31 +223,64 @@ class BioGAN():
             # Add data to replay buffer
             if len(replay_buffer) < max_replay_len:
                 replay_buffer = np.concatenate((replay_buffer, x_fake), axis=0)
-            elif np.random.randint(low=0, high=1) < 0.999**epoch:
+            elif np.random.randint(low=0, high=1) < 0.999 ** epoch:
                 idxs = np.random.choice(len(replay_buffer), batch_size, replace=False)
                 replay_buffer[idxs, :] = x_fake
 
             # Train the discriminator (real classified as ones and generated as zeros)
             valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))
             fake = np.random.uniform(low=0, high=0.3, size=(batch_size, 1))
-
             d_loss_real = self.discriminator.train_on_batch(x_real, valid)
             d_loss_fake = self.discriminator.train_on_batch(x_fake, fake)
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
 
             # Train discr. using replay buffer
-            idxs = np.random.choice(len(replay_buffer), batch_size)
-            d_loss_replay = self.discriminator.train_on_batch(replay_buffer[idxs, :], fake)
+            # idxs = np.random.choice(len(replay_buffer), batch_size)
+            # d_loss_replay = self.discriminator.train_on_batch(replay_buffer[idxs, :], fake)
 
             # ---------------------
             #  Train Generator
             # ---------------------
+
             # Train the generator (wants discriminator to mistake images as real)
             valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))
             g_loss = self.combined.train_on_batch(noise, valid)
 
+            # TensorBoard loss
+            self._write_log(callback_discr, ['train_loss'], [d_loss[0]], epoch)
+            self._write_log(callback_gen, ['train_loss'], [g_loss], epoch)
+
+            # Gradient norm TensorBoard log
+            if epoch % 100 == 0:
+                # Get discriminator gradients
+                grad_inputs = [noise,  # data
+                               np.ones(shape=(batch_size,)),  # Sample weights
+                               valid,  # labels
+                               0  # set learning phase in TEST mode
+                               ]
+                g_gen = self._gradients_gen(grad_inputs)[0]
+
+                # Get discriminator gradients
+                grad_inputs = [x_real,  # data
+                               np.ones(shape=(batch_size,)),  # Sample weights
+                               valid,  # labels
+                               0  # set learning phase in TEST mode
+                               ]
+                g_discr_real = self._gradients_discr(grad_inputs)[0]
+                grad_inputs = [x_fake,  # data
+                               np.ones(shape=(batch_size,)),  # Sample weights
+                               fake,  # labels
+                               0  # set learning phase in TEST mode
+                               ]
+                g_discr_fake = self._gradients_discr(grad_inputs)[0]
+                g_discr = (g_discr_real + g_discr_fake) / 2
+
+                # Add information to TensorBoard log
+                self._write_log(callback_discr, ['gradient_norm'], [g_discr], epoch)
+                self._write_log(callback_gen, ['gradient_norm'], [g_gen], epoch)
+
             # Plot the progress
-            print("%d [D loss: %f, D loss replay: %f, acc.: %.2f%%] [G loss: %f]" % (epoch, d_loss[0], d_loss_replay[0], 100 * d_loss[1], g_loss))
+            print("%d [D loss: %f] [G loss: %f]" % (epoch, d_loss[0], g_loss))
 
             # If at save interval => save generated image samples
             if epoch % save_interval == 0:
@@ -261,7 +331,7 @@ if __name__ == '__main__':
 
     # mean = np.mean(expr, axis=0)
     # std = np.std(expr, axis=0)
-    expr_train = (expr_train - mean) / (2*std)
+    expr_train = (expr_train - mean) / (2 * std)
 
     # Train GAN
     biogan = BioGAN(expr_train, root_node, gene_symbols, edges)
