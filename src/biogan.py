@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense, Dropout
+from keras.layers import Input, Dense, Dropout, LeakyReLU, BatchNormalization
 from keras.models import Model
 from keras.optimizers import Adam
 import numpy as np
@@ -140,7 +140,10 @@ class BioGAN():
     def build_generator(self):
         # Build generator
         noise = Input(shape=(self._latent_dim,))
-        h = Dense(400, activation='relu')(noise)
+        h = Dense(400)(noise)
+        # h = BatchNormalization()(h)
+        h = LeakyReLU(0.3)(h)
+        h = Dropout(0.2)(h)
         h = Dense(self._nb_genes, activation='tanh')(h)
         # h = GRI(self._root_node, self._nodes, self._edges)(h)
         model = Model(inputs=noise, outputs=h)
@@ -150,7 +153,9 @@ class BioGAN():
     def build_discriminator(self):
         # Build discriminator
         expressions_input = Input(shape=(self._nb_genes,))
-        h = Dense(20, activation='relu')(expressions_input)
+        h = Dense(40)(expressions_input)
+        # h = BatchNormalization()(h)
+        h = LeakyReLU(0.3)(h)
         h = Dropout(0.2)(h)
         h = Dense(1, activation='sigmoid')(h)
         model = Model(inputs=expressions_input, outputs=h)
@@ -220,15 +225,34 @@ if __name__ == '__main__':
                                break_loops=True)
     root_node = root_gene.lower()
 
-    # Standardize data
+    # Clip outliers
     mean = np.mean(expr, axis=0)
     std = np.std(expr, axis=0)
-    expr_train = (expr_train - mean) / std
+    # idxs = np.argwhere(expr_train > mean - 2*std)
+    # print(idxs)
+    for sample_idx in range(expr_train.shape[0]):
+        for gene_idx in range(expr_train.shape[1]):
+            if expr_train[sample_idx, gene_idx] > (mean + 2 * std)[gene_idx]:
+                expr_train[sample_idx, gene_idx] = (mean + 2 * std)[gene_idx]
+            elif expr_train[sample_idx, gene_idx] < (mean - 2 * std)[gene_idx]:
+                expr_train[sample_idx, gene_idx] = (mean - 2 * std)[gene_idx]
+
+    # Standardize data
+    # r_min = expr.min(axis=0)
+    # r_max = expr.max(axis=0)
+    # expr_train = 2*(expr_train - r_min)/(r_max - r_min) - 1
+
+    # mean = np.mean(expr, axis=0)
+    # std = np.std(expr, axis=0)
+    expr_train = (expr_train - mean) / (2*std)
 
     # Train GAN
     biogan = BioGAN(expr_train, root_node, gene_symbols, edges)
-    biogan.train(epochs=10000, batch_size=32, save_interval=50)
+    biogan.train(epochs=3000, batch_size=32, save_interval=50)
+
+    # Generate synthetic data
     s_expr = biogan.generate_batch(expr_test.shape[0])
-    s_expr = std * s_expr + mean
+    # s_expr = (s_expr + 1)*(r_max - r_min)/2 + r_min
+    s_expr = 2 * s_expr * std + mean
     file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
     save_synthetic(file_name, s_expr, gene_symbols)
