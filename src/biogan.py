@@ -6,6 +6,7 @@ from data_pipeline import load_data, save_synthetic, reg_network, split_train_te
 from utils import *
 from keras import backend as K
 from keras.engine.topology import Layer
+from keras.regularizers import l1
 import warnings
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
@@ -141,7 +142,6 @@ class BioGAN():
         # Build generator
         noise = Input(shape=(self._latent_dim,))
         h = Dense(400)(noise)
-        # h = BatchNormalization()(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.2)(h)
         h = Dense(self._nb_genes, activation='tanh')(h)
@@ -154,7 +154,6 @@ class BioGAN():
         # Build discriminator
         expressions_input = Input(shape=(self._nb_genes,))
         h = Dense(40)(expressions_input)
-        # h = BatchNormalization()(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.2)(h)
         h = Dense(1, activation='sigmoid')(h)
@@ -162,11 +161,14 @@ class BioGAN():
         model.summary()
         return model
 
-    def train(self, epochs, batch_size=32, save_interval=50):
+    def train(self, epochs, batch_size=32, save_interval=50, max_replay_len=6400):
         # Adversarial ground truths
         valid = np.ones((batch_size, 1))
         fake = np.zeros((batch_size, 1))
 
+        noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
+        x_fake = self.generator.predict(noise)
+        replay_buffer = np.array(x_fake)
         for epoch in range(epochs):
 
             # ---------------------
@@ -181,19 +183,34 @@ class BioGAN():
             noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
             x_fake = self.generator.predict(noise)
 
+            # Add data to replay buffer
+            if len(replay_buffer) < max_replay_len:
+                replay_buffer = np.concatenate((replay_buffer, x_fake), axis=0)
+            elif np.random.randint(low=0, high=1) < 0.999**epoch:
+                idxs = np.random.choice(len(replay_buffer), batch_size, replace=False)
+                replay_buffer[idxs, :] = x_fake
+
             # Train the discriminator (real classified as ones and generated as zeros)
+            valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))
+            fake = np.random.uniform(low=0, high=0.3, size=(batch_size, 1))
+
             d_loss_real = self.discriminator.train_on_batch(x_real, valid)
             d_loss_fake = self.discriminator.train_on_batch(x_fake, fake)
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
+
+            # Train discr. using replay buffer
+            idxs = np.random.choice(len(replay_buffer), batch_size)
+            d_loss_replay = self.discriminator.train_on_batch(replay_buffer[idxs, :], fake)
 
             # ---------------------
             #  Train Generator
             # ---------------------
             # Train the generator (wants discriminator to mistake images as real)
+            valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))
             g_loss = self.combined.train_on_batch(noise, valid)
 
             # Plot the progress
-            print("%d [D loss: %f, acc.: %.2f%%] [G loss: %f]" % (epoch, d_loss[0], 100 * d_loss[1], g_loss))
+            print("%d [D loss: %f, D loss replay: %f, acc.: %.2f%%] [G loss: %f]" % (epoch, d_loss[0], d_loss_replay[0], 100 * d_loss[1], g_loss))
 
             # If at save interval => save generated image samples
             if epoch % save_interval == 0:
@@ -251,7 +268,7 @@ if __name__ == '__main__':
     biogan.train(epochs=3000, batch_size=32, save_interval=50)
 
     # Generate synthetic data
-    s_expr = biogan.generate_batch(expr_test.shape[0])
+    s_expr = biogan.generate_batch(expr_train.shape[0])  # expr_test.shape[0]
     # s_expr = (s_expr + 1)*(r_max - r_min)/2 + r_min
     s_expr = 2 * s_expr * std + mean
     file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
