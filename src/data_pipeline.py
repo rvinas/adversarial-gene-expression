@@ -331,6 +331,35 @@ def split_train_test(sample_names, train_rate=0.75, seed=0):
     return train_idxs, test_idxs
 
 
+def clip_outliers(expr, gene_means=None, gene_stds=None, std_clip=2):
+    """
+    Clips gene expressions of samples in which the gene deviates more than std_clip standard deviations from the gene mean.
+    :param expr: np.array of expression data with Shape=(nb_samples, nb_genes)
+    :param gene_means: np.array with the mean of each gene. Shape=(nb_genes,). If None, it is computed from expr
+    :param gene_stds: np.array with the std of each gene. Shape=(nb_genes,). If None, it is computed from expr
+    :param std_clip: Number of standard deviations for which the expression of a gene will be clipped
+    :return: clipped expression matrix
+    """
+    nb_samples, nb_genes = expr.shape
+
+    # Find gene means and stds
+    if gene_means is None:
+        gene_means = np.mean(expr, axis=0)
+    if gene_stds is None:
+        gene_stds = np.std(expr, axis=0)
+
+    # Clip samples for which a gene is not within [gene_mean - std_clip * gene_std, gene_mean + std_clip * gene_std]
+    clipped_expr = np.array(expr)
+    for sample_idx in range(nb_samples):
+        for gene_idx in range(nb_genes):
+            if expr[sample_idx, gene_idx] > (gene_means + std_clip * gene_stds)[gene_idx]:
+                clipped_expr[sample_idx, gene_idx] = (gene_means + std_clip * gene_stds)[gene_idx]
+            elif expr[sample_idx, gene_idx] < (gene_means - std_clip * gene_stds)[gene_idx]:
+                clipped_expr[sample_idx, gene_idx] = (gene_means - std_clip * gene_stds)[gene_idx]
+
+    return clipped_expr
+
+
 def load_data(name=DEFAULT_DATAFILE, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, max_depth=np.inf,
               reg_int=DEFAULT_REGULATORY_INTERACTIONS):
     """

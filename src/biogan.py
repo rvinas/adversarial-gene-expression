@@ -2,22 +2,20 @@ from keras.layers import Input, Dense, Dropout, LeakyReLU, BatchNormalization
 from keras.models import Model
 from keras.optimizers import Adam, SGD
 import numpy as np
-from data_pipeline import load_data, save_synthetic, reg_network, split_train_test
+from data_pipeline import load_data, save_synthetic, reg_network, split_train_test, clip_outliers
 from utils import *
 from keras import backend as K
 from keras.engine.topology import Layer
 from keras.callbacks import TensorBoard
-import warnings
 import datetime
 import tensorflow as tf
-
+import warnings
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
 LATENT_DIM = 10
 
 
 class GRI(Layer):
-
     def __init__(self, root_node, nodes, edges, **kwargs):
         """
         :param root_node: node on top of the hierarchy
@@ -198,7 +196,6 @@ class BioGAN():
         log_path = '../logs/gen/{}'.format(time_now)
         callback_gen = TensorBoard(log_path)
         callback_gen.set_model(self.generator)
-        names = ['train_loss', 'gradient_norm']
 
         # Initialize replay buffer
         noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
@@ -313,25 +310,16 @@ if __name__ == '__main__':
     root_node = root_gene.lower()
 
     # Clip outliers
+    std_clip = 2
     mean = np.mean(expr, axis=0)
     std = np.std(expr, axis=0)
-    # idxs = np.argwhere(expr_train > mean - 2*std)
-    # print(idxs)
-    for sample_idx in range(expr_train.shape[0]):
-        for gene_idx in range(expr_train.shape[1]):
-            if expr_train[sample_idx, gene_idx] > (mean + 2 * std)[gene_idx]:
-                expr_train[sample_idx, gene_idx] = (mean + 2 * std)[gene_idx]
-            elif expr_train[sample_idx, gene_idx] < (mean - 2 * std)[gene_idx]:
-                expr_train[sample_idx, gene_idx] = (mean - 2 * std)[gene_idx]
+    expr_train = clip_outliers(expr_train, mean, std, std_clip)
 
     # Standardize data
     # r_min = expr.min(axis=0)
     # r_max = expr.max(axis=0)
     # expr_train = 2*(expr_train - r_min)/(r_max - r_min) - 1
-
-    # mean = np.mean(expr, axis=0)
-    # std = np.std(expr, axis=0)
-    expr_train = (expr_train - mean) / (2 * std)
+    expr_train = (expr_train - mean) / (std_clip * std)
 
     # Train GAN
     biogan = BioGAN(expr_train, root_node, gene_symbols, edges)
@@ -340,6 +328,8 @@ if __name__ == '__main__':
     # Generate synthetic data
     s_expr = biogan.generate_batch(expr_train.shape[0])  # expr_test.shape[0]
     # s_expr = (s_expr + 1)*(r_max - r_min)/2 + r_min
-    s_expr = 2 * s_expr * std + mean
+    s_expr = std_clip * s_expr * std + mean
+
+    # Save generated data
     file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
     save_synthetic(file_name, s_expr, gene_symbols)

@@ -154,15 +154,16 @@ def psi_coefficient(tf_tg_x, tf_tg_z, weights_type='nb_genes'):
         weights_sum += weight
         cx = np.array(cx)
         cz = np.array(cz)
-        total_sum += weight * cosine_similarity(cx, cz)  # pearson_correlation(cx, cz)  # TODO: Convert cx and cz to distances?
+        total_sum += weight * cosine_similarity(cx,
+                                                cz)  # pearson_correlation(cx, cz)  # TODO: Convert cx and cz to distances?
     return total_sum / weights_sum
 
 
 def theta_coefficient(tg_tg_x, tg_tg_z, weights_type='nb_genes'):
     """
     Computes the theta TG-TG correlation coefficient
-    :param tf_tg_x: list of TG-TG correlations, returned by compute_tf_tg_corrs
-    :param tf_tg_z: list of TG-TG correlations, returned by compute_tf_tg_corrs
+    :param tf_tg_x: list of TG-TG correlations, returned by compute_tf_tg_corrs with flat=False
+    :param tf_tg_z: list of TG-TG correlations, returned by compute_tf_tg_corrs with flat=False
     :param weights_type: for 'nb_genes' the weights for each TF are proportional to the number
                     target genes that it regulates. For 'ones' the weights are all one.
     :return: theta correlation coefficient
@@ -282,18 +283,50 @@ def compare_cophenetic(l_matrix1, l_matrix2):
 # PLOTTING UTILITIES
 # ---------------------
 
+def plot_distribution(data, label='E. coli M3D', color='royalblue', linestyle='-', ax=None, plot_legend=True, xlabel=None, ylabel=None):
+    """
+    Plot a distribution
+    :param data: data for which the distribution of its flattened values will be plotted
+    :param label: label for this distribution
+    :param color: line color
+    :param linestyle: type of line
+    :param ax: matplotlib axes
+    :param plot_legend: whether to plot a legend
+    :param xlabel: label of the x axis (or None)
+    :param ylabel: label of the y axis (or None)
+    :return matplotlib axes
+    """
+    x = np.ravel(data)
+    ax = sns.distplot(x,
+                      hist=False,
+                      kde_kws={'linestyle': linestyle, 'color': color, 'linewidth': 2, 'bw': .15},
+                      label=label,
+                      ax=ax)
+    if plot_legend:
+        plt.legend()
+    if xlabel is not None:
+        plt.xlabel(xlabel)
+    if ylabel is not None:
+        plt.ylabel(ylabel)
+    return ax
 
-def plot_intensities(expr, plot_quantiles=True):
+
+def plot_intensities(expr, plot_quantiles=True, dataset_name='E. coli M3D', color='royalblue', ax=None):
     """
     Plot intensities histogram
     :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
     :param plot_quantiles: whether to plot the 5 and 95% intensity gene quantiles
+    :param dataset_name: name of the dataset
+    :param color: line color
+    :param ax: matplotlib axes
+    :return matplotlib axes
     """
     x = np.ravel(expr)
     ax = sns.distplot(x,
                       hist=False,
-                      kde_kws={'color': 'royalblue', 'linewidth': 2, 'bw': .15},
-                      label='E. coli M3D')
+                      kde_kws={'color': color, 'linewidth': 2, 'bw': .15},
+                      label=dataset_name,
+                      ax=ax)
 
     if plot_quantiles:
         stds = np.std(expr, axis=-1)
@@ -305,25 +338,30 @@ def plot_intensities(expr, plot_quantiles=True):
         ax = sns.distplot(x,
                           ax=ax,
                           hist=False,
-                          kde_kws={'linestyle': ':', 'color': 'royalblue', 'linewidth': 2, 'bw': .15},
-                          label='High variance E. coli M3D')
+                          kde_kws={'linestyle': ':', 'color': color, 'linewidth': 2, 'bw': .15},
+                          label='High variance {}'.format(dataset_name))
 
         q5_idxs = idxs[:cut_point]
         x = np.ravel(expr[q5_idxs, :])
         sns.distplot(x,
                      ax=ax,
                      hist=False,
-                     kde_kws={'linestyle': '--', 'color': 'royalblue', 'linewidth': 2, 'bw': .15},
-                     label='Low variance E. coli M3D')
-        plt.legend()
-        plt.xlabel('Absolute levels')
-        plt.ylabel('Density')
+                     kde_kws={'linestyle': '--', 'color': color, 'linewidth': 2, 'bw': .15},
+                     label='Low variance {}'.format(dataset_name))
+    plt.legend()
+    plt.xlabel('Absolute levels')
+    plt.ylabel('Density')
+    return ax
 
 
-def plot_gene_ranges(expr):
+def plot_gene_ranges(expr, dataset_name='E. coli M3D', color='royalblue', ax=None):
     """
     Plot gene ranges histogram
     :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param dataset_name: name of the dataset
+    :param color: line color
+    :param ax: matplotlib axes
+    :return matplotlib axes
     """
     nb_samples, nb_genes = expr.shape
     sorted_expr = [np.sort(expr[:, gene]) for gene in range(nb_genes)]
@@ -333,14 +371,18 @@ def plot_gene_ranges(expr):
 
     ax = sns.distplot(diffs,
                       hist=False,
-                      kde_kws={'color': 'royalblue', 'linewidth': 2, 'bw': .1},
-                      label='E. coli M3D')
+                      kde_kws={'color': color, 'linewidth': 2, 'bw': .1},
+                      label=dataset_name,
+                      ax=ax)
 
     plt.xlabel('Range of gene lavels')
     plt.ylabel('Density')
 
+    return ax
 
-def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim=-1, right_lim=1):
+
+def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim=-1, right_lim=1,
+                              dataset_name='E. coli M3D', color='royalblue', ax=None):
     """
     Plots a difference between a distribution of interest and a background distribution.
     Approximates these distributions with Kernel Density Estimation using a Gaussian kernel
@@ -348,6 +390,10 @@ def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim
     :param background_distr: list containing the values of the background distribution.
     :param right_lim: histogram left limit
     :param left_lim: histogram right limit
+    :param dataset_name: name of the dataset
+    :param color: line color
+    :param ax: matplotlib axes
+    :return matplotlib axes
     """
     # Estimate distributions
     kde_back = scipy.stats.gaussian_kde(background_distr)
@@ -357,12 +403,13 @@ def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim
     grid = np.linspace(left_lim, right_lim, 1000)
     # plt.plot(grid, kde_back(grid), label="kde A")
     # plt.plot(grid, kde_corr(grid), label="kde B")
-    plt.plot(grid, kde_corr(grid) - kde_back(grid),
-             'royalblue',
-             label='E. coli M3D')
+    ax = plt.plot(grid, kde_corr(grid) - kde_back(grid),
+                  color,
+                  label=dataset_name)
     plt.legend()
     plt.xlabel(xlabel)
     plt.ylabel('Density difference')
+    return ax
 
 
 def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
