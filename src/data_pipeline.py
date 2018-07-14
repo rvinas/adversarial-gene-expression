@@ -150,8 +150,9 @@ def _load_data(name, root_gene=None, reg_int=None, minimum_evidence=None, max_de
                 gene_idxs.append(gene_symbols.index(gene))
                 symb.append(gene)
             except ValueError:
-                print('Warning: Gene {} not in gene list'.format(gene))
-        print('Selecting {} genes ...'.format(len(gene_idxs)))
+                pass
+                # print('Warning: Gene {} not in gene list'.format(gene))
+        print('{} genes not in gene subset. Selecting {} genes ...'.format(expr.shape[1], len(gene_idxs)))
         expr = expr[:, gene_idxs]
         gene_symbols = symb
 
@@ -306,7 +307,7 @@ def split_train_test(sample_names, train_rate=0.75, seed=0):
         if repl_nb == 1:  # First replicate sample
             replicate_ranges[n] = {'start': i, 'end': i}
         else:
-            replicate_ranges[n-1]['end'] = i
+            replicate_ranges[n - 1]['end'] = i
 
     # Permute unique samples
     unique_sample_idxs = list(replicate_ranges.keys())
@@ -314,14 +315,14 @@ def split_train_test(sample_names, train_rate=0.75, seed=0):
 
     # Split data
     nb_unique = len(unique_sample_idxs)
-    split_point = int(train_rate*nb_unique)
+    split_point = int(train_rate * nb_unique)
     unique_train = unique_sample_idxs[:split_point]
 
     # Recover replicates
     train_idxs = []
     test_idxs = []
     for i in range(nb_unique):
-        for j in range(replicate_ranges[i]['start'], replicate_ranges[i]['end']+1):
+        for j in range(replicate_ranges[i]['start'], replicate_ranges[i]['end'] + 1):
             if i in unique_train:
                 train_idxs.append(j)
             else:

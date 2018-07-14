@@ -1,18 +1,19 @@
 from keras.layers import Input, Dense, Dropout, LeakyReLU, BatchNormalization
 from keras.models import Model
-from keras.optimizers import Adam, SGD
+from keras.optimizers import Adam, RMSprop
 import numpy as np
 from data_pipeline import load_data, save_synthetic, reg_network, split_train_test, clip_outliers
 from utils import *
-from keras import backend as K
+import keras.backend as K
 from keras.engine.topology import Layer
 from keras.callbacks import TensorBoard
 import datetime
 import tensorflow as tf
 import warnings
+
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
-LATENT_DIM = 10
+LATENT_DIM = 20
 
 
 class GRI(Layer):
@@ -113,6 +114,7 @@ class BioGAN():
         self._edges = edges
 
         optimizer = Adam(0.0002, 0.5)
+        wass_loss = lambda y_true, y_pred: K.mean(y_true * y_pred)
 
         # Build and compile the discriminator
         self.discriminator = self.build_discriminator()
@@ -136,6 +138,7 @@ class BioGAN():
 
         # The combined model  (stacked generator and discriminator)
         # Trains the generator to fool the discriminator
+        optimizer = Adam(0.0002, clipvalue=0.1)
         self.combined = Model(z, valid)
         self.combined.compile(loss='binary_crossentropy', optimizer=optimizer)
         self._gradients_gen = self.gradients_norm(self.combined)
@@ -216,6 +219,11 @@ class BioGAN():
             # Sample noise and generate a batch of new images
             noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
             x_fake = self.generator.predict(noise)
+            mean = 0
+            std = 0.1
+            ln_mean = np.exp(mean + std * std / 2)
+            exp_noise = np.random.lognormal(mean, std, size=x_fake.shape) - ln_mean
+            # x_fake += exp_noise
 
             # Add data to replay buffer
             if len(replay_buffer) < max_replay_len:
@@ -240,7 +248,7 @@ class BioGAN():
             # ---------------------
 
             # Train the generator (wants discriminator to mistake images as real)
-            valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))
+            valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))  # np.ones(shape=(batch_size, 1))
             g_loss = self.combined.train_on_batch(noise, valid)
 
             # TensorBoard loss
@@ -285,7 +293,13 @@ class BioGAN():
 
     def generate_batch(self, batch_size=32):
         noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
-        return self.generator.predict(noise)
+        pred = self.generator.predict(noise)
+        mean = 0
+        std = 0.1
+        ln_mean = np.exp(mean + std * std / 2)
+        exp_noise = np.random.lognormal(mean, std, size=pred.shape) - ln_mean
+        # pred += exp_noise
+        return pred
 
 
 if __name__ == '__main__':
@@ -316,8 +330,8 @@ if __name__ == '__main__':
     expr_train = clip_outliers(expr_train, mean, std, std_clip)
 
     # Standardize data
-    # r_min = expr.min(axis=0)
-    # r_max = expr.max(axis=0)
+    r_min = expr.min(axis=0)
+    r_max = expr.max(axis=0)
     # expr_train = 2*(expr_train - r_min)/(r_max - r_min) - 1
     expr_train = (expr_train - mean) / (std_clip * std)
 
