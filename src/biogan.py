@@ -138,7 +138,7 @@ class BioGAN():
 
         # The combined model  (stacked generator and discriminator)
         # Trains the generator to fool the discriminator
-        optimizer = Adam(0.0002, clipvalue=0.1)
+        optimizer = Adam(0.0002, 0.5, clipvalue=0.1)
         self.combined = Model(z, valid)
         self.combined.compile(loss='binary_crossentropy', optimizer=optimizer)
         self._gradients_gen = self.gradients_norm(self.combined)
@@ -158,7 +158,7 @@ class BioGAN():
     def build_discriminator(self):
         # Build discriminator
         expressions_input = Input(shape=(self._nb_genes,))
-        h = Dense(40)(expressions_input)
+        h = Dense(100)(expressions_input)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.2)(h)
         h = Dense(1, activation='sigmoid')(h)
