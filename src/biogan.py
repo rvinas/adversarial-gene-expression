@@ -146,9 +146,9 @@ class BioGAN():
     def build_generator(self):
         # Build generator
         noise = Input(shape=(self._latent_dim,))
-        h = Dense(400)(noise)
+        h = Dense(800)(noise)
         h = LeakyReLU(0.3)(h)
-        h = Dropout(0.2)(h)
+        h = Dropout(0.5)(h)
         h = Dense(self._nb_genes, activation='tanh')(h)
         # h = GRI(self._root_node, self._nodes, self._edges)(h)
         model = Model(inputs=noise, outputs=h)
@@ -158,9 +158,9 @@ class BioGAN():
     def build_discriminator(self):
         # Build discriminator
         expressions_input = Input(shape=(self._nb_genes,))
-        h = Dense(100)(expressions_input)
+        h = Dense(800)(expressions_input)
         h = LeakyReLU(0.3)(h)
-        h = Dropout(0.2)(h)
+        h = Dropout(0.5)(h)
         h = Dense(1, activation='sigmoid')(h)
         model = Model(inputs=expressions_input, outputs=h)
         model.summary()
