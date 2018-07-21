@@ -72,7 +72,7 @@ class BioGAN:
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(self._nb_genes)(h)
-        h = Activation('tanh')(h)
+        # h = Activation('tanh')(h)
         # h = LeakyReLU(0.3)(h)
         stds = np.std(self._data, axis=0)
         h = ExperimentalNoise(scaled_stds)(h)
