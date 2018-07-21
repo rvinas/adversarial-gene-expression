@@ -1,5 +1,6 @@
 from keras.engine.topology import Layer
 import keras.backend as K
+from keras.initializers import RandomUniform
 
 
 class GRI(Layer):
@@ -88,3 +89,56 @@ class GRI(Layer):
 
     def compute_output_shape(self, input_shape):
         return input_shape[0], self._output_dim
+
+
+class ClipWeights():
+    def __init__(self, min_value, max_value):
+        self._min_value = min_value
+        self._max_value = max_value
+
+    def __call__(self, w):
+        return K.clip(w, self._min_value, self._max_value)
+
+
+class NormWeights():
+    def __init__(self):
+        pass
+
+    def __call__(self, w):
+        return K.softmax(w)
+
+
+class ExperimentalNoise(Layer):
+    def __init__(self, gene_stds, noise_strength=1, ampl_factor=1, **kwargs):
+        self._gene_stds = K.constant(gene_stds)
+        self._noise_strength = noise_strength
+        self._ampl_factor = ampl_factor
+        self._w = None
+        super(ExperimentalNoise, self).__init__(**kwargs)
+
+    @staticmethod
+    def _noise_regularizer(alpha=0.013):
+        def reg(weights):
+            return -alpha * K.sum(K.square(weights))
+        return reg
+
+    def build(self, input_shape):
+        self._w = self.add_weight(name='w',
+                                  shape=(input_shape[1],),
+                                  initializer='uniform',
+                                  trainable=True,
+                                  # constraint=NormWeights(),
+                                  regularizer=self._noise_regularizer())
+        super(ExperimentalNoise, self).build(input_shape)
+
+    def call(self, x, **kwargs):
+        noise = K.random_normal(K.shape(x), mean=0, stddev=1)
+        # signal = (1-self._noise_strength) * x
+        signal = x
+        additive_noise = self._noise_strength * noise * self._w  # self._gene_stds
+        out = signal + additive_noise
+        out = K.clip(out, -2, 2)
+        return self._ampl_factor * out
+
+    def compute_output_shape(self, input_shape):
+        return input_shape

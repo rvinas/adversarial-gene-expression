@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense, Dropout, LeakyReLU
+from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation
 from keras.models import Model
 from keras.optimizers import Adam
 import numpy as np
@@ -9,6 +9,8 @@ from keras.callbacks import TensorBoard
 import datetime
 import tensorflow as tf
 import warnings
+import scipy.stats as stats
+from layers import ExperimentalNoise
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
 LATENT_DIM = 20
@@ -40,7 +42,7 @@ class BioGAN:
         gen_out = self.generator(z)
 
         # Build the combined model
-        optimizer = Adam(0.0002, 0.5, clipvalue=0.1)
+        optimizer = Adam(0.0002, 0.5, clipvalue=0.1)  # clipvalue=0.1
         self.discriminator.trainable = False
         valid = self.discriminator(gen_out)
         self.combined = Model(z, valid)
@@ -69,7 +71,12 @@ class BioGAN:
         h = Dense(1000)(noise)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
-        h = Dense(self._nb_genes, activation='tanh')(h)
+        h = Dense(self._nb_genes)(h)
+        h = Activation('tanh')(h)
+        # h = LeakyReLU(0.3)(h)
+        stds = np.std(self._data, axis=0)
+        h = ExperimentalNoise(scaled_stds)(h)
+        # h = Activation('tanh')(h)
         model = Model(inputs=noise, outputs=h)
         model.summary()
         return model
@@ -141,7 +148,7 @@ class BioGAN:
 
             # Sample noise and generate a batch of new images
             noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
-            x_fake = self.generator.predict(noise)
+            x_fake = self.generate_batch(batch_size)  # self.generator.predict(noise)
 
             # Train the discriminator (real classified as ones and generated as zeros)
             valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))  # Label smoothing
@@ -225,6 +232,7 @@ class BioGAN:
         """
         noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
         pred = self.generator.predict(noise)
+
         return pred
 
 
@@ -242,15 +250,22 @@ if __name__ == '__main__':
     expr_test = expr[test_idxs, :]
 
     # Clip outliers
-    std_clip = 2
     mean = np.mean(expr, axis=0)
     std = np.std(expr, axis=0)
-    expr_train = clip_outliers(expr_train, mean, std, std_clip)
+    std_clip = 2
+    # expr_train = clip_outliers(expr_train, mean, std, std_clip)
 
     # Standardize data
     r_min = expr.min(axis=0)
     r_max = expr.max(axis=0)
     expr_train = (expr_train - mean) / (std_clip * std)
+    # expr_train = np.tanh(expr_train)
+
+    # Scale standard deviations (0 to 1)
+    std_min = std.min()
+    std_max = std.max()
+    scaled_stds = (std - std_min)/(std_max - std_min)
+    print(scaled_stds)
 
     # Train GAN
     biogan = BioGAN(expr_train, latent_dim=LATENT_DIM)
@@ -258,6 +273,7 @@ if __name__ == '__main__':
 
     # Generate synthetic data
     s_expr = biogan.generate_batch(expr_train.shape[0])  # expr_test.shape[0]
+    # s_expr = np.arctanh(s_expr)
     s_expr = std_clip * s_expr * std + mean
 
     # Save generated data
