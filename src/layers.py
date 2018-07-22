@@ -105,8 +105,8 @@ class NormWeights():
         self._total_weights = total_weights
 
     def __call__(self, w):
-        sum = K.sum(w)
-        return self._total_weights*w/sum
+        w = self._total_weights * w / K.sum(K.abs(w))
+        return w
 
 
 class ExperimentalNoise(Layer):
@@ -117,29 +117,28 @@ class ExperimentalNoise(Layer):
         self._w = None
         super(ExperimentalNoise, self).__init__(**kwargs)
 
-    """@staticmethod
+    @staticmethod
     def _noise_regularizer(alpha=0.01):
         def reg(weights):
-            return -alpha * K.sum(K.square(weights))
-        return reg"""
+            return alpha * K.sum(K.square(weights))
+        return reg
 
     def build(self, input_shape):
+        nb_genes = input_shape[1]
         self._w = self.add_weight(name='w',
-                                  shape=(input_shape[1],),
+                                  shape=(nb_genes,),
                                   initializer='uniform',
                                   trainable=True,
-                                  constraint=NormWeights(),
+                                  constraint=NormWeights(total_weights=250),
                                   # regularizer=self._noise_regularizer()
                                   )
         super(ExperimentalNoise, self).build(input_shape)
 
     def call(self, x, **kwargs):
         noise = K.random_normal(K.shape(x), mean=0, stddev=1)
-        # signal = (1-self._noise_strength) * x
-        signal = x
         additive_noise = self._noise_strength * noise * self._w  # self._gene_stds
-        out = signal + additive_noise
-        # out = K.clip(out, -1, 1)
+        out = x + additive_noise
+        # out = K.clip(out, -4, 4)
         return self._ampl_factor * out
 
     def compute_output_shape(self, input_shape):
