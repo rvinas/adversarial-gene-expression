@@ -110,18 +110,9 @@ class NormWeights():
 
 
 class ExperimentalNoise(Layer):
-    def __init__(self, gene_stds, noise_strength=1, ampl_factor=1, **kwargs):
-        self._gene_stds = K.constant(gene_stds)
-        self._noise_strength = noise_strength
-        self._ampl_factor = ampl_factor
+    def __init__(self, **kwargs):
         self._w = None
         super(ExperimentalNoise, self).__init__(**kwargs)
-
-    @staticmethod
-    def _noise_regularizer(alpha=0.01):
-        def reg(weights):
-            return alpha * K.sum(K.square(weights))
-        return reg
 
     def build(self, input_shape):
         nb_genes = input_shape[1]
@@ -129,17 +120,14 @@ class ExperimentalNoise(Layer):
                                   shape=(nb_genes,),
                                   initializer='uniform',
                                   trainable=True,
-                                  constraint=NormWeights(total_weights=250),
-                                  # regularizer=self._noise_regularizer()
-                                  )
+                                  constraint=NormWeights(total_weights=270))
         super(ExperimentalNoise, self).build(input_shape)
 
     def call(self, x, **kwargs):
         noise = K.random_normal(K.shape(x), mean=0, stddev=1)
-        additive_noise = self._noise_strength * noise * self._w  # self._gene_stds
+        additive_noise = noise * self._w
         out = x + additive_noise
-        # out = K.clip(out, -4, 4)
-        return self._ampl_factor * out
+        return out
 
     def compute_output_shape(self, input_shape):
         return input_shape

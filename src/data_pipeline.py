@@ -2,18 +2,19 @@ import numpy as np
 import pandas as pd
 import pickle
 import random
+import csv
 
 DATA_DIR = '../data/E_coli_v4_Build_6'
 SYNTHETIC_DIR = '../data/artificial'
 SUBSET_DIR = '../data/subsets'
 REGULATORY_NET_DIR = '../data/regulatory_networks'
+CSV_DIR = '../data/csv'
 DEFAULT_DATAFILE = 'E_coli_v4_Build_6_chips907probes4297.tab'
 PROBE_DESCRIPTIONS = 'E_coli_v4_Build_6.probe_set_descriptions'
 DEFAULT_REGULATORY_INTERACTIONS = 'regulatory_interactions'
 DEFAULT_TF_TG = 'tf_tg'
 DEFAULT_ROOT_GENE = 'CRP'
 DEFAULT_EVIDENCE = 'Weak'
-
 
 def _parse(lines):
     """
@@ -405,6 +406,26 @@ def load_synthetic(name):
     with open(file, 'rb') as f:
         data = pickle.load(f)
     return data['expr'], data['gene_symbols']
+
+
+def write_csv(name, expr, gene_symbols, sample_names=None, nb_decimals=5):
+    """
+    Writes expression data to a CSV file
+    :param name: file name
+    :param expr: expression matrix. Shape=(nb_samples, nb_genes)
+    :param gene_symbols: list of gene symbols. Shape=(nb_genes,)
+    :param sample_names: list of gene samples or None. Shape=(nb_samples,)
+    :param nb_decimals: number of decimals for expression values
+    """
+    expr_rounded = np.around(expr, decimals=nb_decimals)
+    with open('{}/{}'.format(CSV_DIR, name), 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow([' '] + [g for g in gene_symbols])
+        for i, e in enumerate(expr_rounded):
+            sample_name = ' '
+            if sample_names is not None:
+                sample_name = sample_names[i]
+            writer.writerow([sample_name] + list(e))
 
 
 if __name__ == '__main__':
