@@ -74,7 +74,8 @@ class BioGAN:
         h = Dense(self._nb_genes)(h)
         # h = Activation('tanh')(h)
         # h = LeakyReLU(0.3)(h)
-        h = ExperimentalNoise()(h)
+        self._noise_layer = ExperimentalNoise()
+        h = self._noise_layer(h)
         # h = Activation('tanh')(h)
         model = Model(inputs=noise, outputs=h)
         model.summary()
@@ -135,6 +136,10 @@ class BioGAN:
         :param epochs: Number of epochs
         :param batch_size: Batch size
         """
+        # sess = tf.Session()
+        # K.set_session(sess)
+        # sess.run(tf.global_variables_initializer())
+
         for epoch in range(epochs):
 
             # ----------------------
@@ -222,6 +227,11 @@ class BioGAN:
             #  Plot the progress
             # ----------------------
             print('{} [D loss: {:.4f}] [G loss: {:.4f}]'.format(epoch, d_loss, g_loss))
+
+        # Print noise layer norm
+        # noise_layer_norm = sess.run(self._noise_layer.get_weights_norm())
+        # print('Noise layer norm: {}'.format(noise_layer_norm))
+        # sess.close()
 
     def generate_batch(self, batch_size=32):
         """

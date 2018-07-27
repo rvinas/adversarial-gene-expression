@@ -120,7 +120,8 @@ class ExperimentalNoise(Layer):
                                   shape=(nb_genes,),
                                   initializer='uniform',
                                   trainable=True,
-                                  constraint=NormWeights(total_weights=270))
+                                  constraint=NormWeights(total_weights=270)
+                                  )
         super(ExperimentalNoise, self).build(input_shape)
 
     def call(self, x, **kwargs):
@@ -131,3 +132,6 @@ class ExperimentalNoise(Layer):
 
     def compute_output_shape(self, input_shape):
         return input_shape
+
+    def get_weights_norm(self):
+        return K.sum(K.abs(self._w))
