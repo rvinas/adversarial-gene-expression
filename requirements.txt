@@ -1,0 +1,11 @@
+tensorboard==1.8.0
+tensorflow==1.8.0
+Keras==2.1.4
+numpy==1.14.0
+h5py==2.7.1
+scipy==1.0.0
+seaborn==0.8.1
+matplotlib==2.1.2
+pandas==0.22.0
+statsmodels==0.9.0
+scikit-learn==0.19.1
