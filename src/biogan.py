@@ -256,7 +256,7 @@ class BioGAN:
 
 if __name__ == '__main__':
     # Load data
-    root_gene = 'CRP'
+    root_gene = None
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
