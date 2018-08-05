@@ -125,7 +125,8 @@ class ExperimentalNoise(Layer):
         super(ExperimentalNoise, self).build(input_shape)
 
     def call(self, x, **kwargs):
-        noise = K.random_normal(K.shape(x), mean=0, stddev=1)
+        noise = K.random_normal(K.shape(x), mean=0, stddev=1)  # TODO: Try different noise model (i.e. few random
+        # inputs but with a hidden layer)
         additive_noise = noise * self._w
         out = x + additive_noise
         return out

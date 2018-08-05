@@ -16,6 +16,7 @@ DEFAULT_TF_TG = 'tf_tg'
 DEFAULT_ROOT_GENE = 'CRP'
 DEFAULT_EVIDENCE = 'Weak'
 
+
 def _parse(lines):
     """
     Parse lines from expression file

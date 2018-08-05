@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation
+from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda
 from keras.models import Model
 from keras.optimizers import Adam
 import numpy as np
@@ -17,22 +17,29 @@ LATENT_DIM = 20
 
 
 class BioGAN:
-    def __init__(self, data, latent_dim=LATENT_DIM, max_replay_len=None):
+    def __init__(self, data, latent_dim=LATENT_DIM, discriminate_batch=False, max_replay_len=None):
         """
         Initialize GAN
         :param data: expression matrix. Shape=(nb_samples, nb_genes)
         :param latent_dim: number input noise units for the generator
+        :param discriminate_batch: whether to discriminate a whole batch of samples rather than discriminating samples
+               individually
         :param max_replay_len: size of the replay buffer
         """
         self._latent_dim = latent_dim
         self._data = data
         self._nb_samples, self._nb_genes = data.shape
+        self._discriminate_batch = discriminate_batch
         self._max_replay_len = max_replay_len
 
         # Build and compile the discriminator
-        optimizer = Adam(0.0002, 0.5)
         self.discriminator = self._build_discriminator()
-        self.discriminator.compile(loss='binary_crossentropy',
+        optimizer = Adam(0.0002, 0.5)
+        loss = 'binary_crossentropy'
+        if self._discriminate_batch:
+            loss = self._minibatch_binary_crossentropy
+
+        self.discriminator.compile(loss=loss,
                                    optimizer=optimizer)
         self._gradients_discr = self._gradients_norm(self.discriminator)
 
@@ -42,7 +49,7 @@ class BioGAN:
         gen_out = self.generator(z)
 
         # Build the combined model
-        optimizer = Adam(0.0002, 0.5, clipvalue=0.1)  # clipvalue=0.1
+        optimizer = Adam(0.0002, 0.5, clipvalue=0.1)
         self.discriminator.trainable = False
         valid = self.discriminator(gen_out)
         self.combined = Model(z, valid)
@@ -90,9 +97,26 @@ class BioGAN:
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(1, activation='sigmoid')(h)
+
+        if self._discriminate_batch:
+            h = Lambda(lambda x: K.mean(x, keepdims=True))(h)  # Discriminates the whole batch. Shape=(1,)
+
         model = Model(inputs=expressions_input, outputs=h)
         model.summary()
         return model
+
+    @staticmethod
+    def _minibatch_binary_crossentropy(y_true, y_pred):
+        """
+        Loss function for minibatch discrimination
+        :param y_true: tensor with true label. Shape=(batch_size, 1)
+        :param y_pred: tensor with probability P(x_batch=1). Shape=(1, 1)
+        :return: minibatch binary crossentropy
+        """
+        print(y_true.get_shape())
+        y_true_batch = y_true[0, None]
+        print(y_true_batch.get_shape())
+        return K.binary_crossentropy(y_true_batch, y_pred)
 
     @staticmethod
     def _write_log(callback, names, logs, epoch):
@@ -274,7 +298,6 @@ if __name__ == '__main__':
     std_min = std.min()
     std_max = std.max()
     scaled_stds = (std - std_min)/(std_max - std_min)
-    print(scaled_stds)
 
     # Train GAN
     biogan = BioGAN(expr_train, latent_dim=LATENT_DIM)
