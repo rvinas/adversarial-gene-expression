@@ -11,6 +11,7 @@ import tensorflow as tf
 import warnings
 import scipy.stats as stats
 from layers import ExperimentalNoise
+
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
 LATENT_DIM = 20
@@ -23,7 +24,7 @@ class BioGAN:
         :param data: expression matrix. Shape=(nb_samples, nb_genes)
         :param latent_dim: number input noise units for the generator
         :param discriminate_batch: whether to discriminate a whole batch of samples rather than discriminating samples
-               individually
+               individually. NOTE: Not implemented
         :param max_replay_len: size of the replay buffer
         """
         self._latent_dim = latent_dim
@@ -37,7 +38,8 @@ class BioGAN:
         optimizer = Adam(0.0002, 0.5)
         loss = 'binary_crossentropy'
         if self._discriminate_batch:
-            loss = self._minibatch_binary_crossentropy
+            # loss = self._minibatch_binary_crossentropy
+            raise NotImplementedError
 
         self.discriminator.compile(loss=loss,
                                    optimizer=optimizer)
@@ -97,26 +99,9 @@ class BioGAN:
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(1, activation='sigmoid')(h)
-
-        if self._discriminate_batch:
-            h = Lambda(lambda x: K.mean(x, keepdims=True))(h)  # Discriminates the whole batch. Shape=(1,)
-
         model = Model(inputs=expressions_input, outputs=h)
         model.summary()
         return model
-
-    @staticmethod
-    def _minibatch_binary_crossentropy(y_true, y_pred):
-        """
-        Loss function for minibatch discrimination
-        :param y_true: tensor with true label. Shape=(batch_size, 1)
-        :param y_pred: tensor with probability P(x_batch=1). Shape=(1, 1)
-        :return: minibatch binary crossentropy
-        """
-        print(y_true.get_shape())
-        y_true_batch = y_true[0, None]
-        print(y_true_batch.get_shape())
-        return K.binary_crossentropy(y_true_batch, y_pred)
 
     @staticmethod
     def _write_log(callback, names, logs, epoch):
@@ -292,12 +277,11 @@ if __name__ == '__main__':
     r_min = expr.min(axis=0)
     r_max = expr.max(axis=0)
     expr_train = (expr_train - mean) / (std_clip * std)
-    # expr_train = np.tanh(expr_train)
 
     # Scale standard deviations (0 to 1)
     std_min = std.min()
     std_max = std.max()
-    scaled_stds = (std - std_min)/(std_max - std_min)
+    scaled_stds = (std - std_min) / (std_max - std_min)
 
     # Train GAN
     biogan = BioGAN(expr_train, latent_dim=LATENT_DIM)
@@ -305,7 +289,6 @@ if __name__ == '__main__':
 
     # Generate synthetic data
     s_expr = biogan.generate_batch(expr_train.shape[0])  # expr_test.shape[0]
-    # s_expr = np.arctanh(s_expr)
     s_expr = std_clip * s_expr * std + mean
 
     # Save generated data
