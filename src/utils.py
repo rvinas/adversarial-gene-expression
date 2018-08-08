@@ -375,7 +375,7 @@ def plot_gene_ranges(expr, dataset_name='E. coli M3D', color='royalblue', ax=Non
                       label=dataset_name,
                       ax=ax)
 
-    plt.xlabel('Range of gene lavels')
+    plt.xlabel('Gene ranges')
     plt.ylabel('Density')
 
     return ax

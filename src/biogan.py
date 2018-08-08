@@ -1,20 +1,21 @@
 from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda
 from keras.models import Model
 from keras.optimizers import Adam
+from keras.models import load_model
+import keras.backend as K
+from keras.callbacks import TensorBoard
 import numpy as np
 from data_pipeline import load_data, save_synthetic, reg_network, split_train_test, clip_outliers
 from utils import *
-import keras.backend as K
-from keras.callbacks import TensorBoard
 import datetime
 import tensorflow as tf
 import warnings
-import scipy.stats as stats
-from layers import ExperimentalNoise
+from layers import GeneWiseNoise
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
 LATENT_DIM = 20
+CHECKPOINTS_DIR = '../checkpoints'
 
 
 class BioGAN:
@@ -83,7 +84,7 @@ class BioGAN:
         h = Dense(self._nb_genes)(h)
         # h = Activation('tanh')(h)
         # h = LeakyReLU(0.3)(h)
-        self._noise_layer = ExperimentalNoise()
+        self._noise_layer = GeneWiseNoise()
         h = self._noise_layer(h)
         # h = Activation('tanh')(h)
         model = Model(inputs=noise, outputs=h)
@@ -253,10 +254,36 @@ class BioGAN:
 
         return pred
 
+    def save_model(self, name):
+        """
+        Saves model to CHECKPOINTS_DIR
+        :param name: model id
+        """
+        self.discriminator.trainable = True
+        self.discriminator.save('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name))
+        self.discriminator.trainable = False
+        for layer in self.discriminator.layers:  # https://github.com/keras-team/keras/issues/9589
+            layer.trainable = False
+        self.generator.save('{}/gen/{}.h5'.format(CHECKPOINTS_DIR, name), include_optimizer=False)
+        self.combined.save('{}/gan/{}.h5'.format(CHECKPOINTS_DIR, name))
+
+    def load_model(self, name):
+        """
+        Loads model from CHECKPOINTS_DIR
+        :param name: model id
+        """
+        self.discriminator = load_model('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name))
+        self.generator = load_model('{}/gen/{}.h5'.format(CHECKPOINTS_DIR, name),
+                                    custom_objects={'GeneWiseNoise': GeneWiseNoise},
+                                    compile=False)
+        self.combined = load_model('{}/gan/{}.h5'.format(CHECKPOINTS_DIR, name),
+                                   custom_objects={'GeneWiseNoise': GeneWiseNoise})
+        self._latent_dim = self.generator.input_shape[-1]
+
 
 if __name__ == '__main__':
     # Load data
-    root_gene = None
+    root_gene = 'CRP'
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
@@ -266,22 +293,14 @@ if __name__ == '__main__':
     train_idxs, test_idxs = split_train_test(sample_names)
     expr_train = expr[train_idxs, :]
     expr_test = expr[test_idxs, :]
-
-    # Clip outliers
     mean = np.mean(expr, axis=0)
     std = np.std(expr, axis=0)
     std_clip = 2
-    # expr_train = clip_outliers(expr_train, mean, std, std_clip)
 
     # Standardize data
     r_min = expr.min(axis=0)
     r_max = expr.max(axis=0)
     expr_train = (expr_train - mean) / (std_clip * std)
-
-    # Scale standard deviations (0 to 1)
-    std_min = std.min()
-    std_max = std.max()
-    scaled_stds = (std - std_min) / (std_max - std_min)
 
     # Train GAN
     biogan = BioGAN(expr_train, latent_dim=LATENT_DIM)
@@ -294,3 +313,6 @@ if __name__ == '__main__':
     # Save generated data
     file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
     save_synthetic(file_name, s_expr, gene_symbols)
+
+    # Save model
+    biogan.save_model(file_name)
