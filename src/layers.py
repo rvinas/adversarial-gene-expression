@@ -110,8 +110,9 @@ class NormWeights():
 
 
 class GeneWiseNoise(Layer):
-    def __init__(self, **kwargs):
+    def __init__(self, noise_rate=0.25, **kwargs):
         self._w = None
+        self._noise_rate = noise_rate
         super(GeneWiseNoise, self).__init__(**kwargs)
 
     def build(self, input_shape):
@@ -120,13 +121,12 @@ class GeneWiseNoise(Layer):
                                   shape=(nb_genes,),
                                   initializer='uniform',
                                   trainable=True,
-                                  constraint=NormWeights(total_weights=270)
+                                  constraint=NormWeights(total_weights=self._noise_rate*nb_genes)
                                   )
         super(GeneWiseNoise, self).build(input_shape)
 
     def call(self, x, **kwargs):
-        noise = K.random_normal(K.shape(x), mean=0, stddev=1)  # TODO: Try different noise model (i.e. few random
-        # inputs but with a hidden layer)
+        noise = K.random_normal(K.shape(x), mean=0, stddev=1)
         additive_noise = noise * self._w
         out = x + additive_noise
         return out

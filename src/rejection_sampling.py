@@ -21,7 +21,7 @@ def rejection_sampling(generate_data, nb_samples, gene_idx, expr_train, grid_siz
     :param batch_size: Batch size used to call generate_data during rejection sampling
     :return: Rejection samples for gene_idx. Shape=(nb_samples, nb_genes)
     """
-    # Kernel Density Estimation and finding rejection sampling constant
+    # Kernel Density Estimation and finding rejection sampling normalization constant
     r_expr_gene = expr_train[:, gene_idx].ravel()
     r_kde_gene = scipy.stats.gaussian_kde(r_expr_gene)
     grid = np.linspace(np.min(r_expr_gene), np.max(r_expr_gene), grid_size)

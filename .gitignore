@@ -2,6 +2,3 @@
 *.ipynb_checkpoint*
 *__pycache__*
 *.pyc
-*logs/
-*data/csv
-*checkpoints/

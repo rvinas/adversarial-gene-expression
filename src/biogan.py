@@ -78,7 +78,7 @@ class BioGAN:
         Build the generator
         """
         noise = Input(shape=(self._latent_dim,))
-        h = Dense(1000)(noise)
+        h = Dense(4000)(noise)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(self._nb_genes)(h)
@@ -96,7 +96,7 @@ class BioGAN:
         Build the discriminator
         """
         expressions_input = Input(shape=(self._nb_genes,))
-        h = Dense(1000)(expressions_input)
+        h = Dense(4000)(expressions_input)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(1, activation='sigmoid')(h)
@@ -283,7 +283,7 @@ class BioGAN:
 
 if __name__ == '__main__':
     # Load data
-    root_gene = 'CRP'
+    root_gene = None
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
