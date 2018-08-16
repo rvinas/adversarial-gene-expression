@@ -91,7 +91,7 @@ class GRI(Layer):
         return input_shape[0], self._output_dim
 
 
-class ClipWeights():
+class ClipWeights:
     def __init__(self, min_value, max_value):
         self._min_value = min_value
         self._max_value = max_value
@@ -99,14 +99,21 @@ class ClipWeights():
     def __call__(self, w):
         return K.clip(w, self._min_value, self._max_value)
 
+    def get_config(self):
+        return {'min_value': self._min_value,
+                'max_value': self._max_value}
 
-class NormWeights():
+
+class NormWeights:
     def __init__(self, total_weights=10):
         self._total_weights = total_weights
 
     def __call__(self, w):
         w = self._total_weights * w / K.sum(K.abs(w))
         return w
+
+    def get_config(self):
+        return {'total_weights': self._total_weights}
 
 
 class GeneWiseNoise(Layer):

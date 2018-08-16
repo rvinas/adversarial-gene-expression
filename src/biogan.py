@@ -10,7 +10,7 @@ from utils import *
 import datetime
 import tensorflow as tf
 import warnings
-from layers import GeneWiseNoise
+from layers import GeneWiseNoise, ClipWeights
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
@@ -52,7 +52,7 @@ class BioGAN:
         gen_out = self.generator(z)
 
         # Build the combined model
-        optimizer = Adam(0.0002, 0.5, clipvalue=0.1)
+        optimizer = Adam(0.0002, 0.5)
         self.discriminator.trainable = False
         valid = self.discriminator(gen_out)
         self.combined = Model(z, valid)
@@ -78,7 +78,7 @@ class BioGAN:
         Build the generator
         """
         noise = Input(shape=(self._latent_dim,))
-        h = Dense(4000)(noise)
+        h = Dense(1000)(noise)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(self._nb_genes)(h)
@@ -91,15 +91,15 @@ class BioGAN:
         model.summary()
         return model
 
-    def _build_discriminator(self):
+    def _build_discriminator(self, clipvalue=0.5):
         """
         Build the discriminator
         """
         expressions_input = Input(shape=(self._nb_genes,))
-        h = Dense(4000)(expressions_input)
+        h = Dense(1000, kernel_constraint=ClipWeights(-clipvalue, clipvalue))(expressions_input)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
-        h = Dense(1, activation='sigmoid')(h)
+        h = Dense(1, activation='sigmoid', kernel_constraint=ClipWeights(-clipvalue, clipvalue))(h)
         model = Model(inputs=expressions_input, outputs=h)
         model.summary()
         return model
@@ -166,7 +166,7 @@ class BioGAN:
 
             # Train the discriminator (real classified as ones and generated as zeros)
             valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))  # Label smoothing
-            fake = np.random.uniform(low=0, high=0.3, size=(batch_size, 1))  # Label smoothing
+            fake = np.zeros(shape=(batch_size, 1))  # np.random.uniform(low=0, high=0.3, size=(batch_size, 1))  # Label smoothing
             d_loss_real = self.discriminator.train_on_batch(x_real, valid)
             d_loss_fake = self.discriminator.train_on_batch(x_fake, fake)
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
@@ -272,18 +272,20 @@ class BioGAN:
         Loads model from CHECKPOINTS_DIR
         :param name: model id
         """
-        self.discriminator = load_model('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name))
+        self.discriminator = load_model('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name),
+                                        custom_objects={'ClipWeights': ClipWeights})
         self.generator = load_model('{}/gen/{}.h5'.format(CHECKPOINTS_DIR, name),
                                     custom_objects={'GeneWiseNoise': GeneWiseNoise},
                                     compile=False)
         self.combined = load_model('{}/gan/{}.h5'.format(CHECKPOINTS_DIR, name),
-                                   custom_objects={'GeneWiseNoise': GeneWiseNoise})
+                                   custom_objects={'GeneWiseNoise': GeneWiseNoise,
+                                                   'ClipWeights': ClipWeights})
         self._latent_dim = self.generator.input_shape[-1]
 
 
 if __name__ == '__main__':
     # Load data
-    root_gene = None
+    root_gene = 'CRP'
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
