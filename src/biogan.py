@@ -1,7 +1,6 @@
 from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda
-from keras.models import Model
+from keras.models import Model, load_model
 from keras.optimizers import Adam
-from keras.models import load_model
 import keras.backend as K
 from keras.callbacks import TensorBoard
 import numpy as np
@@ -283,6 +282,61 @@ class BioGAN:
         self._latent_dim = self.generator.input_shape[-1]
 
 
+def normalize(expr, kappa=1):
+    """
+    Normalizes expressions to make each gene have mean 0 and std kappa^-1
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param kappa: kappa^-1 is the gene std
+    :return: normalized expressions
+    """
+    mean = np.mean(expr, axis=0)
+    std = np.std(expr, axis=0)
+    return (expr - mean) / (kappa * std)
+
+
+def restore_scale(expr, mean, std):
+    """
+    Makes each gene j have mean_j and std_j
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param mean: vector of gene means. Shape=(nb_genes,)
+    :param std: vector of gene stds. Shape=(nb_genes,)
+    :return: Rescaled gene expressions
+    """
+    return expr * std + mean
+
+
+def clip_outliers(expr, r_min, r_max):
+    """
+    Clips expression values to make them be between r_min and r_max
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param r_min: minimum expression value (float)
+    :param r_max: maximum expression value (float)
+    :return: Clipped expression matrix
+    """
+    expr_c = np.copy(expr)
+    expr_c[expr_c < r_min] = r_min
+    expr_c[expr_c > r_max] = r_max
+    return expr_c
+
+
+def generate_data(gan, size, mean, std, r_min, r_max):
+    """
+    Generates size samples from generator
+    :param gan: Keras GAN
+    :param size: Number of samples to generate
+    :param mean: vector of gene means. Shape=(nb_genes,)
+    :param std: vector of gene stds. Shape=(nb_genes,)
+    :param r_min: vector of minimum expression values for each gene
+    :param r_max: vector of maximum expression values for each gene
+    :return: matrix of expressions
+    """
+    expr = gan.generate_batch(size)
+    expr = normalize(expr)
+    expr = restore_scale(expr, mean, std)
+    expr = clip_outliers(expr, r_min, r_max)
+    return expr
+
+
 if __name__ == '__main__':
     # Load data
     root_gene = 'CRP'
@@ -295,22 +349,20 @@ if __name__ == '__main__':
     train_idxs, test_idxs = split_train_test(sample_names)
     expr_train = expr[train_idxs, :]
     expr_test = expr[test_idxs, :]
-    mean = np.mean(expr, axis=0)
-    std = np.std(expr, axis=0)
-    std_clip = 2
 
     # Standardize data
-    r_min = expr.min(axis=0)
-    r_max = expr.max(axis=0)
-    expr_train = (expr_train - mean) / (std_clip * std)
+    expr_train = normalize(expr_train, kappa=2)
 
     # Train GAN
     biogan = BioGAN(expr_train, latent_dim=LATENT_DIM)
     biogan.train(epochs=3000, batch_size=32)
 
     # Generate synthetic data
-    s_expr = biogan.generate_batch(expr_train.shape[0])  # expr_test.shape[0]
-    s_expr = std_clip * s_expr * std + mean
+    mean = np.mean(expr_train, axis=0)
+    std = np.std(expr_train, axis=0)
+    r_min = expr_train.min()
+    r_max = expr_train.max()
+    s_expr = generate_data(biogan, expr_train.shape[0], mean, std, r_min, r_max)
 
     # Save generated data
     file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)

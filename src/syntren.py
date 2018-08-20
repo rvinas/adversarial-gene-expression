@@ -5,10 +5,10 @@ import pandas as pd
 DEFAULT_ROOT_GENE = 'CRP'
 DEFAULT_EVIDENCE = 'Weak'
 DEFAULT_DEPTH = np.inf
-SYNTREN_DATA_DIR = '../../syntren1.2release/data/'
-NETWORK_FILE = SYNTREN_DATA_DIR + 'sourceNetworks/EColi_n{}_r{}_e{}_d{}.sif'
+SYNTREN_DATA_DIR = '../data/syntren/'  # '../../syntren1.2release/data/'
+NETWORK_FILE = SYNTREN_DATA_DIR + 'source_networks/EColi_n{}_r{}_e{}_d{}.sif'
 RESULTS_FILE = SYNTREN_DATA_DIR + 'results/nn{}_nbgr{}_hop{}_bionoise{}_expnoise{}_corrnoise{' \
-                                  '}_neighAdd_maxExpr1_dataset.txt'
+                                  '}_neighAdd_{}_dataset.txt'
 DEFAULT_BACKGROUND_NODES = 0
 DEFAULT_HOP = 0.3  # Probability for complex 2-regulator interactions
 DEFAULT_BIONOISE = 0.1
@@ -39,14 +39,18 @@ def dump_network(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE,
     print('Finished preparing SynTReN network\nFile:{}'.format(file_name))
 
 
-def syntren_results(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, depth=DEFAULT_DEPTH, break_loops=True,
-                    nb_background=DEFAULT_BACKGROUND_NODES, hop=DEFAULT_HOP, bionoise=DEFAULT_BIONOISE, expnoise=DEFAULT_EXPNOISE,
-                    corrnoise=DEFAULT_CORRNOISE):
+def syntren_results(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, depth=DEFAULT_DEPTH,
+                    break_loops=True, nb_background=DEFAULT_BACKGROUND_NODES, hop=DEFAULT_HOP,
+                    bionoise=DEFAULT_BIONOISE, expnoise=DEFAULT_EXPNOISE, corrnoise=DEFAULT_CORRNOISE,
+                    normalized=True):
     # Read results
     gs = get_gene_symbols()
     nodes, edges = reg_network(gs, root_gene, minimum_evidence, depth, break_loops)
     nb_nodes = len(nodes)
-    file_name = RESULTS_FILE.format(nb_nodes, nb_background, hop, bionoise, expnoise, corrnoise)
+    norm = 'maxExpr1'
+    if not normalized:
+        norm = 'unnormalized'
+    file_name = RESULTS_FILE.format(nb_nodes, nb_background, hop, bionoise, expnoise, corrnoise, norm)
     df = pd.read_csv(file_name, delimiter='\t')
 
     # Get data and discard background genes
@@ -56,7 +60,6 @@ def syntren_results(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDEN
     expr, expr_background = expr[:, :nb_nodes], expr[:, nb_nodes:]
 
     return expr, list(gene_symbols)
-
 
 
 if __name__ == '__main__':

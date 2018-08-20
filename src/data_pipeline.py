@@ -195,7 +195,7 @@ def get_gene_symbols(name=DEFAULT_DATAFILE):
     with open('{}/{}'.format(DATA_DIR, name), 'r') as f:
         lines = f.readlines()
     expr, gene_names, sample_names = _parse(lines)
-    print('Found {} genes in datafile'.format(len(gene_names)))
+    # print('Found {} genes in datafile'.format(len(gene_names)))
 
     # Transform gene names to gene symbols
     return _transform_to_gene_symbols(gene_names)
@@ -222,6 +222,26 @@ def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFA
     df = df[df['tf'].isin(gene_symbols)]
     df = df[df['tg'].isin(gene_symbols)]
 
+    # Select all genes
+    if root_gene is None:
+        assert not break_loops  # break_loops not supported. Which loops would we break?
+        nodes = gene_symbols
+        edges = {}
+        tfs = df['tf'].values
+        tgs = df['tg'].values
+        reg_types = df['effect'].values
+        for tf, tg, reg_type in zip(tfs, tgs, reg_types):
+            if tf in edges:
+                # If edge is present, check if it is necessary to change its regulation type
+                if tg in edges[tf] and (
+                        (edges[tf][tg] == '+' and reg_type == '-') or (edges[tf][tg] == '-' and reg_type == '+')):
+                    edges[tf][tg] = '+-'
+                elif tg not in edges[tf]:
+                    edges[tf][tg] = reg_type
+            else:
+                edges[tf] = {tg: reg_type}
+        return nodes, edges
+
     # Construct network
     depth = 0
     nodes = set()
@@ -238,10 +258,10 @@ def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFA
         depth += 1
         for tf, tg, reg_type in zip(tfs, tgs, reg_types):
             # We might want to avoid loops. TODO: Take evidence into account?
-            if break_loops and tg in edges:
+            if break_loops and tf == tg:
+                print('Warning: Breaking autoregulatory loop: {}->{}'.format(tf, tg))
+            elif break_loops and tg in edges:
                 print('Warning: Breaking loop: {}->{}'.format(tf, tg))
-            elif break_loops and tf == tg:
-                print('Warning: Breaking autoregulation loop: {}->{}'.format(tf, tg))
             else:
                 if tf in edges:
                     # If edge is present, check if it is necessary to change its regulation type
@@ -253,7 +273,26 @@ def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFA
                 else:
                     edges[tf] = {tg: reg_type}
 
-    return nodes, edges
+    return list(nodes), edges
+
+
+def reverse_edges(edges):
+    """
+    Reverse edges from regulatory network.
+    :param edges: dictionary of edges (keys: *from* node, values: dictionary with key *to* node and
+             value regulation type)
+    :return: dictionary of edges (keys: *to* node, values: dictionary with key *from* node and
+             value regulation type)
+    """
+    r_edges = {}
+    for tf, tgs in edges.items():
+        for tg, reg_type in tgs.items():
+            if tg in r_edges:
+                if tf not in r_edges[tg]:
+                    r_edges[tg][tf] = reg_type
+            else:
+                r_edges[tg] = {tf: reg_type}
+    return r_edges
 
 
 def split_replicates(sample_names, split_point=-1):

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from data_pipeline import tf_tg_interactions
+from data_pipeline import tf_tg_interactions, load_data
 import scipy.stats
 from statsmodels.stats.multitest import multipletests
 from clustering import Cluster
@@ -139,8 +139,8 @@ def gamma_coefficients(expr_x, expr_z):
 def psi_coefficient(tf_tg_x, tf_tg_z, weights_type='nb_genes'):
     """
     Computes the psi TF-TG correlation coefficient
-    :param tf_tg_x: list of TF-TG correlations, returned by compute_tf_tg_corrs
-    :param tf_tg_z: list of TF-TG correlations, returned by compute_tf_tg_corrs
+    :param tf_tg_x: list of TF-TG correlations, returned by compute_tf_tg_corrs with flat=False
+    :param tf_tg_z: list of TF-TG correlations, returned by compute_tf_tg_corrs with flat=False
     :param weights_type: for 'nb_genes' the weights for each TF are proportional to the number
                     target genes that it regulates. For 'ones' the weights are all one.
     :return: psi correlation coefficient
@@ -155,7 +155,7 @@ def psi_coefficient(tf_tg_x, tf_tg_z, weights_type='nb_genes'):
         cx = np.array(cx)
         cz = np.array(cz)
         total_sum += weight * cosine_similarity(cx,
-                                                cz)  # pearson_correlation(cx, cz)  # TODO: Convert cx and cz to distances?
+                                                cz)
     return total_sum / weights_sum
 
 
@@ -174,11 +174,13 @@ def theta_coefficient(tg_tg_x, tg_tg_z, weights_type='nb_genes'):
         if len(cx) > 0:  # In case a TF only regulates one gene, the list will be empty
             weight = 1
             if weights_type == 'nb_genes':
-                weight = len(cx)  # nb. of genes regulated by the TF
+                x = len(cx)  # nb_genes * (nb_genes + 1) = 2*weight
+                roots = np.roots([1, 1, -2*x])
+                weight = max(roots)  # nb. of genes regulated by the TF
             weights_sum += weight
             cx = np.array(cx)
             cz = np.array(cz)
-            total_sum += weight * cosine_similarity(cx, cz)  # TODO: Convert cx and cz to distances?
+            total_sum += weight * cosine_similarity(cx, cz)
     return total_sum / weights_sum
 
 
@@ -371,7 +373,7 @@ def plot_gene_ranges(expr, dataset_name='E. coli M3D', color='royalblue', ax=Non
 
     ax = sns.distplot(diffs,
                       hist=False,
-                      kde_kws={'color': color, 'linewidth': 2, 'bw': .1},
+                      kde_kws={'color': color, 'linewidth': 2, 'bw': .15},
                       label=dataset_name,
                       ax=ax)
 
@@ -388,6 +390,7 @@ def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim
     Approximates these distributions with Kernel Density Estimation using a Gaussian kernel
     :param interest_distr: list containing the values of the distribution of interest.
     :param background_distr: list containing the values of the background distribution.
+    :param xlabel: label on the x axis
     :param right_lim: histogram left limit
     :param left_lim: histogram right limit
     :param dataset_name: name of the dataset
@@ -405,21 +408,25 @@ def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim
     # plt.plot(grid, kde_corr(grid), label="kde B")
     ax = plt.plot(grid, kde_corr(grid) - kde_back(grid),
                   color,
-                  label=dataset_name)
+                  label=dataset_name,
+                  linewidth=2)
     plt.legend()
     plt.xlabel(xlabel)
     plt.ylabel('Density difference')
     return ax
 
 
-def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
+def plot_tf_activity_histogram(expr, gene_symbols, xlabel='Fraction of chips. TF activity', color='royalblue', tf_tg=None):
     """
     Plots the TF activity histogram. It is computed according to the Wilcoxon's non parametric rank-sum method, which tests
     whether TF targets exhibit significant rank differences in comparison with other non-target genes. The obtained
     p-values are corrected via Benjamini-Hochberg's procedure to account for multiple testing.
+    :param xlabel: label on the x axis
     :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
     :param gene_symbols: list of gene_symbols. Shape=(nb_genes,)
+    :param color: histogram color
     :param tf_tg: dict with TF symbol as key and list of TGs' symbols as value
+    :return matplotlib axes
     """
     nb_samples, nb_genes = expr.shape
 
@@ -463,10 +470,16 @@ def plot_tf_activity_histogram(expr, gene_symbols, tf_tg=None):
     bins = np.logspace(-10, 1, 20, base=2)
     bins[0] = 0
     ax = plt.gca()
-    plt.hist(values, bins=bins)
+    plt.hist(values, bins=bins, color=color)
     ax.set_xscale('log', basex=2)
     ax.set_xlim(2 ** -10, 1)
-    ax.set_xlabel('Fraction of chips. TF activity')
+    ax.set_xlabel(xlabel)
     ax.set_ylabel('Density')
-    # from matplotlib.ticker import FormatStrFormatter
-    # ax.xaxis.set_major_formatter(FormatStrFormatter('%.4f'))
+    return ax
+
+
+
+if __name__ == '__main__':
+    r_expr, gene_symbols, sample_names = load_data(root_gene='crp')
+    r_tf_tg_corr_flat, r_tg_tg_corr_flat = compute_tf_tg_corrs(r_expr, gene_symbols, flat=False)
+    theta_dx_dz = theta_coefficient(r_tg_tg_corr_flat, r_tg_tg_corr_flat)
