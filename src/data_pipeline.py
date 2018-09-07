@@ -217,6 +217,7 @@ def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFA
              value regulation type)
     """
     # Get dataframe of regulatory interactions
+    # IMPORTANT NOTE: This function assumes that the TF in the following file are sorted alphabetically
     file_name = '{}/{}'.format(SUBSET_DIR, reg_int)
     df = _reg_int_df(file_name, minimum_evidence)
     df = df[df['tf'].isin(gene_symbols)]
@@ -247,6 +248,7 @@ def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFA
     nodes = set()
     nodes_new = {root_gene.lower()}
     edges = {}
+    ancestors = {root_gene.lower(): set()}
     while len(nodes) != len(nodes_new) and depth <= max_depth:
         df_tfs = df[~df['tf'].isin(nodes)]
         nodes = nodes_new
@@ -259,10 +261,16 @@ def reg_network(gene_symbols, root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFA
         for tf, tg, reg_type in zip(tfs, tgs, reg_types):
             # We might want to avoid loops. TODO: Take evidence into account?
             if break_loops and tf == tg:
-                print('Warning: Breaking autoregulatory loop: {}->{}'.format(tf, tg))
-            elif break_loops and tg in edges:
-                print('Warning: Breaking loop: {}->{}'.format(tf, tg))
+                print('Warning: Breaking autoregulatory loop ({}->{})'.format(tf, tg))
+            elif break_loops and tg in ancestors[tf]:
+                print('Warning: Breaking loop ({}->{})'.format(tf, tg))
             else:
+                if tg in ancestors:
+                    ancestors[tg] = ancestors[tg].union({tf})
+                    ancestors[tg] = ancestors[tg].union(ancestors[tf])
+                else:
+                    ancestors[tg] = {tf}.union(ancestors[tf])
+
                 if tf in edges:
                     # If edge is present, check if it is necessary to change its regulation type
                     if tg in edges[tf] and (
@@ -481,3 +489,6 @@ if __name__ == '__main__':
     idxs_train, idxs_test = split_train_test(sample_names, train_rate=0.7)
     print(idxs_train)
     print(idxs_test)
+
+    gs = get_gene_symbols()
+    nodes, edges = reg_network(gs)

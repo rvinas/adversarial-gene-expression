@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda
+from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda, BatchNormalization
 from keras.models import Model, load_model
 from keras.optimizers import Adam
 import keras.backend as K
@@ -14,21 +14,29 @@ from layers import GeneWiseNoise, ClipWeights
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
 LATENT_DIM = 20
+DEFAULT_NOISE_RATE = 0.25
 CHECKPOINTS_DIR = '../checkpoints'
 
 
-class BioGAN:
-    def __init__(self, data, latent_dim=LATENT_DIM, discriminate_batch=False, max_replay_len=None):
+# TODO: Pass function of evaluation scores in train instead of gene symbols
+
+class gGAN:
+    def __init__(self, data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE, discriminate_batch=False,
+                 max_replay_len=None):
         """
         Initialize GAN
         :param data: expression matrix. Shape=(nb_samples, nb_genes)
+        :param gene_symbols: list of gene symbols. Shape=(nb_genes,)
         :param latent_dim: number input noise units for the generator
+        :param noise_rate: rate of noise being added in the gene-wise layer of the generator (psi/nb_genes).
         :param discriminate_batch: whether to discriminate a whole batch of samples rather than discriminating samples
                individually. NOTE: Not implemented
         :param max_replay_len: size of the replay buffer
         """
         self._latent_dim = latent_dim
+        self._noise_rate = noise_rate
         self._data = data
+        self._gene_symbols = gene_symbols
         self._nb_samples, self._nb_genes = data.shape
         self._discriminate_batch = discriminate_batch
         self._max_replay_len = max_replay_len
@@ -77,13 +85,15 @@ class BioGAN:
         Build the generator
         """
         noise = Input(shape=(self._latent_dim,))
-        h = Dense(1000)(noise)
+        h = noise
+        # h = Dropout(0.5)(h)
+        h = Dense(1000)(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(self._nb_genes)(h)
         # h = Activation('tanh')(h)
         # h = LeakyReLU(0.3)(h)
-        self._noise_layer = GeneWiseNoise()
+        self._noise_layer = GeneWiseNoise(self._noise_rate)
         h = self._noise_layer(h)
         # h = Activation('tanh')(h)
         model = Model(inputs=noise, outputs=h)
@@ -139,15 +149,19 @@ class BioGAN:
 
         return K.function(inputs=input_tensors, outputs=[norm])
 
-    def train(self, epochs, batch_size=32):
+    def train(self, epochs, file_name=None, batch_size=32):
         """
         Trains the GAN
         :param epochs: Number of epochs
+        :param file_name: Name of the .h5 file in checkpoints. If None, the model won't be saved
         :param batch_size: Batch size
         """
         # sess = tf.Session()
         # K.set_session(sess)
         # sess.run(tf.global_variables_initializer())
+
+        # Best score for correlation of distance gene matrices
+        best_gdxdz = 0
 
         for epoch in range(epochs):
 
@@ -165,7 +179,8 @@ class BioGAN:
 
             # Train the discriminator (real classified as ones and generated as zeros)
             valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))  # Label smoothing
-            fake = np.zeros(shape=(batch_size, 1))  # np.random.uniform(low=0, high=0.3, size=(batch_size, 1))  # Label smoothing
+            fake = np.zeros(
+                shape=(batch_size, 1))  # np.random.uniform(low=0, high=0.3, size=(batch_size, 1))  # Label smoothing
             d_loss_real = self.discriminator.train_on_batch(x_real, valid)
             d_loss_fake = self.discriminator.train_on_batch(x_fake, fake)
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
@@ -237,6 +252,27 @@ class BioGAN:
             # ----------------------
             print('{} [D loss: {:.4f}] [G loss: {:.4f}]'.format(epoch, d_loss, g_loss))
 
+            # ----------------------
+            # Evaluate and save the model when good gamma(D^X, D^Z)
+            # ----------------------
+            if (epoch+1) % 100 == 0:
+                s_expr = self.generate_batch(self._data.shape[0])
+                gamma_dx_dz, gamma_dx_tx, gamma_dz_tz, gamma_tx_tz = gamma_coefficients(self._data, s_expr)
+                r_tf_tg_corr_flat, r_tg_tg_corr_flat = compute_tf_tg_corrs(self._data, self._gene_symbols, flat=False)
+                s_tf_tg_corr_flat, s_tg_tg_corr_flat = compute_tf_tg_corrs(s_expr, self._gene_symbols, flat=False)
+                psi_dx_dz = psi_coefficient(r_tf_tg_corr_flat, s_tf_tg_corr_flat)
+                theta_dx_dz = theta_coefficient(r_tg_tg_corr_flat, s_tg_tg_corr_flat)
+
+                self._write_log(self._callback_gen,
+                                ['Gamma(D^X, D^Z)', 'Gamma(D^Z, T^Z)', 'Gamma(T^X, T^Z)', 'Psi(D^X, D^Z)', 'Phi(D^X, D^Z)'],
+                                [gamma_dx_dz, gamma_dz_tz, gamma_tx_tz, psi_dx_dz, theta_dx_dz],
+                                epoch)
+                print('Gamma(D^X, D^Z): {}'.format(gamma_dx_dz))
+                if file_name is not None and gamma_dx_dz > best_gdxdz:
+                    best_gdxdz = gamma_dx_dz
+                    print('Saving model ...')
+                    self.save_model(file_name)
+
         # Print noise layer norm
         # noise_layer_norm = sess.run(self._noise_layer.get_weights_norm())
         # print('Noise layer norm: {}'.format(noise_layer_norm))
@@ -252,6 +288,14 @@ class BioGAN:
         pred = self.generator.predict(noise)
 
         return pred
+
+    def discriminate(self, expr):
+        """
+        Discriminates a batch of samples
+        :param expr: expressions matrix. Shape=(nb_samples, nb_genes)
+        :return: for each sample, probability that it comes from the real distribution
+        """
+        return self.discriminator.predict(expr)
 
     def save_model(self, name):
         """
@@ -339,34 +383,36 @@ def generate_data(gan, size, mean, std, r_min, r_max):
 
 if __name__ == '__main__':
     # Load data
-    root_gene = 'CRP'
+    root_gene = None  # Set to 'CRP' to select the CRP hierarchy. Set to None to use full set of genes
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
                                                  minimum_evidence=minimum_evidence,
                                                  max_depth=max_depth)
+    file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
+
     # Split data into train and test sets
     train_idxs, test_idxs = split_train_test(sample_names)
     expr_train = expr[train_idxs, :]
     expr_test = expr[test_idxs, :]
 
     # Standardize data
-    expr_train = normalize(expr_train, kappa=2)
+    data = normalize(expr_train, kappa=2)
 
     # Train GAN
-    biogan = BioGAN(expr_train, latent_dim=LATENT_DIM)
-    biogan.train(epochs=3000, batch_size=32)
+    ggan = gGAN(data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE)
+    ggan.train(epochs=4000, file_name=file_name, batch_size=32)
 
     # Generate synthetic data
     mean = np.mean(expr_train, axis=0)
     std = np.std(expr_train, axis=0)
     r_min = expr_train.min()
     r_max = expr_train.max()
-    s_expr = generate_data(biogan, expr_train.shape[0], mean, std, r_min, r_max)
+    s_expr = generate_data(ggan, expr_train.shape[0], mean, std, r_min, r_max)
 
     # Save generated data
-    file_name = 'EColi_n{}_r{}_e{}_d{}'.format(len(gene_symbols), root_gene, minimum_evidence, max_depth)
     save_synthetic(file_name, s_expr, gene_symbols)
 
     # Save model
-    biogan.save_model(file_name)
+    # ggan.save_model(file_name)
+    # NOTE: The model is saved while training now

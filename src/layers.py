@@ -4,6 +4,7 @@ from keras.initializers import RandomUniform
 
 
 class GRI(Layer):
+    # NOTE: Not used
     def __init__(self, root_node, nodes, edges, **kwargs):
         """
         :param root_node: node on top of the hierarchy
@@ -92,6 +93,9 @@ class GRI(Layer):
 
 
 class ClipWeights:
+    """
+    Keras constraint. Clips weights between two values
+    """
     def __init__(self, min_value, max_value):
         self._min_value = min_value
         self._max_value = max_value
@@ -105,6 +109,9 @@ class ClipWeights:
 
 
 class NormWeights:
+    """
+    Keras constraint. Rescales weights so that the L1 norm is total_weights
+    """
     def __init__(self, total_weights=10):
         self._total_weights = total_weights
 
@@ -117,6 +124,9 @@ class NormWeights:
 
 
 class GeneWiseNoise(Layer):
+    """
+    Keras layer. Adds learnable Gaussian white noise
+    """
     def __init__(self, noise_rate=0.25, **kwargs):
         self._w = None
         self._noise_rate = noise_rate

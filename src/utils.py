@@ -154,12 +154,11 @@ def psi_coefficient(tf_tg_x, tf_tg_z, weights_type='nb_genes'):
         weights_sum += weight
         cx = np.array(cx)
         cz = np.array(cz)
-        total_sum += weight * cosine_similarity(cx,
-                                                cz)
+        total_sum += weight * cosine_similarity(cx, cz)
     return total_sum / weights_sum
 
 
-def theta_coefficient(tg_tg_x, tg_tg_z, weights_type='nb_genes'):
+def phi_coefficient(tg_tg_x, tg_tg_z, weights_type='nb_genes'):
     """
     Computes the theta TG-TG correlation coefficient
     :param tf_tg_x: list of TG-TG correlations, returned by compute_tf_tg_corrs with flat=False
@@ -175,13 +174,124 @@ def theta_coefficient(tg_tg_x, tg_tg_z, weights_type='nb_genes'):
             weight = 1
             if weights_type == 'nb_genes':
                 x = len(cx)  # nb_genes * (nb_genes + 1) = 2*weight
-                roots = np.roots([1, 1, -2*x])
+                roots = np.roots([1, 1, -2 * x])
                 weight = max(roots)  # nb. of genes regulated by the TF
             weights_sum += weight
             cx = np.array(cx)
             cz = np.array(cz)
             total_sum += weight * cosine_similarity(cx, cz)
     return total_sum / weights_sum
+
+
+def find_chip_rates(expr, gene_symbols, tf_tg=None):
+    """
+    Plots the TF activity histogram. It is computed according to the Wilcoxon's non parametric rank-sum method, which tests
+    whether TF targets exhibit significant rank differences in comparison with other non-target genes. The obtained
+    p-values are corrected via Benjamini-Hochberg's procedure to account for multiple testing.
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param gene_symbols: list of gene_symbols. Shape=(nb_genes,)
+    :param tf_tg: dict with TF symbol as key and list of TGs' symbols as value
+    :return np.array of chip rates, and weights (for each TF, number of TGs it regulates)
+    """
+    nb_samples, nb_genes = expr.shape
+
+    if tf_tg is None:
+        tf_tg = tf_tg_interactions()
+    gene_symbols = np.array(gene_symbols)
+
+    # Normalize expression data
+    expr_norm = (expr - np.mean(expr, axis=0)) / np.std(expr, axis=0)
+
+    # For each TF, check whether its target genes exhibit significant rank differences in comparison with other
+    # non-target genes.
+    active_tfs = []
+    weights = []
+    for tf, tgs in tf_tg.items():
+        tg_idxs = np.array([np.where(gene_symbols == tg)[0] for tg in tgs if tg in gene_symbols]).ravel()
+
+        if tf in gene_symbols and len(tg_idxs) > 0:
+            # Add weight
+            weights.append(len(tg_idxs))
+
+            # Find expressions of TG regulated by TF
+            expr_tgs = expr_norm[:, tg_idxs]
+
+            # Find expressions of other genes
+            non_tg_idxs = list(set(range(nb_genes)) - set(tg_idxs.tolist()))
+            expr_non_tgs = expr_norm[:, non_tg_idxs]
+
+            # Compute Wilcoxon's p-value for each sample
+            p_values = []
+            for i in range(nb_samples):
+                statistic, p_value = scipy.stats.mannwhitneyu(expr_tgs[i, :], expr_non_tgs[i, :],
+                                                              alternative='two-sided')
+                p_values.append(p_value)
+
+            # Correct the independent p-values to account for multiple testing with Benjamini-Hochberg's procedure
+            reject, p_values_c, _, _ = multipletests(pvals=p_values,
+                                                     alpha=0.05,
+                                                     method='fdr_bh')
+            chip_rate = np.sum(reject) / nb_samples
+            active_tfs.append(chip_rate)
+
+    return np.array(active_tfs), np.array(weights)
+
+
+def omega_coefficient(expr_x, expr_z, gene_symbols):
+    """
+    Compute omega coefficient for two given expression matrices
+    :param expr_x: matrix of gene expressions. Shape=(nb_samples_1, nb_genes)
+    :param expr_z: matrix of gene expressions. Shape=(nb_samples_2, nb_genes)
+    :return: Gamma(D^X, D^Z), Gamma(D^X, T^X), Gamma(D^Z, T^Z), Gamma(T^X, T^Z)
+             where D^X and D^Z are the distance matrices of expr_x and expr_z (respectively),
+             and T^X and T^Z are the dendrogrammatic distance matrices of expr_x and expr_z (respectively).
+             Gamma(A, B) is a function that computes the correlation between the elements in the upper-diagonal
+             of A and B.
+    """
+    tf_tg = tf_tg_interactions()
+    rates_x, weights_x = find_chip_rates(expr_x, gene_symbols, tf_tg)
+    rates_y, weights_y = find_chip_rates(expr_z, gene_symbols, tf_tg)
+    assert (weights_x == weights_y).all()
+    weights = weights_x
+
+    weighted_mean = lambda x, w: np.dot(w, x) / w.sum()
+    weighted_var = lambda x, w, mean: np.dot(w, (x - mean) ** 2) / w.sum()
+    weighted_covar = lambda x, y, w, mean_x, mean_y: np.dot(w * (x - mean_x), y - mean_y) / w.sum()
+
+    mean_x = weighted_mean(rates_x, weights)
+    mean_y = weighted_mean(rates_y, weights)
+    var_x = weighted_var(rates_x, weights, mean_x)
+    var_y = weighted_var(rates_y, weights, mean_y)
+    covar = weighted_covar(rates_x, rates_y, weights, mean_x, mean_y)
+    return covar / np.sqrt(var_x * var_y)
+
+
+def compute_scores(expr_x, expr_z, gene_symbols):
+    """
+    Computes evaluation scores
+    :param expr_x: real data. Shape=(nb_samples_1, nb_genes)
+    :param expr_z: synthetic data. Shape=(nb_samples_2, nb_genes)
+    :param gene_symbols: list of gene symbols (the genes dimension is sorted according to this list). Shape=(nb_genes,)
+    :return: list of evaluation coefficients (S_dist, S_dend, S_sdcc, S_tftg, S_tgtg, S_tfac)
+    """
+    # Gamma coefficients
+    gamma_dx_dz, gamma_dx_tx, gamma_dz_tz, gamma_tx_tz = gamma_coefficients(expr_x, expr_z)
+
+    # Psi and phi coefficients
+    r_tf_tg_corr, r_tg_tg_corr = compute_tf_tg_corrs(expr_x, gene_symbols, flat=False)
+    s_tf_tg_corr, s_tg_tg_corr = compute_tf_tg_corrs(expr_z, gene_symbols, flat=False)
+    psi_dx_dz = psi_coefficient(r_tf_tg_corr, s_tf_tg_corr)
+    phi_dx_dz = phi_coefficient(r_tg_tg_corr, s_tg_tg_corr)
+
+    # Omega score
+    omega_coeff = omega_coefficient(expr_x, expr_z, gene_symbols)
+
+    return [gamma_dx_dz,
+            gamma_tx_tz,
+            (gamma_dx_tx - gamma_dz_tz)**2,
+            psi_dx_dz,
+            phi_dx_dz,
+            omega_coeff]
 
 
 # ---------------------
@@ -285,7 +395,8 @@ def compare_cophenetic(l_matrix1, l_matrix2):
 # PLOTTING UTILITIES
 # ---------------------
 
-def plot_distribution(data, label='E. coli M3D', color='royalblue', linestyle='-', ax=None, plot_legend=True, xlabel=None, ylabel=None):
+def plot_distribution(data, label='E. coli M3D', color='royalblue', linestyle='-', ax=None, plot_legend=True,
+                      xlabel=None, ylabel=None):
     """
     Plot a distribution
     :param data: data for which the distribution of its flattened values will be plotted
@@ -416,57 +527,22 @@ def plot_difference_histogram(interest_distr, background_distr, xlabel, left_lim
     return ax
 
 
-def plot_tf_activity_histogram(expr, gene_symbols, xlabel='Fraction of chips. TF activity', color='royalblue', tf_tg=None):
+def plot_tf_activity_histogram(expr, gene_symbols, xlabel='Fraction of chips. TF activity', color='royalblue',
+                               tf_tg=None):
     """
     Plots the TF activity histogram. It is computed according to the Wilcoxon's non parametric rank-sum method, which tests
     whether TF targets exhibit significant rank differences in comparison with other non-target genes. The obtained
     p-values are corrected via Benjamini-Hochberg's procedure to account for multiple testing.
-    :param xlabel: label on the x axis
     :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
     :param gene_symbols: list of gene_symbols. Shape=(nb_genes,)
-    :param color: histogram color
     :param tf_tg: dict with TF symbol as key and list of TGs' symbols as value
+    :param xlabel: label on the x axis
+    :param color: histogram color
     :return matplotlib axes
     """
-    nb_samples, nb_genes = expr.shape
-
-    if tf_tg is None:
-        tf_tg = tf_tg_interactions()
-    gene_symbols = np.array(gene_symbols)
-
-    # Normalize expression data
-    expr_norm = (expr - np.mean(expr, axis=0)) / np.std(expr, axis=0)
-
-    # For each TF, check whether its target genes exhibit significant rank differences in comparison with other
-    # non-target genes.
-    active_tfs = []
-    for tf, tgs in tf_tg.items():
-        tg_idxs = np.array([np.where(gene_symbols == tg)[0] for tg in tgs if tg in gene_symbols]).ravel()
-
-        if tf in gene_symbols and len(tg_idxs) > 0:
-            # Find expressions of TG regulated by TF
-            expr_tgs = expr_norm[:, tg_idxs]
-
-            # Find expressions of other genes
-            non_tg_idxs = list(set(range(nb_genes)) - set(tg_idxs.tolist()))
-            expr_non_tgs = expr_norm[:, non_tg_idxs]
-
-            # Compute Wilcoxon's p-value for each sample
-            p_values = []
-            for i in range(nb_samples):
-                statistic, p_value = scipy.stats.mannwhitneyu(expr_tgs[i, :], expr_non_tgs[i, :],
-                                                              alternative='two-sided')
-                p_values.append(p_value)
-
-            # Correct the independent p-values to account for multiple testing with Benjamini-Hochberg's procedure
-            reject, p_values_c, _, _ = multipletests(pvals=p_values,
-                                                     alpha=0.05,
-                                                     method='fdr_bh')
-            chip_rate = np.sum(reject) / nb_samples
-            active_tfs.append(chip_rate)
 
     # Plot histogram
-    values = active_tfs
+    values, _ = find_chip_rates(expr, gene_symbols, tf_tg)
     bins = np.logspace(-10, 1, 20, base=2)
     bins[0] = 0
     ax = plt.gca()
@@ -478,8 +554,7 @@ def plot_tf_activity_histogram(expr, gene_symbols, xlabel='Fraction of chips. TF
     return ax
 
 
-
 if __name__ == '__main__':
     r_expr, gene_symbols, sample_names = load_data(root_gene='crp')
     r_tf_tg_corr_flat, r_tg_tg_corr_flat = compute_tf_tg_corrs(r_expr, gene_symbols, flat=False)
-    theta_dx_dz = theta_coefficient(r_tg_tg_corr_flat, r_tg_tg_corr_flat)
+    theta_dx_dz = phi_coefficient(r_tg_tg_corr_flat, r_tg_tg_corr_flat)

@@ -17,6 +17,15 @@ DEFAULT_CORRNOISE = 0.1
 
 
 def dump_network(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, depth=DEFAULT_DEPTH, break_loops=True):
+    """
+    Writes network for root_gene in SyNTReN format (directory: SYNTREN_DATA_DIR)
+    :param root_gene: Gene on top of the hierarchy
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :param break_loops: Whether to break the loops from lower (or equal) to upper levels in the hierarchy.
+           If True, the resulting network is a Directed Acyclic Graph (DAG).
+    """
     gs = get_gene_symbols()
     nodes, edges = reg_network(gs, root_gene, minimum_evidence, depth, break_loops)
     nb_nodes = len(nodes)
@@ -43,6 +52,22 @@ def syntren_results(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDEN
                     break_loops=True, nb_background=DEFAULT_BACKGROUND_NODES, hop=DEFAULT_HOP,
                     bionoise=DEFAULT_BIONOISE, expnoise=DEFAULT_EXPNOISE, corrnoise=DEFAULT_CORRNOISE,
                     normalized=True):
+    """
+    Reads SynTReN results
+    :param root_gene: Gene on top of the hierarchy
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :param break_loops: Whether to break the loops from lower (or equal) to upper levels in the hierarchy.
+           If True, the resulting network is a Directed Acyclic Graph (DAG).
+    :param nb_background: Number of background nodes
+    :param hop: Probability for complex 2-regulator interactions
+    :param bionoise: Biological noise [0, 1]
+    :param expnoise: Experimental noise [0, 1]
+    :param corrnoise: Noise on correlated inputs [0, 1]
+    :param normalized: Whether to get SynTReN normalized or unnormalized data
+    :return: expression matrix with Shape=(nb_samples, nb_genes), and list of gene symbols
+    """
     # Read results
     gs = get_gene_symbols()
     nodes, edges = reg_network(gs, root_gene, minimum_evidence, depth, break_loops)
@@ -63,5 +88,5 @@ def syntren_results(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDEN
 
 
 if __name__ == '__main__':
-    # dump_network(minimum_evidence='Weak')
-    expr, gene_symbols = syntren_results(minimum_evidence='Weak', nb_background=1076)
+    dump_network(minimum_evidence='Weak')
+    expr, gene_symbols = syntren_results(minimum_evidence='Weak', nb_background=0)

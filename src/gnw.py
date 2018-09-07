@@ -11,6 +11,15 @@ RESULTS_FILE = GNW_DATA_DIR + 'results/EColi_n{}_r{}_e{}_d{}_b{}_multifactorial.
 
 
 def dump_network(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, depth=DEFAULT_DEPTH, break_loops=True):
+    """
+    Writes network for root_gene in GNW format (directory: GNW_DATA_DIR)
+    :param root_gene: Gene on top of the hierarchy
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :param break_loops: Whether to break the loops from lower (or equal) to upper levels in the hierarchy.
+           If True, the resulting network is a Directed Acyclic Graph (DAG).
+    """
     gs = get_gene_symbols()
     nodes, edges = reg_network(gs, root_gene, minimum_evidence, depth, break_loops)
     nb_nodes = len(nodes)
@@ -25,6 +34,16 @@ def dump_network(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE,
 
 def gnw_results(root_gene=DEFAULT_ROOT_GENE, minimum_evidence=DEFAULT_EVIDENCE, depth=DEFAULT_DEPTH,
                 break_loops=True):
+    """
+    Reads GNW results
+    :param root_gene: Gene on top of the hierarchy
+    :param minimum_evidence: Interactions with a strength below this level will be discarded.
+           Possible values: 'confirmed', 'strong', 'weak'
+    :param depth: Ignores genes that are not in the first max_depth levels of the hierarchy
+    :param break_loops: Whether to break the loops from lower (or equal) to upper levels in the hierarchy.
+           If True, the resulting network is a Directed Acyclic Graph (DAG).
+    :return: expression matrix with Shape=(nb_samples, nb_genes), and list of gene symbols
+    """
     # Read results
     gs = get_gene_symbols()
     nodes, edges = reg_network(gs, root_gene, minimum_evidence, depth, break_loops)

@@ -1,4 +1,4 @@
-from biogan import BioGAN, generate_data, normalize
+from ggan import gGAN, generate_data, normalize
 from data_pipeline import load_data, save_synthetic, split_train_test, reg_network, reverse_edges
 import numpy as np
 import scipy
@@ -90,15 +90,15 @@ if __name__ == '__main__':
     expr_test = expr[test_idxs, :]
 
     # Load GAN
-    biogan = BioGAN(normalize(expr_train, kappa=2))
-    biogan.load_model(file_name)
+    ggan = gGAN(normalize(expr_train), gene_symbols)
+    ggan.load_model(file_name)
 
     # Generate synthetic data
     mean = np.mean(expr_train, axis=0)
     std = np.std(expr_train, axis=0)
     r_min = expr_train.min()
     r_max = expr_train.max()
-    gen_data = lambda size: generate_data(biogan, size, mean, std, r_min, r_max)
+    gen_data = lambda size: generate_data(ggan, size, mean, std, r_min, r_max)
 
     # Perform normal sampling
     print('Performing normal sampling...')
@@ -120,7 +120,8 @@ if __name__ == '__main__':
                  'cadc', 'gutm', 'hyfr', 'acs',
                  'acna', 'aer', 'caia', 'nagc',
                  'gyra', 'lpd', 'mdh', 'dpia']
-    for gene_name in gene_list:
+    for i, gene_name in enumerate(gene_list):
+        print('{}/{}...'.format(i, len(gene_list)))
         tfs = r_edges[gene_name].keys()
         tf_idxs = np.squeeze([np.argwhere(np.array(gene_symbols) == g) for g in tfs if g != gene_name])
         print('Performing rejection sampling for genes {} (TFs of `{}`)...'.format([gene_symbols[g] for g in tf_idxs], gene_name))
@@ -134,9 +135,3 @@ if __name__ == '__main__':
         print('Saving rejection sampling data...')
         rej_file_name = '{}/{}_{}'.format(DEFAULT_REJ_DIR, gene_name, file_name)
         save_synthetic(rej_file_name, s_expr_rej, gene_symbols)
-
-    """
-    print('Saving rejection sampling data...')
-    rej_file_name = '{}_{}'.format('rej', file_name)
-    save_synthetic(rej_file_name, s_expr_rej, gene_symbols)
-    """
