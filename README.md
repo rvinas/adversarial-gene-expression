@@ -1,6 +1,6 @@
 # Adversarial generation of gene expression data
 
-This work is is submitted as part requirement for the MSc degree in Machine Learning at University College London
+This work is submitted as part requirement for the MSc degree in Machine Learning at University College London
 
 ## Overview
 
