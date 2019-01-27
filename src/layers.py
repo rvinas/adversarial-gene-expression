@@ -153,3 +153,31 @@ class GeneWiseNoise(Layer):
 
     def get_weights_norm(self):
         return K.sum(K.abs(self._w))
+
+
+class MinibatchDiscrimination(Layer):
+    def __init__(self, units=5, units_out=10, **kwargs):
+        self._w = None
+        self._units = units
+        self._units_out = units_out
+        super(MinibatchDiscrimination, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        self._w = self.add_weight(name='w',
+                                  shape=(input_shape[1], self._units * self._units_out),
+                                  initializer='uniform',
+                                  trainable=True
+                                  )
+        super(MinibatchDiscrimination, self).build(input_shape)
+
+    def call(self, x, **kwargs):
+        h = K.dot(x, self._w)  # Shape=(batch_size, units * units_out)
+        h = K.reshape(h, (-1, self._units, self._units_out))  # Shape=(batch_size, units, units_out)
+        h_t = K.permute_dimensions(h, [1, 2, 0])  # Shape=(units, units_out, batch_size)
+        diffs = h[..., None] - h_t[None, ...]  # Shape=(batch_size, units, units_out, batch_size)
+        abs_diffs = K.sum(K.abs(diffs), axis=1)  # Shape=(batch_size, units_out, batch_size)
+        features = K.sum(K.exp(-abs_diffs), axis=-1)  # Shape=(batch_size, units_out)
+        return K.concatenate([x, features])
+
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], input_shape[1] + self._units_out

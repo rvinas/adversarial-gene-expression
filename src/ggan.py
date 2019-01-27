@@ -1,6 +1,8 @@
+# WGAN implementation credit to: https://github.com/eriklindernoren/Keras-GAN/blob/master/wgan/wgan.py
+
 from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda, BatchNormalization
 from keras.models import Model, load_model
-from keras.optimizers import Adam
+from keras.optimizers import RMSprop
 import keras.backend as K
 from keras.callbacks import TensorBoard
 import numpy as np
@@ -9,19 +11,20 @@ from utils import *
 import datetime
 import tensorflow as tf
 import warnings
-from layers import GeneWiseNoise, ClipWeights
+from layers import GeneWiseNoise, MinibatchDiscrimination
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
 LATENT_DIM = 20
-DEFAULT_NOISE_RATE = 0.25
+DEFAULT_NOISE_RATE = 0.35
 CHECKPOINTS_DIR = '../checkpoints'
 
 
 # TODO: Pass function of evaluation scores in train instead of gene symbols
 
 class gGAN:
-    def __init__(self, data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE, discriminate_batch=False,
+    def __init__(self, data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE,
+                 discriminate_batch=False,
                  max_replay_len=None):
         """
         Initialize GAN
@@ -41,15 +44,18 @@ class gGAN:
         self._discriminate_batch = discriminate_batch
         self._max_replay_len = max_replay_len
 
+        # Following parameter and optimizer set as recommended in paper
+        self.n_critic = 5
+        self.clip_value = 0.01
+        optimizer = RMSprop(lr=0.00005)
+
         # Build and compile the discriminator
         self.discriminator = self._build_discriminator()
-        optimizer = Adam(0.0002, 0.5)
-        loss = 'binary_crossentropy'
         if self._discriminate_batch:
             # loss = self._minibatch_binary_crossentropy
             raise NotImplementedError
 
-        self.discriminator.compile(loss=loss,
+        self.discriminator.compile(loss=self.wasserstein_loss,
                                    optimizer=optimizer)
         self._gradients_discr = self._gradients_norm(self.discriminator)
 
@@ -59,11 +65,11 @@ class gGAN:
         gen_out = self.generator(z)
 
         # Build the combined model
-        optimizer = Adam(0.0002, 0.5)
         self.discriminator.trainable = False
         valid = self.discriminator(gen_out)
         self.combined = Model(z, valid)
-        self.combined.compile(loss='binary_crossentropy', optimizer=optimizer)
+        self.combined.compile(loss=self.wasserstein_loss,
+                              optimizer=optimizer)
         self._gradients_gen = self._gradients_norm(self.combined)
 
         # Prepare TensorBoard callbacks
@@ -80,6 +86,9 @@ class gGAN:
         x_fake = self.generator.predict(noise)
         self._replay_buffer = np.array(x_fake)
 
+    def wasserstein_loss(self, y_true, y_pred):
+        return K.mean(y_true * y_pred)
+
     def _build_generator(self):
         """
         Build the generator
@@ -87,7 +96,10 @@ class gGAN:
         noise = Input(shape=(self._latent_dim,))
         h = noise
         # h = Dropout(0.5)(h)
-        h = Dense(1000)(h)
+        h = Dense(256)(h)
+        h = LeakyReLU(0.3)(h)
+        h = Dropout(0.5)(h)
+        h = Dense(256)(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
         h = Dense(self._nb_genes)(h)
@@ -100,15 +112,18 @@ class gGAN:
         model.summary()
         return model
 
-    def _build_discriminator(self, clipvalue=0.5):
+    def _build_discriminator(self):
         """
         Build the discriminator
         """
         expressions_input = Input(shape=(self._nb_genes,))
-        h = Dense(1000, kernel_constraint=ClipWeights(-clipvalue, clipvalue))(expressions_input)
+        h = expressions_input
+        h = Dropout(0.1)(h)
+        h = MinibatchDiscrimination()(h)
+        h = Dense(100)(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
-        h = Dense(1, activation='sigmoid', kernel_constraint=ClipWeights(-clipvalue, clipvalue))(h)
+        h = Dense(1)(h)
         model = Model(inputs=expressions_input, outputs=h)
         model.summary()
         return model
@@ -156,59 +171,44 @@ class gGAN:
         :param file_name: Name of the .h5 file in checkpoints. If None, the model won't be saved
         :param batch_size: Batch size
         """
-        # sess = tf.Session()
-        # K.set_session(sess)
-        # sess.run(tf.global_variables_initializer())
-
         # Best score for correlation of distance gene matrices
         best_gdxdz = 0
 
+        # Adversarial ground truths
+        valid = -np.ones((batch_size, 1))
+        fake = np.ones((batch_size, 1))
+
         for epoch in range(epochs):
 
-            # ----------------------
-            #  Train Discriminator
-            # ----------------------
+            for _ in range(self.n_critic):
+                # ----------------------
+                #  Train Discriminator
+                # ----------------------
 
-            # Select random samples
-            idxs = np.random.randint(0, self._nb_samples, batch_size)
-            x_real = self._data[idxs, :]
+                # Select random samples
+                idxs = np.random.randint(0, self._nb_samples, batch_size)
+                x_real = self._data[idxs, :]
 
-            # Sample noise and generate a batch of new images
-            noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
-            x_fake = self.generate_batch(batch_size)  # self.generator.predict(noise)
+                # Sample noise and generate a batch of new images
+                noise = np.random.normal(0, 1, (batch_size, self._latent_dim))
+                x_fake = self.generate_batch(batch_size)  # self.generator.predict(noise)
 
-            # Train the discriminator (real classified as ones and generated as zeros)
-            valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))  # Label smoothing
-            fake = np.zeros(
-                shape=(batch_size, 1))  # np.random.uniform(low=0, high=0.3, size=(batch_size, 1))  # Label smoothing
-            d_loss_real = self.discriminator.train_on_batch(x_real, valid)
-            d_loss_fake = self.discriminator.train_on_batch(x_fake, fake)
-            d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
+                # Train the discriminator (real classified as ones and generated as zeros)
+                d_loss_real = self.discriminator.train_on_batch(x_real, valid)
+                d_loss_fake = self.discriminator.train_on_batch(x_fake, fake)
+                d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
 
-            # Add discriminator loss to TensorBoard
-            self._write_log(self._callback_discr, ['train_loss'], [d_loss], epoch)
-
-            # Train discr. using replay buffer
-            if self._max_replay_len is not None:
-                idxs = np.random.choice(len(self._replay_buffer), batch_size)
-                d_loss_replay = self.discriminator.train_on_batch(self._replay_buffer[idxs, :], fake)
-
-                # Add discriminator loss to TensorBoard
-                self._write_log(self._callback_discr, ['replay_loss'], [d_loss_replay], epoch)
-
-                # Add data to replay buffer
-                if len(self._replay_buffer) < self._max_replay_len:
-                    self._replay_buffer = np.concatenate((self._replay_buffer, x_fake), axis=0)
-                elif np.random.randint(low=0, high=1) < 0.999 ** epoch:
-                    idxs = np.random.choice(len(self._replay_buffer), batch_size, replace=False)
-                    self._replay_buffer[idxs, :] = x_fake
+                # Clip critic weights
+                for l in self.discriminator.layers:
+                    weights = l.get_weights()
+                    weights = [np.clip(w, -self.clip_value, self.clip_value) for w in weights]
+                    l.set_weights(weights)
 
             # ----------------------
             #  Train Generator
             # ----------------------
 
             # Train the generator
-            valid = np.random.uniform(low=0.7, high=1, size=(batch_size, 1))  # np.ones(shape=(batch_size, 1))
             g_loss = self.combined.train_on_batch(noise, valid)
 
             # Add generator loss to TensorBoard
@@ -219,7 +219,7 @@ class gGAN:
             # ----------------------
 
             # Gradient norm TensorBoard log
-            if epoch % 100 == 0:
+            if (epoch + 1) % 100 == 0:
                 # Get discriminator gradients
                 grad_inputs = [noise,  # data
                                np.ones(shape=(batch_size,)),  # Sample weights
@@ -247,31 +247,32 @@ class gGAN:
                 self._write_log(self._callback_discr, ['gradient_norm'], [g_discr], epoch)
                 self._write_log(self._callback_gen, ['gradient_norm'], [g_gen], epoch)
 
-            # ----------------------
-            #  Plot the progress
-            # ----------------------
-            print('{} [D loss: {:.4f}] [G loss: {:.4f}]'.format(epoch, d_loss, g_loss))
-
-            # ----------------------
-            # Evaluate and save the model when good gamma(D^X, D^Z)
-            # ----------------------
-            if (epoch+1) % 100 == 0:
+                # ----------------------
+                # Evaluate and save the model when good gamma(D^X, D^Z)
+                # ----------------------
                 s_expr = self.generate_batch(self._data.shape[0])
                 gamma_dx_dz, gamma_dx_tx, gamma_dz_tz, gamma_tx_tz = gamma_coefficients(self._data, s_expr)
-                r_tf_tg_corr_flat, r_tg_tg_corr_flat = compute_tf_tg_corrs(self._data, self._gene_symbols, flat=False)
+                r_tf_tg_corr_flat, r_tg_tg_corr_flat = compute_tf_tg_corrs(self._data, self._gene_symbols,
+                                                                           flat=False)
                 s_tf_tg_corr_flat, s_tg_tg_corr_flat = compute_tf_tg_corrs(s_expr, self._gene_symbols, flat=False)
                 psi_dx_dz = psi_coefficient(r_tf_tg_corr_flat, s_tf_tg_corr_flat)
-                theta_dx_dz = theta_coefficient(r_tg_tg_corr_flat, s_tg_tg_corr_flat)
+                phi_dx_dz = phi_coefficient(r_tg_tg_corr_flat, s_tg_tg_corr_flat)
 
                 self._write_log(self._callback_gen,
-                                ['Gamma(D^X, D^Z)', 'Gamma(D^Z, T^Z)', 'Gamma(T^X, T^Z)', 'Psi(D^X, D^Z)', 'Phi(D^X, D^Z)'],
-                                [gamma_dx_dz, gamma_dz_tz, gamma_tx_tz, psi_dx_dz, theta_dx_dz],
+                                ['Gamma(D^X, D^Z)', 'Gamma(D^Z, T^Z)', 'Gamma(T^X, T^Z)', 'Psi(D^X, D^Z)',
+                                 'Phi(D^X, D^Z)'],
+                                [gamma_dx_dz, gamma_dz_tz, gamma_tx_tz, psi_dx_dz, phi_dx_dz],
                                 epoch)
                 print('Gamma(D^X, D^Z): {}'.format(gamma_dx_dz))
                 if file_name is not None and gamma_dx_dz > best_gdxdz:
                     best_gdxdz = gamma_dx_dz
                     print('Saving model ...')
                     self.save_model(file_name)
+
+            # ----------------------
+            #  Plot the progress
+            # ----------------------
+            print('{} [D loss: {:.4f}] [G loss: {:.4f}]'.format(epoch, d_loss, g_loss))
 
         # Print noise layer norm
         # noise_layer_norm = sess.run(self._noise_layer.get_weights_norm())
@@ -316,13 +317,16 @@ class gGAN:
         :param name: model id
         """
         self.discriminator = load_model('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name),
-                                        custom_objects={'ClipWeights': ClipWeights})
+                                        custom_objects={'MinibatchDiscrimination': MinibatchDiscrimination,
+                                                        'wasserstein_loss': self.wasserstein_loss})
         self.generator = load_model('{}/gen/{}.h5'.format(CHECKPOINTS_DIR, name),
-                                    custom_objects={'GeneWiseNoise': GeneWiseNoise},
+                                    custom_objects={'GeneWiseNoise': GeneWiseNoise,
+                                                    'wasserstein_loss': self.wasserstein_loss},
                                     compile=False)
         self.combined = load_model('{}/gan/{}.h5'.format(CHECKPOINTS_DIR, name),
                                    custom_objects={'GeneWiseNoise': GeneWiseNoise,
-                                                   'ClipWeights': ClipWeights})
+                                                   'MinibatchDiscrimination': MinibatchDiscrimination,
+                                                   'wasserstein_loss': self.wasserstein_loss})
         self._latent_dim = self.generator.input_shape[-1]
 
 
@@ -383,7 +387,7 @@ def generate_data(gan, size, mean, std, r_min, r_max):
 
 if __name__ == '__main__':
     # Load data
-    root_gene = None  # Set to 'CRP' to select the CRP hierarchy. Set to None to use full set of genes
+    root_gene = 'CRP'  # Set to 'CRP' to select the CRP hierarchy. Set to None to use full set of genes
     minimum_evidence = 'weak'
     max_depth = np.inf
     expr, gene_symbols, sample_names = load_data(root_gene=root_gene,
@@ -401,7 +405,7 @@ if __name__ == '__main__':
 
     # Train GAN
     ggan = gGAN(data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE)
-    ggan.train(epochs=4000, file_name=file_name, batch_size=32)
+    ggan.train(epochs=6000, file_name=file_name, batch_size=32)
 
     # Generate synthetic data
     mean = np.mean(expr_train, axis=0)
