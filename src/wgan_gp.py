@@ -15,8 +15,9 @@ from functools import partial
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
-LATENT_DIM = 40
-DEFAULT_NOISE_RATE = 0.35
+RETRAIN = False
+LATENT_DIM = 10
+DEFAULT_NOISE_RATE = 10
 CHECKPOINTS_DIR = '../checkpoints'
 
 
@@ -106,7 +107,7 @@ class gGAN:
         # For the generator we freeze the critic's layers
         self.discriminator.trainable = False
         self.generator.trainable = True
-        self._noise_layer.trainable = False
+        # self._noise_layer.trainable = False
 
         # Sampled noise for input to generator
         z_gen = Input(shape=(self._latent_dim,))
@@ -189,7 +190,7 @@ class gGAN:
         h = Dense(self._nb_genes)(h)
         # h = Activation('tanh')(h)
         # h = LeakyReLU(0.3)(h)
-        self._noise_layer = GeneWiseNoise(self._noise_rate)
+        # self._noise_layer = GeneWiseNoise(self._noise_rate)
         # h = self._noise_layer(h)
         # h = Activation('tanh')(h)
         model = Model(inputs=noise, outputs=h)
@@ -411,7 +412,9 @@ if __name__ == '__main__':
 
     # Train GAN
     ggan = gGAN(data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE)
-    ggan.train(epochs=10000, file_name=file_name, batch_size=32)
+    if RETRAIN:
+        ggan.load_model(file_name)
+    ggan.train(epochs=4000, file_name=file_name, batch_size=32)
 
     # Generate synthetic data
     mean = np.mean(expr_train, axis=0)

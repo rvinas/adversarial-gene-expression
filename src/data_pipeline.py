@@ -11,6 +11,7 @@ REGULATORY_NET_DIR = '../data/regulatory_networks'
 CSV_DIR = '../data/csv'
 DEFAULT_DATAFILE = 'E_coli_v4_Build_6_chips907probes4297.tab'
 PROBE_DESCRIPTIONS = 'E_coli_v4_Build_6.probe_set_descriptions'
+EXPERIMENT_CONDITIONS = 'E_coli_v4_Build_6.experiment_descriptions'
 DEFAULT_REGULATORY_INTERACTIONS = 'regulatory_interactions'
 DEFAULT_TF_TG = 'tf_tg'
 DEFAULT_ROOT_GENE = 'CRP'
@@ -159,6 +160,43 @@ def _load_data(name, root_gene=None, reg_int=None, minimum_evidence=None, max_de
         gene_symbols = symb
 
     return expr, gene_symbols, sample_names
+
+
+def get_conditions(sample_names, conditions=None):
+    # pH changes, antibiotics, heat shock, varying glucose and oxygen concentration
+
+    if conditions is None:
+        conditions = ['culture_ph', 'culture_temperature',  'glucose', 'culture_o2', 'aeration', 'cell_density', 'perturbation', 'perturbation_gene', 'ampicillin', 'antifoam', 'growth_phase']
+    with open('{}/{}'.format(DATA_DIR, EXPERIMENT_CONDITIONS), 'r') as f:
+        lines = f.readlines()
+
+    data = []
+    s_names = []
+    for line in lines[1:]:
+        splits = line.split('\t')
+        sample_data = []
+        s_name = splits[0]
+        s_names.append(s_name)
+        splits = splits[-1].split(', ')
+
+        for cond in conditions:
+            found = False
+            for split in splits:
+                if split.startswith(cond):
+                    sample_data.append(split.split(':')[-1])
+                    found = True
+                    break
+            if not found:
+                sample_data.append(None)
+
+        data.append(sample_data)
+    s_names = np.array(s_names)
+    idxs = [np.argwhere(s_names == s).ravel()[0] for s in sample_names]
+    print(idxs)
+    data = np.array(data)[idxs]
+    print(data.shape)
+
+    return data
 
 
 def tf_tg_interactions(tf_tg_file=DEFAULT_TF_TG, minimum_evidence=DEFAULT_EVIDENCE):
@@ -515,17 +553,6 @@ def write_csv(name, expr, gene_symbols, sample_names=None, nb_decimals=5):
 
 if __name__ == '__main__':
     expr, gene_symbols, sample_names = load_data()
-    # tf_tg_interactions()
 
-    idxs_first, idxs_second = split_replicates(sample_names)
-    print(idxs_first)
-    print(idxs_second)
-    print(len(idxs_first))
-    assert len(set(idxs_first + idxs_second)) == len(sample_names)
-
-    idxs_train, idxs_test = split_train_test(sample_names, train_rate=0.7)
-    print(idxs_train)
-    print(idxs_test)
-
-    gs = get_gene_symbols()
-    nodes, edges = reg_network(gs)
+    conditions = get_conditions(sample_names)
+    print(conditions[:10])
