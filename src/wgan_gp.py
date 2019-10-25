@@ -1,22 +1,23 @@
-from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda, BatchNormalization
+from keras.layers import Input, Dense, Dropout, LeakyReLU, Activation, Lambda, BatchNormalization, Concatenate
 from keras.models import Model, load_model
 from keras.optimizers import Adam, RMSprop
 import keras.backend as K
 from keras.callbacks import TensorBoard
 import numpy as np
-from data_pipeline import load_data, save_synthetic, reg_network, split_train_test, clip_outliers
+from data_pipeline import load_data, save_synthetic, reg_network, split_train_test, clip_outliers, normalize
 from utils import *
 import datetime
 import tensorflow as tf
 import warnings
-from layers import GeneWiseNoise, ClipWeights, MinibatchDiscrimination
+from layers import GeneWiseNoise, ClipWeights, MinibatchDiscrimination, CorrDiscr
 from keras.layers.merge import _Merge
 from functools import partial
 
 warnings.filterwarnings('ignore', message='Discrepancy between')
 
+RETRAIN = False
 LATENT_DIM = 10
-DEFAULT_NOISE_RATE = 0.25
+DEFAULT_NOISE_RATE = 10
 CHECKPOINTS_DIR = '../checkpoints'
 
 
@@ -106,6 +107,7 @@ class gGAN:
         # For the generator we freeze the critic's layers
         self.discriminator.trainable = False
         self.generator.trainable = True
+        # self._noise_layer.trainable = False
 
         # Sampled noise for input to generator
         z_gen = Input(shape=(self._latent_dim,))
@@ -116,6 +118,14 @@ class gGAN:
         # Defines generator model
         self.generator_model = Model(z_gen, valid)
         self.generator_model.compile(loss=self.wasserstein_loss, optimizer=optimizer)
+
+        # Noise model
+        """
+        self.generator.trainable = False
+        self._noise_layer.trainable = True
+        self.noise_model = Model(z_gen, valid)
+        self.noise_model.compile(loss=self.wasserstein_loss, optimizer=optimizer)
+        """
 
         # -----------------------------
         # Prepare TensorBoard callbacks
@@ -158,10 +168,12 @@ class gGAN:
         """
         Build the generator
         """
+        # rate = 0.3
+        # nb_initial_units = int((1 - rate) * self._latent_dim)
         noise = Input(shape=(self._latent_dim,))
-        h = noise
+        # input_1 = Lambda(lambda x: x[:, :nb_initial_units])(noise)
         # h = Dropout(0.5)(h)
-        h = Dense(64)(h)
+        h = Dense(64)(noise)
         h = BatchNormalization()(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
@@ -173,10 +185,12 @@ class gGAN:
         h = BatchNormalization()(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
+        # input_2 = Lambda(lambda x: x[:, nb_initial_units:])(noise)
+        # h = Concatenate()([h, input_2])
         h = Dense(self._nb_genes)(h)
         # h = Activation('tanh')(h)
         # h = LeakyReLU(0.3)(h)
-        self._noise_layer = GeneWiseNoise(self._noise_rate)
+        # self._noise_layer = GeneWiseNoise(self._noise_rate)
         # h = self._noise_layer(h)
         # h = Activation('tanh')(h)
         model = Model(inputs=noise, outputs=h)
@@ -189,8 +203,10 @@ class gGAN:
         """
         expressions_input = Input(shape=(self._nb_genes,))
         h = expressions_input
-        h = Dropout(0.1)(h)
-        h = MinibatchDiscrimination(3, 2)(h)
+        # h = Dropout(0.1)(h)
+        batch_features_2 = MinibatchDiscrimination(2, 5)(h)
+        h = Concatenate()([h, batch_features_2])
+        # batch_features_1 = CorrDiscr()(h)
         h = Dense(100)(h)
         h = LeakyReLU(0.3)(h)
         h = Dropout(0.5)(h)
@@ -314,6 +330,10 @@ class gGAN:
             # Train the generator
             g_loss = self.generator_model.train_on_batch(noise, valid)
 
+            # Train noise model
+            # n_loss = self.noise_model.train_on_batch(noise, valid)
+            # g_loss = (g_loss + n_loss) / 2
+
             # Add generator loss to TensorBoard
             self._write_log(self._callback_gen, ['train_loss'], [g_loss], epoch)
 
@@ -357,77 +377,19 @@ class gGAN:
         for layer in self.discriminator.layers:  # https://github.com/keras-team/keras/issues/9589
             layer.trainable = False
         self.generator.save('{}/gen/{}.h5'.format(CHECKPOINTS_DIR, name), include_optimizer=False)
-        # self.combined.save('{}/gan/{}.h5'.format(CHECKPOINTS_DIR, name))
 
     def load_model(self, name):
         """
         Loads model from CHECKPOINTS_DIR
         :param name: model id
         """
-        self.discriminator = load_model('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name),
-                                        custom_objects={'ClipWeights': ClipWeights})
+        """self.discriminator = load_model('{}/discr/{}.h5'.format(CHECKPOINTS_DIR, name),
+                                        custom_objects={'ClipWeights': ClipWeights,
+                                                        'MinibatchDiscrimination': MinibatchDiscrimination})"""
         self.generator = load_model('{}/gen/{}.h5'.format(CHECKPOINTS_DIR, name),
                                     custom_objects={'GeneWiseNoise': GeneWiseNoise},
                                     compile=False)
-        self.combined = load_model('{}/gan/{}.h5'.format(CHECKPOINTS_DIR, name),
-                                   custom_objects={'GeneWiseNoise': GeneWiseNoise,
-                                                   'ClipWeights': ClipWeights})
         self._latent_dim = self.generator.input_shape[-1]
-
-
-def normalize(expr, kappa=1):
-    """
-    Normalizes expressions to make each gene have mean 0 and std kappa^-1
-    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
-    :param kappa: kappa^-1 is the gene std
-    :return: normalized expressions
-    """
-    mean = np.mean(expr, axis=0)
-    std = np.std(expr, axis=0)
-    return (expr - mean) / (kappa * std)
-
-
-def restore_scale(expr, mean, std):
-    """
-    Makes each gene j have mean_j and std_j
-    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
-    :param mean: vector of gene means. Shape=(nb_genes,)
-    :param std: vector of gene stds. Shape=(nb_genes,)
-    :return: Rescaled gene expressions
-    """
-    return expr * std + mean
-
-
-def clip_outliers(expr, r_min, r_max):
-    """
-    Clips expression values to make them be between r_min and r_max
-    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
-    :param r_min: minimum expression value (float)
-    :param r_max: maximum expression value (float)
-    :return: Clipped expression matrix
-    """
-    expr_c = np.copy(expr)
-    expr_c[expr_c < r_min] = r_min
-    expr_c[expr_c > r_max] = r_max
-    return expr_c
-
-
-def generate_data(gan, size, mean, std, r_min, r_max):
-    """
-    Generates size samples from generator
-    :param gan: Keras GAN
-    :param size: Number of samples to generate
-    :param mean: vector of gene means. Shape=(nb_genes,)
-    :param std: vector of gene stds. Shape=(nb_genes,)
-    :param r_min: vector of minimum expression values for each gene
-    :param r_max: vector of maximum expression values for each gene
-    :return: matrix of expressions
-    """
-    expr = gan.generate_batch(size)
-    expr = normalize(expr)
-    expr = restore_scale(expr, mean, std)
-    expr = clip_outliers(expr, r_min, r_max)
-    return expr
 
 
 if __name__ == '__main__':
@@ -446,18 +408,20 @@ if __name__ == '__main__':
     expr_test = expr[test_idxs, :]
 
     # Standardize data
-    data = normalize(expr_train, kappa=2)
+    data = normalize(expr_train)
 
     # Train GAN
     ggan = gGAN(data, gene_symbols, latent_dim=LATENT_DIM, noise_rate=DEFAULT_NOISE_RATE)
-    ggan.train(epochs=5000, file_name=file_name, batch_size=32)
+    if RETRAIN:
+        ggan.load_model(file_name)
+    ggan.train(epochs=4000, file_name=file_name, batch_size=32)
 
     # Generate synthetic data
     mean = np.mean(expr_train, axis=0)
     std = np.std(expr_train, axis=0)
     r_min = expr_train.min()
     r_max = expr_train.max()
-    s_expr = generate_data(ggan, expr_train.shape[0], mean, std, r_min, r_max)
+    s_expr = ggan.generate_batch(expr_train.shape[0])
 
     # Save generated data
     save_synthetic(file_name, s_expr, gene_symbols)
