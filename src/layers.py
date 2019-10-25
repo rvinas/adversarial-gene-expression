@@ -1,159 +1,59 @@
 from keras.engine.topology import Layer
 import keras.backend as K
-from keras.initializers import RandomUniform
+from keras.layers import LSTM
+import tensorflow as tf
+
+from keras.constraints import MinMaxNorm
 
 
-class GRI(Layer):
-    # NOTE: Not used
-    def __init__(self, root_node, nodes, edges, **kwargs):
-        """
-        :param root_node: node on top of the hierarchy
-        :param nodes: list of nodes (gene symbols) according to which the output nodes will be sorted
-        :param edges: dictionary of edges (keys: *from* node, values: dictionary with key *to* node and
-               value regulation type)
-        """
-        self._output_dim = len(nodes)
-        self._root_node = root_node
-        self._nodes = nodes
-        self._edges = edges
-        self._r_edges = self._reverse_edges(edges)
-        self._structure = None
-        super(GRI, self).__init__(**kwargs)
+class fNRI(Layer):
+    def __init__(self, **kwargs):
+        self.embedding_size = 4
+        super(fNRI, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        # f_emb
+        self.f_emb = tf.keras.layers.Dense(self.embedding_size)
+        self.f_emb.build(input_shape)
+        self._trainable_weights = self.f_emb.trainable_weights
+
+        # f1_e
+        self.f1_e = tf.keras.layers.Dense(3)
+        self.f1_e.build(input_shape)
+        self._trainable_weights.append(self.f1_e.trainable_weights)
+
+        # f_v
+        self.f_v = tf.keras.layers.Dense(self.embedding_size)
+        self.f_v.build(input_shape)
+        self._trainable_weights.append(self.f_v.trainable_weights)
+
+        super(fNRI, self).build(input_shape)  # Be sure to call this at the end
 
     @staticmethod
-    def _reverse_edges(edges):
-        r_edges = {}
-        for tf, tgs in edges.items():
-            for tg, reg_type in tgs.items():
-                if tg in r_edges:
-                    if tf not in r_edges[tg]:
-                        r_edges[tg][tf] = reg_type
-                else:
-                    r_edges[tg] = {tf: reg_type}
-        return r_edges
-
-    def _create_params(self, node, latent_dim, nb_incoming):
-        bias = self.add_weight(name='{}_bias'.format(self._root_node),
-                               shape=(1, 1),
-                               initializer='zeros',
-                               trainable=True)
-        weights = self.add_weight(name='{}_weights'.format(node),
-                                  shape=(latent_dim + nb_incoming, 1),
-                                  initializer='glorot_uniform',
-                                  trainable=True)
-        params = K.concatenate([bias, weights], axis=0)  # Shape=(1 + latent_dim + nb_incoming, 1)
-        return params
-
-    def build(self, input_shape):
-        batch_size, latent_dim = input_shape
-
-        # Structure is a list of tuples with format: (NODE, INCOMING_NODES, WEIGHTS)
-        # The list is sorted so that node i does not depend on node j if j>i
-        w = self._create_params(self._root_node, latent_dim, 0)
-        self._structure = [(self._root_node, [], w)]
-
-        nodes = set(self._nodes) - {self._root_node}
-        remaining = len(nodes)
-        while remaining > 0:
-            for node in nodes:
-                regulated_by = self._r_edges[node].keys()
-                if all([parent not in nodes for parent in regulated_by]):
-                    w = self._create_params(node, latent_dim, len(regulated_by))
-                    t = (node, regulated_by, w)
-                    self._structure.append(t)
-                    nodes = nodes - {node}
-            assert len(nodes) < remaining
-            remaining = len(nodes)
-
-        super(GRI, self).build(input_shape)  # Be sure to call this at the end
-
-    def call(self, z, **kwargs):
-        """
-        :param z: Noise tensor. Shape=(batch_size, LATENT_DIM)
-        :return: synthetic gene expressions tensor
-        """
-        # Dictionary holding the current value of each node in the GRI.
-        # Key: gene symbol. Value: gene Keras tensor
-        units = {}
-
-        # Compute feedforward pass for GRI layer
-        x_bias = K.ones_like(z)  # Shape=(batch_size, latent_dim)
-        x_bias = K.mean(x_bias, axis=-1)[:, None]  # Shape=(batch_size, 1)
-        for t in self._structure:
-            node, incoming, weights = t
-            x_units = [units[in_node] for in_node in incoming]
-            x_in = K.concatenate([x_bias, z] + x_units, axis=-1)  # Shape=(batch_size, 1 + latent_dim + nb_incoming)
-            x_out = K.dot(x_in, weights)  # Shape=(batch_size, 1)
-            units[node] = K.tanh(x_out)
-
-        return K.concatenate([units[node] for node in self._nodes], axis=-1)  # Shape=(batch_size, nb_nodes)
-
-    def compute_output_shape(self, input_shape):
-        return input_shape[0], self._output_dim
-
-
-class ClipWeights:
-    """
-    Keras constraint. Clips weights between two values
-    """
-    def __init__(self, min_value, max_value):
-        self._min_value = min_value
-        self._max_value = max_value
-
-    def __call__(self, w):
-        return K.clip(w, self._min_value, self._max_value)
-
-    def get_config(self):
-        return {'min_value': self._min_value,
-                'max_value': self._max_value}
-
-
-class NormWeights:
-    """
-    Keras constraint. Rescales weights so that the L1 norm is total_weights
-    """
-    def __init__(self, total_weights=10):
-        self._total_weights = total_weights
-
-    def __call__(self, w):
-        w = self._total_weights * w / K.sum(K.abs(w))
-        return w
-
-    def get_config(self):
-        return {'total_weights': self._total_weights}
-
-
-class GeneWiseNoise(Layer):
-    """
-    Keras layer. Adds learnable Gaussian white noise
-    """
-    def __init__(self, noise_rate=0.25, **kwargs):
-        self._w = None
-        self._noise_rate = noise_rate
-        super(GeneWiseNoise, self).__init__(**kwargs)
-
-    def build(self, input_shape):
-        nb_genes = input_shape[1]
-        self._w = self.add_weight(name='w',
-                                  shape=(nb_genes,),
-                                  initializer='uniform',
-                                  trainable=True,
-                                  constraint=NormWeights(total_weights=self._noise_rate*nb_genes)
-                                  )
-        super(GeneWiseNoise, self).build(input_shape)
+    def cross_concat(h):
+        batch_size, nb_genes, dim = h.shape
+        h_ = tf.tile(h[..., None, :],
+                      [1, 1, nb_genes, 1])  # Shape=(batch_size, nb_genes, nb_genes, dim)
+        h_t = tf.transpose(h_, perm=(0, 2, 1, 3))  # Shape=(batch_size, nb_genes, nb_genes, dim)
+        c = tf.stack((h_, h_t), axis=-1)  # Shape=(batch_size, nb_genes, nb_genes, dim, 2)
+        c_ = tf.reshape(c, shape=(-1, dim * 2))  # Shape=(batch_size, nb_genes, nb_genes, dim * 2)
+        return c_
 
     def call(self, x, **kwargs):
-        noise = K.random_normal(K.shape(x), mean=0, stddev=1)
-        additive_noise = noise * self._w
-        out = x + additive_noise
-        return out
+        x_ = x[..., None]  # Shape=(batch_size, nb_genes, 1)
+        h1 = self.f_emb(x_)  # Shape=(batch_size, nb_genes, embedding_size)
+        c = self.cross_concat(h1)  # Shape=(batch_size, nb_genes, nb_genes, embedding_size * 2)
+        # TODO: Set diagonal to 0
+        h1_edges = self.f1_e(c)  # Shape=(batch_size, nb_genes, nb_genes, 3)
+        h2 = self.f_v(tf.reduce_sum(h1_edges, axis=2))  # Shape=(batch_size, nb_genes, 3)
+        c = self.cross_concat(h2)  # Shape=(batch_size, nb_genes, nb_genes, 3)
+        # TODO: Reduce batch size?
+        edge_probs = tf.nn.softmax(c, axis=-1)
+        
+        pass
 
     def compute_output_shape(self, input_shape):
         return input_shape
-
-    def get_weights_norm(self):
-        return K.sum(K.abs(self._w))
-
 
 class MinibatchDiscrimination(Layer):
     def __init__(self, units=5, units_out=10, **kwargs):
@@ -177,7 +77,29 @@ class MinibatchDiscrimination(Layer):
         diffs = h[..., None] - h_t[None, ...]  # Shape=(batch_size, units, units_out, batch_size)
         abs_diffs = K.sum(K.abs(diffs), axis=1)  # Shape=(batch_size, units_out, batch_size)
         features = K.sum(K.exp(-abs_diffs), axis=-1)  # Shape=(batch_size, units_out)
-        return K.concatenate([x, features])
+        return features
 
     def compute_output_shape(self, input_shape):
-        return input_shape[0], input_shape[1] + self._units_out
+        return input_shape[0], self._units_out
+
+
+class CorrDiscr(Layer):
+    def __init__(self, **kwargs):
+        self._w = None
+        self._projection_dim = 1
+        super(CorrDiscr, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        super(CorrDiscr, self).build(input_shape)
+
+    def call(self, x, **kwargs):
+        x_mean = K.mean(x, axis=-1)  # Shape=(batch_size,)
+        x_std = K.std(x, axis=-1)  # Shape=(batch_size,)
+        x = (x - x_mean[:, None]) / x_std[:, None]  # Shape=(batch_size, units)
+        x_t = K.transpose(x)  # Shape=(units, batch_size)
+        out = K.dot(x, x_t) / K.cast(x.shape[1], dtype=tf.float32)  # Shape=(batch_size, batch_size)
+        return K.std(out, axis=-1)[:, None] * K.ones((self._projection_dim,),
+                                                     dtype=tf.float32)  # Shape=(batch_size, projection_dim)
+
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], self._projection_dim
