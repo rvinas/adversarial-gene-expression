@@ -429,6 +429,43 @@ def load_data(name=DEFAULT_DATAFILE, root_gene=DEFAULT_ROOT_GENE, minimum_eviden
     return _load_data(name, root_gene, reg_int, minimum_evidence, max_depth)
 
 
+def normalize(expr, kappa=1):
+    """
+    Normalizes expressions to make each gene have mean 0 and std kappa^-1
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param kappa: kappa^-1 is the gene std
+    :return: normalized expressions
+    """
+    mean = np.mean(expr, axis=0)
+    std = np.std(expr, axis=0)
+    return (expr - mean) / (kappa * std)
+
+
+def restore_scale(expr, mean, std):
+    """
+    Makes each gene j have mean_j and std_j
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param mean: vector of gene means. Shape=(nb_genes,)
+    :param std: vector of gene stds. Shape=(nb_genes,)
+    :return: Rescaled gene expressions
+    """
+    return expr * std + mean
+
+
+def clip_outliers(expr, r_min, r_max):
+    """
+    Clips expression values to make them be between r_min and r_max
+    :param expr: matrix of gene expressions. Shape=(nb_samples, nb_genes)
+    :param r_min: minimum expression value (float)
+    :param r_max: maximum expression value (float)
+    :return: Clipped expression matrix
+    """
+    expr_c = np.copy(expr)
+    expr_c[expr_c < r_min] = r_min
+    expr_c[expr_c > r_max] = r_max
+    return expr_c
+
+
 def save_synthetic(name, expr, gene_symbols):
     """
     Saves expression data with Shape=(nb_samples, nb_genes) to pickle file with the given name in SYNTHETIC_DIR.

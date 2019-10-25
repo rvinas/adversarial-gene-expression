@@ -1,7 +1,7 @@
 from keras.engine.topology import Layer
 import keras.backend as K
-from keras.initializers import RandomUniform
-
+from keras.layers import LSTM
+import tensorflow as tf
 
 class GRI(Layer):
     # NOTE: Not used
@@ -177,7 +177,27 @@ class MinibatchDiscrimination(Layer):
         diffs = h[..., None] - h_t[None, ...]  # Shape=(batch_size, units, units_out, batch_size)
         abs_diffs = K.sum(K.abs(diffs), axis=1)  # Shape=(batch_size, units_out, batch_size)
         features = K.sum(K.exp(-abs_diffs), axis=-1)  # Shape=(batch_size, units_out)
-        return K.concatenate([x, features])
+        return features
 
     def compute_output_shape(self, input_shape):
-        return input_shape[0], input_shape[1] + self._units_out
+        return input_shape[0], self._units_out
+
+class CorrDiscr(Layer):
+    def __init__(self, **kwargs):
+        self._w = None
+        self._projection_dim = 1
+        super(CorrDiscr, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        super(CorrDiscr, self).build(input_shape)
+
+    def call(self, x, **kwargs):
+        x_mean = K.mean(x, axis=-1)  # Shape=(batch_size,)
+        x_std = K.std(x, axis=-1)  # Shape=(batch_size,)
+        x = (x - x_mean[:, None])/x_std[:, None]  # Shape=(batch_size, units)
+        x_t = K.transpose(x)  # Shape=(units, batch_size)
+        out = K.dot(x, x_t) / K.cast(x.shape[1], dtype=tf.float32)  # Shape=(batch_size, batch_size)
+        return K.std(out, axis=-1)[:, None] * K.ones((self._projection_dim,), dtype=tf.float32)  # Shape=(batch_size, projection_dim)
+
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], self._projection_dim
