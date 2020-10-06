@@ -4,20 +4,12 @@ This work is submitted as part requirement for the MSc degree in Machine Learnin
 
 ## Overview
 
-The problem of reverse engineering gene regulatory networks from high-throughput expression data is one of the biggest challenges in bioinformatics. In order to benchmark network inference algorithms, simulators of well-characterized expression datasets are often required. However, existing simulators have been criticized because they fail to emulate key properties of gene expression data (Maier et al., 2013).
-
-In this thesis we address two problems. First, we study and propose mechanisms to faithfully assess the realism of a synthetic expression dataset. Second, we design an adversarial simulator of expression data, gGAN, based on a generative adversarial network (Goodfellow et al., 2014). We show that our model outperforms existing simulators by a large margin in terms of the realism of the generated data. More importantly, our results show that gGAN is, to our best knowledge, the first simulator that passes the Turing test for gene expression data proposed by Maier et al. (2013).
+High-throughput gene expression can be used to address a wide range of fundamental biological problems, but datasets of an appropriate size are often unavailable. Moreover, existing transcriptomics simulators have been criticised because they fail to emulate key properties of gene expression data. In this paper, we develop a method based on a conditional generative adversarial network to generate realistic transcriptomics data for _E. coli_ and humans. We assess the performance of our approach across several tissues and cancer types. We show that our model preserves several gene expression properties significantly better than widely used simulators such as SynTReN or GeneNetWeaver. The synthetic data preserves tissue and cancer-specific properties of transcriptomics data. Moreover, it exhibits real gene clusters and ontologies both at local and global scales, suggesting that the model learns to approximate the gene expression manifold in a biologically meaningful way.
 
 
-## Prerequisites
-Python 3.5
+## Main figures
 
-## Installation
-1. Install TensorFlow (see https://www.tensorflow.org/install/)
-2. Run `sudo pip install -r requirements.txt`
 
-## Key files
-- `src/ggan.py`: Trains the GAN, and stores some data.
-- `src/sampling.py`: Samples data from a saved model.
-- `src/validation.ipynb`: Evaluates synthetic dataset against the *E. coli* M3D train dataset.
-- `src/ggan_analysis.ipynb`: Evaluates synthetic dataset against the *E. coli* M3D test dataset.
+[UMAP_combined.pdf](figures/UMAP_combined.pdf)
+
+[dist_dendr_combined_ellipses.pdf.pdf](figures/dist_dendr_combined_ellipses.pdf.pdf)
